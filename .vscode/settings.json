@@ -1,0 +1,17 @@
+{
+    "files.associations": {
+        "__locale": "cpp",
+        "string": "cpp",
+        "__config": "cpp",
+        "cstddef": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "new": "cpp",
+        "stdexcept": "cpp",
+        "typeinfo": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "iterator": "cpp",
+        "vector": "cpp"
+    }
+}

@@ -1,0 +1,6 @@
+interface Node {
+    void Node();
+    Node[] getChildren();
+    void setChildren(Node[] children_);
+    Node eachBefore());
+};

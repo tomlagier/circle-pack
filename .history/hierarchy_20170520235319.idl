@@ -1,0 +1,14 @@
+interface Node {
+    Node() {}
+
+    std::vector<Node> children;
+    std::vector<Node> getChildren();
+
+    void setChildren(std::vector<Node> children_) {
+        children = children_;
+    }
+
+    Node eachBefore(
+        std::function<void(Node)> callback
+    ) {
+}

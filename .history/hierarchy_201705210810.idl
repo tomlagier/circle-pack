@@ -1,0 +1,7 @@
+callback Callback = void (Node node);
+
+interface Node {
+    void Node();
+    attribute sequence<Node> children;
+    Node eachBefore( Callback callback );
+};

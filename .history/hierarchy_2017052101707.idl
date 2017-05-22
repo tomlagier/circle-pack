@@ -1,0 +1,8 @@
+callback BeforeCallback = void (Node node);
+
+interface Node {
+    void Node();
+    sequence<Node> getChildren();
+    void setChildren(sequence<Node> children_);
+    Node eachBefore(BeforeCallback cb);
+};
