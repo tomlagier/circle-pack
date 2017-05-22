@@ -1,9 +1,0 @@
-interface Node {
-    Node() {}
-    std::vector<Node> getChildren();
-    void setChildren(std::vector<Node> children_);
-
-    Node eachBefore(
-        std::function<void(Node)> callback
-    ) {
-}
