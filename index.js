@@ -1998,7 +1998,7 @@ var ASM_CONSTS = [];
 
 STATIC_BASE = Runtime.GLOBAL_BASE;
 
-STATICTOP = STATIC_BASE + 28752;
+STATICTOP = STATIC_BASE + 28288;
 /* global initializers */  __ATINIT__.push({ func: function() { __GLOBAL__I_000101() } }, { func: function() { __GLOBAL__sub_I_hierarchy_cpp() } }, { func: function() { __GLOBAL__sub_I_bind_cpp() } }, { func: function() { __GLOBAL__sub_I_iostream_cpp() } });
 
 
@@ -2007,7 +2007,7 @@ memoryInitializer = Module["wasmJSMethod"].indexOf("asmjs") >= 0 || Module["wasm
 
 
 
-var STATIC_BUMP = 28752;
+var STATIC_BUMP = 28288;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 
@@ -7051,147 +7051,6 @@ function copyTempDouble(ptr) {
       return __emval_register(typeof handle);
     }
 
-  
-  
-  function new_(constructor, argumentList) {
-      if (!(constructor instanceof Function)) {
-          throw new TypeError('new_ called with constructor type ' + typeof(constructor) + " which is not a function");
-      }
-  
-      /*
-       * Previously, the following line was just:
-  
-       function dummy() {};
-  
-       * Unfortunately, Chrome was preserving 'dummy' as the object's name, even though at creation, the 'dummy' has the
-       * correct constructor name.  Thus, objects created with IMVU.new would show up in the debugger as 'dummy', which
-       * isn't very helpful.  Using IMVU.createNamedFunction addresses the issue.  Doublely-unfortunately, there's no way
-       * to write a test for this behavior.  -NRD 2013.02.22
-       */
-      var dummy = createNamedFunction(constructor.name || 'unknownFunctionName', function(){});
-      dummy.prototype = constructor.prototype;
-      var obj = new dummy;
-  
-      var r = constructor.apply(obj, argumentList);
-      return (r instanceof Object) ? r : obj;
-    }function craftInvokerFunction(humanName, argTypes, classType, cppInvokerFunc, cppTargetFunc) {
-      // humanName: a human-readable string name for the function to be generated.
-      // argTypes: An array that contains the embind type objects for all types in the function signature.
-      //    argTypes[0] is the type object for the function return value.
-      //    argTypes[1] is the type object for function this object/class type, or null if not crafting an invoker for a class method.
-      //    argTypes[2...] are the actual function parameters.
-      // classType: The embind type object for the class to be bound, or null if this is not a method of a class.
-      // cppInvokerFunc: JS Function object to the C++-side function that interops into C++ code.
-      // cppTargetFunc: Function pointer (an integer to FUNCTION_TABLE) to the target C++ function the cppInvokerFunc will end up calling.
-      var argCount = argTypes.length;
-  
-      if (argCount < 2) {
-          throwBindingError("argTypes array size mismatch! Must at least get return value and 'this' types!");
-      }
-  
-      var isClassMethodFunc = (argTypes[1] !== null && classType !== null);
-  
-      // Free functions with signature "void function()" do not need an invoker that marshalls between wire types.
-  // TODO: This omits argument count check - enable only at -O3 or similar.
-  //    if (ENABLE_UNSAFE_OPTS && argCount == 2 && argTypes[0].name == "void" && !isClassMethodFunc) {
-  //       return FUNCTION_TABLE[fn];
-  //    }
-  
-      var argsList = "";
-      var argsListWired = "";
-      for(var i = 0; i < argCount - 2; ++i) {
-          argsList += (i!==0?", ":"")+"arg"+i;
-          argsListWired += (i!==0?", ":"")+"arg"+i+"Wired";
-      }
-  
-      var invokerFnBody =
-          "return function "+makeLegalFunctionName(humanName)+"("+argsList+") {\n" +
-          "if (arguments.length !== "+(argCount - 2)+") {\n" +
-              "throwBindingError('function "+humanName+" called with ' + arguments.length + ' arguments, expected "+(argCount - 2)+" args!');\n" +
-          "}\n";
-  
-  
-      // Determine if we need to use a dynamic stack to store the destructors for the function parameters.
-      // TODO: Remove this completely once all function invokers are being dynamically generated.
-      var needsDestructorStack = false;
-  
-      for(var i = 1; i < argTypes.length; ++i) { // Skip return value at index 0 - it's not deleted here.
-          if (argTypes[i] !== null && argTypes[i].destructorFunction === undefined) { // The type does not define a destructor function - must use dynamic stack
-              needsDestructorStack = true;
-              break;
-          }
-      }
-  
-      if (needsDestructorStack) {
-          invokerFnBody +=
-              "var destructors = [];\n";
-      }
-  
-      var dtorStack = needsDestructorStack ? "destructors" : "null";
-      var args1 = ["throwBindingError", "invoker", "fn", "runDestructors", "retType", "classParam"];
-      var args2 = [throwBindingError, cppInvokerFunc, cppTargetFunc, runDestructors, argTypes[0], argTypes[1]];
-  
-  
-      if (isClassMethodFunc) {
-          invokerFnBody += "var thisWired = classParam.toWireType("+dtorStack+", this);\n";
-      }
-  
-      for(var i = 0; i < argCount - 2; ++i) {
-          invokerFnBody += "var arg"+i+"Wired = argType"+i+".toWireType("+dtorStack+", arg"+i+"); // "+argTypes[i+2].name+"\n";
-          args1.push("argType"+i);
-          args2.push(argTypes[i+2]);
-      }
-  
-      if (isClassMethodFunc) {
-          argsListWired = "thisWired" + (argsListWired.length > 0 ? ", " : "") + argsListWired;
-      }
-  
-      var returns = (argTypes[0].name !== "void");
-  
-      invokerFnBody +=
-          (returns?"var rv = ":"") + "invoker(fn"+(argsListWired.length>0?", ":"")+argsListWired+");\n";
-  
-      if (needsDestructorStack) {
-          invokerFnBody += "runDestructors(destructors);\n";
-      } else {
-          for(var i = isClassMethodFunc?1:2; i < argTypes.length; ++i) { // Skip return value at index 0 - it's not deleted here. Also skip class type if not a method.
-              var paramName = (i === 1 ? "thisWired" : ("arg"+(i - 2)+"Wired"));
-              if (argTypes[i].destructorFunction !== null) {
-                  invokerFnBody += paramName+"_dtor("+paramName+"); // "+argTypes[i].name+"\n";
-                  args1.push(paramName+"_dtor");
-                  args2.push(argTypes[i].destructorFunction);
-              }
-          }
-      }
-  
-      if (returns) {
-          invokerFnBody += "var ret = retType.fromWireType(rv);\n" +
-                           "return ret;\n";
-      } else {
-      }
-      invokerFnBody += "}\n";
-  
-      args1.push(invokerFnBody);
-  
-      var invokerFunction = new_(Function, args1).apply(null, args2);
-      return invokerFunction;
-    }function __embind_register_function(name, argCount, rawArgTypesAddr, signature, rawInvoker, fn) {
-      var argTypes = heap32VectorToArray(argCount, rawArgTypesAddr);
-      name = readLatin1String(name);
-      
-      rawInvoker = requireFunction(signature, rawInvoker);
-  
-      exposePublicSymbol(name, function() {
-          throwUnboundTypeError('Cannot call ' + name + ' due to unbound types', argTypes);
-      }, argCount - 1);
-  
-      whenDependentTypesAreResolved([], argTypes, function(argTypes) {
-          var invokerArgsArray = [argTypes[0] /* return value */, null /* no class 'this'*/].concat(argTypes.slice(1) /* actual params */);
-          replacePublicSymbol(name, craftInvokerFunction(name, invokerArgsArray, null /* no class 'this'*/, rawInvoker, fn), argCount - 1);
-          return [];
-      });
-    }
-
   function ___map_file(pathname, size) {
       ___setErrNo(ERRNO_CODES.EPERM);
       return -1;
@@ -7519,7 +7378,131 @@ function copyTempDouble(ptr) {
   }
   }
 
-  function __embind_register_class_function(
+  
+  
+  function new_(constructor, argumentList) {
+      if (!(constructor instanceof Function)) {
+          throw new TypeError('new_ called with constructor type ' + typeof(constructor) + " which is not a function");
+      }
+  
+      /*
+       * Previously, the following line was just:
+  
+       function dummy() {};
+  
+       * Unfortunately, Chrome was preserving 'dummy' as the object's name, even though at creation, the 'dummy' has the
+       * correct constructor name.  Thus, objects created with IMVU.new would show up in the debugger as 'dummy', which
+       * isn't very helpful.  Using IMVU.createNamedFunction addresses the issue.  Doublely-unfortunately, there's no way
+       * to write a test for this behavior.  -NRD 2013.02.22
+       */
+      var dummy = createNamedFunction(constructor.name || 'unknownFunctionName', function(){});
+      dummy.prototype = constructor.prototype;
+      var obj = new dummy;
+  
+      var r = constructor.apply(obj, argumentList);
+      return (r instanceof Object) ? r : obj;
+    }function craftInvokerFunction(humanName, argTypes, classType, cppInvokerFunc, cppTargetFunc) {
+      // humanName: a human-readable string name for the function to be generated.
+      // argTypes: An array that contains the embind type objects for all types in the function signature.
+      //    argTypes[0] is the type object for the function return value.
+      //    argTypes[1] is the type object for function this object/class type, or null if not crafting an invoker for a class method.
+      //    argTypes[2...] are the actual function parameters.
+      // classType: The embind type object for the class to be bound, or null if this is not a method of a class.
+      // cppInvokerFunc: JS Function object to the C++-side function that interops into C++ code.
+      // cppTargetFunc: Function pointer (an integer to FUNCTION_TABLE) to the target C++ function the cppInvokerFunc will end up calling.
+      var argCount = argTypes.length;
+  
+      if (argCount < 2) {
+          throwBindingError("argTypes array size mismatch! Must at least get return value and 'this' types!");
+      }
+  
+      var isClassMethodFunc = (argTypes[1] !== null && classType !== null);
+  
+      // Free functions with signature "void function()" do not need an invoker that marshalls between wire types.
+  // TODO: This omits argument count check - enable only at -O3 or similar.
+  //    if (ENABLE_UNSAFE_OPTS && argCount == 2 && argTypes[0].name == "void" && !isClassMethodFunc) {
+  //       return FUNCTION_TABLE[fn];
+  //    }
+  
+      var argsList = "";
+      var argsListWired = "";
+      for(var i = 0; i < argCount - 2; ++i) {
+          argsList += (i!==0?", ":"")+"arg"+i;
+          argsListWired += (i!==0?", ":"")+"arg"+i+"Wired";
+      }
+  
+      var invokerFnBody =
+          "return function "+makeLegalFunctionName(humanName)+"("+argsList+") {\n" +
+          "if (arguments.length !== "+(argCount - 2)+") {\n" +
+              "throwBindingError('function "+humanName+" called with ' + arguments.length + ' arguments, expected "+(argCount - 2)+" args!');\n" +
+          "}\n";
+  
+  
+      // Determine if we need to use a dynamic stack to store the destructors for the function parameters.
+      // TODO: Remove this completely once all function invokers are being dynamically generated.
+      var needsDestructorStack = false;
+  
+      for(var i = 1; i < argTypes.length; ++i) { // Skip return value at index 0 - it's not deleted here.
+          if (argTypes[i] !== null && argTypes[i].destructorFunction === undefined) { // The type does not define a destructor function - must use dynamic stack
+              needsDestructorStack = true;
+              break;
+          }
+      }
+  
+      if (needsDestructorStack) {
+          invokerFnBody +=
+              "var destructors = [];\n";
+      }
+  
+      var dtorStack = needsDestructorStack ? "destructors" : "null";
+      var args1 = ["throwBindingError", "invoker", "fn", "runDestructors", "retType", "classParam"];
+      var args2 = [throwBindingError, cppInvokerFunc, cppTargetFunc, runDestructors, argTypes[0], argTypes[1]];
+  
+  
+      if (isClassMethodFunc) {
+          invokerFnBody += "var thisWired = classParam.toWireType("+dtorStack+", this);\n";
+      }
+  
+      for(var i = 0; i < argCount - 2; ++i) {
+          invokerFnBody += "var arg"+i+"Wired = argType"+i+".toWireType("+dtorStack+", arg"+i+"); // "+argTypes[i+2].name+"\n";
+          args1.push("argType"+i);
+          args2.push(argTypes[i+2]);
+      }
+  
+      if (isClassMethodFunc) {
+          argsListWired = "thisWired" + (argsListWired.length > 0 ? ", " : "") + argsListWired;
+      }
+  
+      var returns = (argTypes[0].name !== "void");
+  
+      invokerFnBody +=
+          (returns?"var rv = ":"") + "invoker(fn"+(argsListWired.length>0?", ":"")+argsListWired+");\n";
+  
+      if (needsDestructorStack) {
+          invokerFnBody += "runDestructors(destructors);\n";
+      } else {
+          for(var i = isClassMethodFunc?1:2; i < argTypes.length; ++i) { // Skip return value at index 0 - it's not deleted here. Also skip class type if not a method.
+              var paramName = (i === 1 ? "thisWired" : ("arg"+(i - 2)+"Wired"));
+              if (argTypes[i].destructorFunction !== null) {
+                  invokerFnBody += paramName+"_dtor("+paramName+"); // "+argTypes[i].name+"\n";
+                  args1.push(paramName+"_dtor");
+                  args2.push(argTypes[i].destructorFunction);
+              }
+          }
+      }
+  
+      if (returns) {
+          invokerFnBody += "var ret = retType.fromWireType(rv);\n" +
+                           "return ret;\n";
+      } else {
+      }
+      invokerFnBody += "}\n";
+  
+      args1.push(invokerFnBody);
+  
+      var invokerFunction = new_(Function, args1).apply(null, args2);
+      return invokerFunction;
+    }function __embind_register_class_function(
       rawClassType,
       methodName,
       argCount,
@@ -7648,7 +7631,7 @@ function nullFunc_ii(x) { Module["printErr"]("Invalid function pointer called wi
 
 function nullFunc_viijii(x) { Module["printErr"]("Invalid function pointer called with signature 'viijii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
-function nullFunc_iifi(x) { Module["printErr"]("Invalid function pointer called with signature 'iifi'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
+function nullFunc_id(x) { Module["printErr"]("Invalid function pointer called with signature 'id'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
 function nullFunc_iiiiiiiiiiii(x) { Module["printErr"]("Invalid function pointer called with signature 'iiiiiiiiiiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
@@ -7656,11 +7639,7 @@ function nullFunc_iiii(x) { Module["printErr"]("Invalid function pointer called 
 
 function nullFunc_viiiiiiiiiiiiiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiiiiiiiiiiiiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
-function nullFunc_vifi(x) { Module["printErr"]("Invalid function pointer called with signature 'vifi'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
-
 function nullFunc_fii(x) { Module["printErr"]("Invalid function pointer called with signature 'fii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
-
-function nullFunc_iiif(x) { Module["printErr"]("Invalid function pointer called with signature 'iiif'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
 function nullFunc_fiii(x) { Module["printErr"]("Invalid function pointer called with signature 'fiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
@@ -7668,13 +7647,9 @@ function nullFunc_iiiiiii(x) { Module["printErr"]("Invalid function pointer call
 
 function nullFunc_iiiiiiiiiiiii(x) { Module["printErr"]("Invalid function pointer called with signature 'iiiiiiiiiiiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
-function nullFunc_iif(x) { Module["printErr"]("Invalid function pointer called with signature 'iif'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
-
 function nullFunc_fd(x) { Module["printErr"]("Invalid function pointer called with signature 'fd'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
 function nullFunc_viiiiiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiiiiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
-
-function nullFunc_ff(x) { Module["printErr"]("Invalid function pointer called with signature 'ff'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
 function nullFunc_fi(x) { Module["printErr"]("Invalid function pointer called with signature 'fi'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
@@ -7708,9 +7683,9 @@ function nullFunc_iiiiid(x) { Module["printErr"]("Invalid function pointer calle
 
 function nullFunc_viiii(x) { Module["printErr"]("Invalid function pointer called with signature 'viiii'. Perhaps this is an invalid value (e.g. caused by calling a virtual method on a NULL pointer)? Or calling a function with an incorrect type, which will fail? (it is worth building your source files with -Werror (warnings are errors), as warnings can indicate undefined behavior which can cause this)");  Module["printErr"]("Build with ASSERTIONS=2 for more info.");abort(x) }
 
-Module['wasmTableSize'] = 31872;
+Module['wasmTableSize'] = 29824;
 
-Module['wasmMaxTableSize'] = 31872;
+Module['wasmMaxTableSize'] = 29824;
 
 function invoke_iiiiiiii(index,a1,a2,a3,a4,a5,a6,a7) {
   try {
@@ -7842,17 +7817,17 @@ function jsCall_viijii(index,a1,a2,a3,a4,a5) {
     Runtime.functionPointers[index](a1,a2,a3,a4,a5);
 }
 
-function invoke_iifi(index,a1,a2,a3) {
+function invoke_id(index,a1) {
   try {
-    return Module["dynCall_iifi"](index,a1,a2,a3);
+    return Module["dynCall_id"](index,a1);
   } catch(e) {
     if (typeof e !== 'number' && e !== 'longjmp') throw e;
     Module["setThrew"](1, 0);
   }
 }
 
-function jsCall_iifi(index,a1,a2,a3) {
-    return Runtime.functionPointers[index](a1,a2,a3);
+function jsCall_id(index,a1) {
+    return Runtime.functionPointers[index](a1);
 }
 
 function invoke_iiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11) {
@@ -7894,19 +7869,6 @@ function jsCall_viiiiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a1
     Runtime.functionPointers[index](a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15);
 }
 
-function invoke_vifi(index,a1,a2,a3) {
-  try {
-    Module["dynCall_vifi"](index,a1,a2,a3);
-  } catch(e) {
-    if (typeof e !== 'number' && e !== 'longjmp') throw e;
-    Module["setThrew"](1, 0);
-  }
-}
-
-function jsCall_vifi(index,a1,a2,a3) {
-    Runtime.functionPointers[index](a1,a2,a3);
-}
-
 function invoke_fii(index,a1,a2) {
   try {
     return Module["dynCall_fii"](index,a1,a2);
@@ -7918,19 +7880,6 @@ function invoke_fii(index,a1,a2) {
 
 function jsCall_fii(index,a1,a2) {
     return Runtime.functionPointers[index](a1,a2);
-}
-
-function invoke_iiif(index,a1,a2,a3) {
-  try {
-    return Module["dynCall_iiif"](index,a1,a2,a3);
-  } catch(e) {
-    if (typeof e !== 'number' && e !== 'longjmp') throw e;
-    Module["setThrew"](1, 0);
-  }
-}
-
-function jsCall_iiif(index,a1,a2,a3) {
-    return Runtime.functionPointers[index](a1,a2,a3);
 }
 
 function invoke_fiii(index,a1,a2,a3) {
@@ -7972,19 +7921,6 @@ function jsCall_iiiiiiiiiiiii(index,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) {
     return Runtime.functionPointers[index](a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12);
 }
 
-function invoke_iif(index,a1,a2) {
-  try {
-    return Module["dynCall_iif"](index,a1,a2);
-  } catch(e) {
-    if (typeof e !== 'number' && e !== 'longjmp') throw e;
-    Module["setThrew"](1, 0);
-  }
-}
-
-function jsCall_iif(index,a1,a2) {
-    return Runtime.functionPointers[index](a1,a2);
-}
-
 function invoke_fd(index,a1) {
   try {
     return Module["dynCall_fd"](index,a1);
@@ -8009,19 +7945,6 @@ function invoke_viiiiiii(index,a1,a2,a3,a4,a5,a6,a7) {
 
 function jsCall_viiiiiii(index,a1,a2,a3,a4,a5,a6,a7) {
     Runtime.functionPointers[index](a1,a2,a3,a4,a5,a6,a7);
-}
-
-function invoke_ff(index,a1) {
-  try {
-    return Module["dynCall_ff"](index,a1);
-  } catch(e) {
-    if (typeof e !== 'number' && e !== 'longjmp') throw e;
-    Module["setThrew"](1, 0);
-  }
-}
-
-function jsCall_ff(index,a1) {
-    return Runtime.functionPointers[index](a1);
 }
 
 function invoke_fi(index,a1) {
@@ -8234,7 +8157,7 @@ function jsCall_viiii(index,a1,a2,a3,a4) {
 
 Module.asmGlobalArg = { "Math": Math, "Int8Array": Int8Array, "Int16Array": Int16Array, "Int32Array": Int32Array, "Uint8Array": Uint8Array, "Uint16Array": Uint16Array, "Uint32Array": Uint32Array, "Float32Array": Float32Array, "Float64Array": Float64Array, "NaN": NaN, "Infinity": Infinity };
 
-Module.asmLibraryArg = { "abort": abort, "assert": assert, "enlargeMemory": enlargeMemory, "getTotalMemory": getTotalMemory, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "abortStackOverflow": abortStackOverflow, "nullFunc_iiiiiiii": nullFunc_iiiiiiii, "nullFunc_iiiiiid": nullFunc_iiiiiid, "nullFunc_vif": nullFunc_vif, "nullFunc_vid": nullFunc_vid, "nullFunc_viiiii": nullFunc_viiiii, "nullFunc_vi": nullFunc_vi, "nullFunc_vii": nullFunc_vii, "nullFunc_iiiiiiiiiii": nullFunc_iiiiiiiiiii, "nullFunc_ii": nullFunc_ii, "nullFunc_viijii": nullFunc_viijii, "nullFunc_iifi": nullFunc_iifi, "nullFunc_iiiiiiiiiiii": nullFunc_iiiiiiiiiiii, "nullFunc_iiii": nullFunc_iiii, "nullFunc_viiiiiiiiiiiiiii": nullFunc_viiiiiiiiiiiiiii, "nullFunc_vifi": nullFunc_vifi, "nullFunc_fii": nullFunc_fii, "nullFunc_iiif": nullFunc_iiif, "nullFunc_fiii": nullFunc_fiii, "nullFunc_iiiiiii": nullFunc_iiiiiii, "nullFunc_iiiiiiiiiiiii": nullFunc_iiiiiiiiiiiii, "nullFunc_iif": nullFunc_iif, "nullFunc_fd": nullFunc_fd, "nullFunc_viiiiiii": nullFunc_viiiiiii, "nullFunc_ff": nullFunc_ff, "nullFunc_fi": nullFunc_fi, "nullFunc_viiiiiiiiii": nullFunc_viiiiiiiiii, "nullFunc_iii": nullFunc_iii, "nullFunc_iiiiii": nullFunc_iiiiii, "nullFunc_diii": nullFunc_diii, "nullFunc_viiiiii": nullFunc_viiiiii, "nullFunc_i": nullFunc_i, "nullFunc_jiiii": nullFunc_jiiii, "nullFunc_iiiii": nullFunc_iiiii, "nullFunc_iiiiij": nullFunc_iiiiij, "nullFunc_viii": nullFunc_viii, "nullFunc_v": nullFunc_v, "nullFunc_iiiiiiiii": nullFunc_iiiiiiiii, "nullFunc_viif": nullFunc_viif, "nullFunc_iiiiid": nullFunc_iiiiid, "nullFunc_viiii": nullFunc_viiii, "invoke_iiiiiiii": invoke_iiiiiiii, "jsCall_iiiiiiii": jsCall_iiiiiiii, "invoke_iiiiiid": invoke_iiiiiid, "jsCall_iiiiiid": jsCall_iiiiiid, "invoke_vif": invoke_vif, "jsCall_vif": jsCall_vif, "invoke_vid": invoke_vid, "jsCall_vid": jsCall_vid, "invoke_viiiii": invoke_viiiii, "jsCall_viiiii": jsCall_viiiii, "invoke_vi": invoke_vi, "jsCall_vi": jsCall_vi, "invoke_vii": invoke_vii, "jsCall_vii": jsCall_vii, "invoke_iiiiiiiiiii": invoke_iiiiiiiiiii, "jsCall_iiiiiiiiiii": jsCall_iiiiiiiiiii, "invoke_ii": invoke_ii, "jsCall_ii": jsCall_ii, "invoke_viijii": invoke_viijii, "jsCall_viijii": jsCall_viijii, "invoke_iifi": invoke_iifi, "jsCall_iifi": jsCall_iifi, "invoke_iiiiiiiiiiii": invoke_iiiiiiiiiiii, "jsCall_iiiiiiiiiiii": jsCall_iiiiiiiiiiii, "invoke_iiii": invoke_iiii, "jsCall_iiii": jsCall_iiii, "invoke_viiiiiiiiiiiiiii": invoke_viiiiiiiiiiiiiii, "jsCall_viiiiiiiiiiiiiii": jsCall_viiiiiiiiiiiiiii, "invoke_vifi": invoke_vifi, "jsCall_vifi": jsCall_vifi, "invoke_fii": invoke_fii, "jsCall_fii": jsCall_fii, "invoke_iiif": invoke_iiif, "jsCall_iiif": jsCall_iiif, "invoke_fiii": invoke_fiii, "jsCall_fiii": jsCall_fiii, "invoke_iiiiiii": invoke_iiiiiii, "jsCall_iiiiiii": jsCall_iiiiiii, "invoke_iiiiiiiiiiiii": invoke_iiiiiiiiiiiii, "jsCall_iiiiiiiiiiiii": jsCall_iiiiiiiiiiiii, "invoke_iif": invoke_iif, "jsCall_iif": jsCall_iif, "invoke_fd": invoke_fd, "jsCall_fd": jsCall_fd, "invoke_viiiiiii": invoke_viiiiiii, "jsCall_viiiiiii": jsCall_viiiiiii, "invoke_ff": invoke_ff, "jsCall_ff": jsCall_ff, "invoke_fi": invoke_fi, "jsCall_fi": jsCall_fi, "invoke_viiiiiiiiii": invoke_viiiiiiiiii, "jsCall_viiiiiiiiii": jsCall_viiiiiiiiii, "invoke_iii": invoke_iii, "jsCall_iii": jsCall_iii, "invoke_iiiiii": invoke_iiiiii, "jsCall_iiiiii": jsCall_iiiiii, "invoke_diii": invoke_diii, "jsCall_diii": jsCall_diii, "invoke_viiiiii": invoke_viiiiii, "jsCall_viiiiii": jsCall_viiiiii, "invoke_i": invoke_i, "jsCall_i": jsCall_i, "invoke_jiiii": invoke_jiiii, "jsCall_jiiii": jsCall_jiiii, "invoke_iiiii": invoke_iiiii, "jsCall_iiiii": jsCall_iiiii, "invoke_iiiiij": invoke_iiiiij, "jsCall_iiiiij": jsCall_iiiiij, "invoke_viii": invoke_viii, "jsCall_viii": jsCall_viii, "invoke_v": invoke_v, "jsCall_v": jsCall_v, "invoke_iiiiiiiii": invoke_iiiiiiiii, "jsCall_iiiiiiiii": jsCall_iiiiiiiii, "invoke_viif": invoke_viif, "jsCall_viif": jsCall_viif, "invoke_iiiiid": invoke_iiiiid, "jsCall_iiiiid": jsCall_iiiiid, "invoke_viiii": invoke_viiii, "jsCall_viiii": jsCall_viiii, "floatReadValueFromPointer": floatReadValueFromPointer, "simpleReadValueFromPointer": simpleReadValueFromPointer, "throwInternalError": throwInternalError, "get_first_emval": get_first_emval, "whenDependentTypesAreResolved": whenDependentTypesAreResolved, "getLiveInheritedInstances": getLiveInheritedInstances, "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv, "ClassHandle": ClassHandle, "getShiftFromSize": getShiftFromSize, "__emval_get_property": __emval_get_property, "__addDays": __addDays, "___cxa_begin_catch": ___cxa_begin_catch, "_emscripten_memcpy_big": _emscripten_memcpy_big, "runDestructor": runDestructor, "throwInstanceAlreadyDeleted": throwInstanceAlreadyDeleted, "RegisteredPointer_fromWireType": RegisteredPointer_fromWireType, "init_RegisteredPointer": init_RegisteredPointer, "ClassHandle_isAliasOf": ClassHandle_isAliasOf, "flushPendingDeletes": flushPendingDeletes, "makeClassHandle": makeClassHandle, "__isLeapYear": __isLeapYear, "__embind_register_class_constructor": __embind_register_class_constructor, "___cxa_atexit": ___cxa_atexit, "___cxa_rethrow": ___cxa_rethrow, "init_ClassHandle": init_ClassHandle, "___syscall140": ___syscall140, "ClassHandle_clone": ClassHandle_clone, "___syscall145": ___syscall145, "___syscall146": ___syscall146, "throwBindingError": throwBindingError, "RegisteredClass": RegisteredClass, "___cxa_free_exception": ___cxa_free_exception, "___cxa_find_matching_catch": ___cxa_find_matching_catch, "_strftime": _strftime, "embind_init_charCodes": embind_init_charCodes, "__emval_as": __emval_as, "___setErrNo": ___setErrNo, "__embind_register_bool": __embind_register_bool, "___resumeException": ___resumeException, "createNamedFunction": createNamedFunction, "validateThis": validateThis, "___syscall91": ___syscall91, "___buildEnvironment": ___buildEnvironment, "__emval_decref": __emval_decref, "_pthread_once": _pthread_once, "__embind_register_class": __embind_register_class, "constNoSmartPtrRawPointerToWireType": constNoSmartPtrRawPointerToWireType, "heap32VectorToArray": heap32VectorToArray, "__emval_lookupTypes": __emval_lookupTypes, "__emval_run_destructors": __emval_run_destructors, "ClassHandle_delete": ClassHandle_delete, "___lock": ___lock, "___syscall6": ___syscall6, "ensureOverloadTable": ensureOverloadTable, "__embind_register_emval": __embind_register_emval, "new_": new_, "downcastPointer": downcastPointer, "replacePublicSymbol": replacePublicSymbol, "init_embind": init_embind, "ClassHandle_deleteLater": ClassHandle_deleteLater, "integerReadValueFromPointer": integerReadValueFromPointer, "RegisteredPointer_deleteObject": RegisteredPointer_deleteObject, "ClassHandle_isDeleted": ClassHandle_isDeleted, "__embind_register_integer": __embind_register_integer, "___cxa_allocate_exception": ___cxa_allocate_exception, "__emval_take_value": __emval_take_value, "___cxa_end_catch": ___cxa_end_catch, "_embind_repr": _embind_repr, "__emval_call": __emval_call, "__embind_register_class_function": __embind_register_class_function, "throwUnboundTypeError": throwUnboundTypeError, "craftInvokerFunction": craftInvokerFunction, "_getenv": _getenv, "runDestructors": runDestructors, "requireRegisteredType": requireRegisteredType, "makeLegalFunctionName": makeLegalFunctionName, "_pthread_key_create": _pthread_key_create, "upcastPointer": upcastPointer, "init_emval": init_emval, "shallowCopyInternalPointer": shallowCopyInternalPointer, "nonConstNoSmartPtrRawPointerToWireType": nonConstNoSmartPtrRawPointerToWireType, "_abort": _abort, "requireHandle": requireHandle, "getTypeName": getTypeName, "__embind_register_class_property": __embind_register_class_property, "exposePublicSymbol": exposePublicSymbol, "__embind_register_std_string": __embind_register_std_string, "___cxa_pure_virtual": ___cxa_pure_virtual, "_pthread_getspecific": _pthread_getspecific, "_pthread_cond_wait": _pthread_cond_wait, "RegisteredPointer_destructor": RegisteredPointer_destructor, "__embind_register_memory_view": __embind_register_memory_view, "getInheritedInstance": getInheritedInstance, "__emval_typeof": __emval_typeof, "setDelayFunction": setDelayFunction, "___gxx_personality_v0": ___gxx_personality_v0, "extendError": extendError, "__embind_register_void": __embind_register_void, "___cxa_find_matching_catch_3": ___cxa_find_matching_catch_3, "__embind_register_function": __embind_register_function, "_strftime_l": _strftime_l, "RegisteredPointer_getPointee": RegisteredPointer_getPointee, "__emval_register": __emval_register, "___cxa_find_matching_catch_2": ___cxa_find_matching_catch_2, "getStringOrSymbol": getStringOrSymbol, "__emval_incref": __emval_incref, "RegisteredPointer": RegisteredPointer, "__arraySum": __arraySum, "readLatin1String": readLatin1String, "getBasestPointer": getBasestPointer, "getInheritedInstanceCount": getInheritedInstanceCount, "__embind_register_float": __embind_register_float, "___syscall54": ___syscall54, "___unlock": ___unlock, "__embind_register_std_wstring": __embind_register_std_wstring, "_pthread_setspecific": _pthread_setspecific, "genericPointerToWireType": genericPointerToWireType, "registerType": registerType, "___cxa_throw": ___cxa_throw, "__emval_new_cstring": __emval_new_cstring, "count_emval_handles": count_emval_handles, "requireFunction": requireFunction, "_atexit": _atexit, "___map_file": ___map_file, "DYNAMICTOP_PTR": DYNAMICTOP_PTR, "tempDoublePtr": tempDoublePtr, "ABORT": ABORT, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "___dso_handle": ___dso_handle };
+Module.asmLibraryArg = { "abort": abort, "assert": assert, "enlargeMemory": enlargeMemory, "getTotalMemory": getTotalMemory, "abortOnCannotGrowMemory": abortOnCannotGrowMemory, "abortStackOverflow": abortStackOverflow, "nullFunc_iiiiiiii": nullFunc_iiiiiiii, "nullFunc_iiiiiid": nullFunc_iiiiiid, "nullFunc_vif": nullFunc_vif, "nullFunc_vid": nullFunc_vid, "nullFunc_viiiii": nullFunc_viiiii, "nullFunc_vi": nullFunc_vi, "nullFunc_vii": nullFunc_vii, "nullFunc_iiiiiiiiiii": nullFunc_iiiiiiiiiii, "nullFunc_ii": nullFunc_ii, "nullFunc_viijii": nullFunc_viijii, "nullFunc_id": nullFunc_id, "nullFunc_iiiiiiiiiiii": nullFunc_iiiiiiiiiiii, "nullFunc_iiii": nullFunc_iiii, "nullFunc_viiiiiiiiiiiiiii": nullFunc_viiiiiiiiiiiiiii, "nullFunc_fii": nullFunc_fii, "nullFunc_fiii": nullFunc_fiii, "nullFunc_iiiiiii": nullFunc_iiiiiii, "nullFunc_iiiiiiiiiiiii": nullFunc_iiiiiiiiiiiii, "nullFunc_fd": nullFunc_fd, "nullFunc_viiiiiii": nullFunc_viiiiiii, "nullFunc_fi": nullFunc_fi, "nullFunc_viiiiiiiiii": nullFunc_viiiiiiiiii, "nullFunc_iii": nullFunc_iii, "nullFunc_iiiiii": nullFunc_iiiiii, "nullFunc_diii": nullFunc_diii, "nullFunc_viiiiii": nullFunc_viiiiii, "nullFunc_i": nullFunc_i, "nullFunc_jiiii": nullFunc_jiiii, "nullFunc_iiiii": nullFunc_iiiii, "nullFunc_iiiiij": nullFunc_iiiiij, "nullFunc_viii": nullFunc_viii, "nullFunc_v": nullFunc_v, "nullFunc_iiiiiiiii": nullFunc_iiiiiiiii, "nullFunc_viif": nullFunc_viif, "nullFunc_iiiiid": nullFunc_iiiiid, "nullFunc_viiii": nullFunc_viiii, "invoke_iiiiiiii": invoke_iiiiiiii, "jsCall_iiiiiiii": jsCall_iiiiiiii, "invoke_iiiiiid": invoke_iiiiiid, "jsCall_iiiiiid": jsCall_iiiiiid, "invoke_vif": invoke_vif, "jsCall_vif": jsCall_vif, "invoke_vid": invoke_vid, "jsCall_vid": jsCall_vid, "invoke_viiiii": invoke_viiiii, "jsCall_viiiii": jsCall_viiiii, "invoke_vi": invoke_vi, "jsCall_vi": jsCall_vi, "invoke_vii": invoke_vii, "jsCall_vii": jsCall_vii, "invoke_iiiiiiiiiii": invoke_iiiiiiiiiii, "jsCall_iiiiiiiiiii": jsCall_iiiiiiiiiii, "invoke_ii": invoke_ii, "jsCall_ii": jsCall_ii, "invoke_viijii": invoke_viijii, "jsCall_viijii": jsCall_viijii, "invoke_id": invoke_id, "jsCall_id": jsCall_id, "invoke_iiiiiiiiiiii": invoke_iiiiiiiiiiii, "jsCall_iiiiiiiiiiii": jsCall_iiiiiiiiiiii, "invoke_iiii": invoke_iiii, "jsCall_iiii": jsCall_iiii, "invoke_viiiiiiiiiiiiiii": invoke_viiiiiiiiiiiiiii, "jsCall_viiiiiiiiiiiiiii": jsCall_viiiiiiiiiiiiiii, "invoke_fii": invoke_fii, "jsCall_fii": jsCall_fii, "invoke_fiii": invoke_fiii, "jsCall_fiii": jsCall_fiii, "invoke_iiiiiii": invoke_iiiiiii, "jsCall_iiiiiii": jsCall_iiiiiii, "invoke_iiiiiiiiiiiii": invoke_iiiiiiiiiiiii, "jsCall_iiiiiiiiiiiii": jsCall_iiiiiiiiiiiii, "invoke_fd": invoke_fd, "jsCall_fd": jsCall_fd, "invoke_viiiiiii": invoke_viiiiiii, "jsCall_viiiiiii": jsCall_viiiiiii, "invoke_fi": invoke_fi, "jsCall_fi": jsCall_fi, "invoke_viiiiiiiiii": invoke_viiiiiiiiii, "jsCall_viiiiiiiiii": jsCall_viiiiiiiiii, "invoke_iii": invoke_iii, "jsCall_iii": jsCall_iii, "invoke_iiiiii": invoke_iiiiii, "jsCall_iiiiii": jsCall_iiiiii, "invoke_diii": invoke_diii, "jsCall_diii": jsCall_diii, "invoke_viiiiii": invoke_viiiiii, "jsCall_viiiiii": jsCall_viiiiii, "invoke_i": invoke_i, "jsCall_i": jsCall_i, "invoke_jiiii": invoke_jiiii, "jsCall_jiiii": jsCall_jiiii, "invoke_iiiii": invoke_iiiii, "jsCall_iiiii": jsCall_iiiii, "invoke_iiiiij": invoke_iiiiij, "jsCall_iiiiij": jsCall_iiiiij, "invoke_viii": invoke_viii, "jsCall_viii": jsCall_viii, "invoke_v": invoke_v, "jsCall_v": jsCall_v, "invoke_iiiiiiiii": invoke_iiiiiiiii, "jsCall_iiiiiiiii": jsCall_iiiiiiiii, "invoke_viif": invoke_viif, "jsCall_viif": jsCall_viif, "invoke_iiiiid": invoke_iiiiid, "jsCall_iiiiid": jsCall_iiiiid, "invoke_viiii": invoke_viiii, "jsCall_viiii": jsCall_viiii, "floatReadValueFromPointer": floatReadValueFromPointer, "simpleReadValueFromPointer": simpleReadValueFromPointer, "throwInternalError": throwInternalError, "get_first_emval": get_first_emval, "whenDependentTypesAreResolved": whenDependentTypesAreResolved, "getLiveInheritedInstances": getLiveInheritedInstances, "__ZSt18uncaught_exceptionv": __ZSt18uncaught_exceptionv, "ClassHandle": ClassHandle, "getShiftFromSize": getShiftFromSize, "__emval_get_property": __emval_get_property, "__addDays": __addDays, "___cxa_begin_catch": ___cxa_begin_catch, "_emscripten_memcpy_big": _emscripten_memcpy_big, "runDestructor": runDestructor, "throwInstanceAlreadyDeleted": throwInstanceAlreadyDeleted, "RegisteredPointer_fromWireType": RegisteredPointer_fromWireType, "init_RegisteredPointer": init_RegisteredPointer, "ClassHandle_isAliasOf": ClassHandle_isAliasOf, "flushPendingDeletes": flushPendingDeletes, "makeClassHandle": makeClassHandle, "__isLeapYear": __isLeapYear, "__embind_register_class_constructor": __embind_register_class_constructor, "___cxa_atexit": ___cxa_atexit, "___cxa_rethrow": ___cxa_rethrow, "init_ClassHandle": init_ClassHandle, "___syscall140": ___syscall140, "ClassHandle_clone": ClassHandle_clone, "___syscall145": ___syscall145, "___syscall146": ___syscall146, "throwBindingError": throwBindingError, "RegisteredClass": RegisteredClass, "___cxa_free_exception": ___cxa_free_exception, "___cxa_find_matching_catch": ___cxa_find_matching_catch, "_strftime": _strftime, "embind_init_charCodes": embind_init_charCodes, "__emval_as": __emval_as, "___setErrNo": ___setErrNo, "__embind_register_bool": __embind_register_bool, "___resumeException": ___resumeException, "createNamedFunction": createNamedFunction, "validateThis": validateThis, "___syscall91": ___syscall91, "___buildEnvironment": ___buildEnvironment, "__emval_decref": __emval_decref, "_pthread_once": _pthread_once, "__embind_register_class": __embind_register_class, "constNoSmartPtrRawPointerToWireType": constNoSmartPtrRawPointerToWireType, "heap32VectorToArray": heap32VectorToArray, "__emval_lookupTypes": __emval_lookupTypes, "__emval_run_destructors": __emval_run_destructors, "ClassHandle_delete": ClassHandle_delete, "___lock": ___lock, "___syscall6": ___syscall6, "ensureOverloadTable": ensureOverloadTable, "__embind_register_emval": __embind_register_emval, "new_": new_, "downcastPointer": downcastPointer, "replacePublicSymbol": replacePublicSymbol, "init_embind": init_embind, "ClassHandle_deleteLater": ClassHandle_deleteLater, "integerReadValueFromPointer": integerReadValueFromPointer, "RegisteredPointer_deleteObject": RegisteredPointer_deleteObject, "ClassHandle_isDeleted": ClassHandle_isDeleted, "__embind_register_integer": __embind_register_integer, "___cxa_allocate_exception": ___cxa_allocate_exception, "__emval_take_value": __emval_take_value, "___cxa_end_catch": ___cxa_end_catch, "_embind_repr": _embind_repr, "__emval_call": __emval_call, "__embind_register_class_function": __embind_register_class_function, "throwUnboundTypeError": throwUnboundTypeError, "craftInvokerFunction": craftInvokerFunction, "_getenv": _getenv, "runDestructors": runDestructors, "requireRegisteredType": requireRegisteredType, "makeLegalFunctionName": makeLegalFunctionName, "_pthread_key_create": _pthread_key_create, "upcastPointer": upcastPointer, "init_emval": init_emval, "shallowCopyInternalPointer": shallowCopyInternalPointer, "nonConstNoSmartPtrRawPointerToWireType": nonConstNoSmartPtrRawPointerToWireType, "_abort": _abort, "requireHandle": requireHandle, "getTypeName": getTypeName, "__embind_register_class_property": __embind_register_class_property, "exposePublicSymbol": exposePublicSymbol, "__embind_register_std_string": __embind_register_std_string, "___cxa_pure_virtual": ___cxa_pure_virtual, "_pthread_getspecific": _pthread_getspecific, "_pthread_cond_wait": _pthread_cond_wait, "RegisteredPointer_destructor": RegisteredPointer_destructor, "__embind_register_memory_view": __embind_register_memory_view, "getInheritedInstance": getInheritedInstance, "__emval_typeof": __emval_typeof, "setDelayFunction": setDelayFunction, "___gxx_personality_v0": ___gxx_personality_v0, "extendError": extendError, "__embind_register_void": __embind_register_void, "___cxa_find_matching_catch_3": ___cxa_find_matching_catch_3, "_strftime_l": _strftime_l, "RegisteredPointer_getPointee": RegisteredPointer_getPointee, "__emval_register": __emval_register, "___cxa_find_matching_catch_2": ___cxa_find_matching_catch_2, "getStringOrSymbol": getStringOrSymbol, "__emval_incref": __emval_incref, "RegisteredPointer": RegisteredPointer, "__arraySum": __arraySum, "readLatin1String": readLatin1String, "getBasestPointer": getBasestPointer, "getInheritedInstanceCount": getInheritedInstanceCount, "__embind_register_float": __embind_register_float, "___syscall54": ___syscall54, "___unlock": ___unlock, "__embind_register_std_wstring": __embind_register_std_wstring, "_pthread_setspecific": _pthread_setspecific, "genericPointerToWireType": genericPointerToWireType, "registerType": registerType, "___cxa_throw": ___cxa_throw, "__emval_new_cstring": __emval_new_cstring, "count_emval_handles": count_emval_handles, "requireFunction": requireFunction, "_atexit": _atexit, "___map_file": ___map_file, "DYNAMICTOP_PTR": DYNAMICTOP_PTR, "tempDoublePtr": tempDoublePtr, "ABORT": ABORT, "STACKTOP": STACKTOP, "STACK_MAX": STACK_MAX, "___dso_handle": ___dso_handle };
 // EMSCRIPTEN_START_ASM
 var asm =Module["asm"]// EMSCRIPTEN_END_ASM
 (Module.asmGlobalArg, Module.asmLibraryArg, buffer);
@@ -8427,20 +8350,16 @@ var dynCall_vii = Module["dynCall_vii"] = function() { return Module["asm"]["dyn
 var dynCall_iiiiiiiiiii = Module["dynCall_iiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiii"].apply(null, arguments) };
 var dynCall_ii = Module["dynCall_ii"] = function() { return Module["asm"]["dynCall_ii"].apply(null, arguments) };
 var dynCall_viijii = Module["dynCall_viijii"] = function() { return Module["asm"]["dynCall_viijii"].apply(null, arguments) };
-var dynCall_iifi = Module["dynCall_iifi"] = function() { return Module["asm"]["dynCall_iifi"].apply(null, arguments) };
+var dynCall_id = Module["dynCall_id"] = function() { return Module["asm"]["dynCall_id"].apply(null, arguments) };
 var dynCall_iiiiiiiiiiii = Module["dynCall_iiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiiii"].apply(null, arguments) };
 var dynCall_iiii = Module["dynCall_iiii"] = function() { return Module["asm"]["dynCall_iiii"].apply(null, arguments) };
 var dynCall_viiiiiiiiiiiiiii = Module["dynCall_viiiiiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiiiiiiii"].apply(null, arguments) };
-var dynCall_vifi = Module["dynCall_vifi"] = function() { return Module["asm"]["dynCall_vifi"].apply(null, arguments) };
 var dynCall_fii = Module["dynCall_fii"] = function() { return Module["asm"]["dynCall_fii"].apply(null, arguments) };
-var dynCall_iiif = Module["dynCall_iiif"] = function() { return Module["asm"]["dynCall_iiif"].apply(null, arguments) };
 var dynCall_fiii = Module["dynCall_fiii"] = function() { return Module["asm"]["dynCall_fiii"].apply(null, arguments) };
 var dynCall_iiiiiii = Module["dynCall_iiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiii"].apply(null, arguments) };
 var dynCall_iiiiiiiiiiiii = Module["dynCall_iiiiiiiiiiiii"] = function() { return Module["asm"]["dynCall_iiiiiiiiiiiii"].apply(null, arguments) };
-var dynCall_iif = Module["dynCall_iif"] = function() { return Module["asm"]["dynCall_iif"].apply(null, arguments) };
 var dynCall_fd = Module["dynCall_fd"] = function() { return Module["asm"]["dynCall_fd"].apply(null, arguments) };
 var dynCall_viiiiiii = Module["dynCall_viiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiii"].apply(null, arguments) };
-var dynCall_ff = Module["dynCall_ff"] = function() { return Module["asm"]["dynCall_ff"].apply(null, arguments) };
 var dynCall_fi = Module["dynCall_fi"] = function() { return Module["asm"]["dynCall_fi"].apply(null, arguments) };
 var dynCall_viiiiiiiiii = Module["dynCall_viiiiiiiiii"] = function() { return Module["asm"]["dynCall_viiiiiiiiii"].apply(null, arguments) };
 var dynCall_iii = Module["dynCall_iii"] = function() { return Module["asm"]["dynCall_iii"].apply(null, arguments) };
@@ -8740,3 +8659,4 @@ run();
 
 
 
+//# sourceMappingURL=index.html.map
