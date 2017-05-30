@@ -30,6 +30,7 @@ class HNode: public HBasis {
 
                 for (int i = 0; i < children_.size(); i++)
                 {
+                    //std::cout << "creating new hnode during hnode constructor" << std::endl;
                     children.push_back(new HNode(children_[i], this));
                 }
             }
@@ -150,6 +151,7 @@ bool encloses(HBasis *a, HBasis* b) {
 }
 
 HBasis* encloseBasis1(HBasis* a) {
+    //std::cout << "creating new basis(1)" << std::endl;
     return new HBasis(a->x, a->y, a->r);
 }
 
@@ -158,6 +160,7 @@ HBasis* encloseBasis2(HBasis* a, HBasis* b) {
     double x2 = b->x, y2 = b->y, r2 = b->r;
     double x21 = x2 - x1, y21 = y2 - y1, r21 = r2 - r1;
     double l = sqrt(x21 * x21 + y21 * y21);
+    //std::cout << "creating new basis(1.2)" << std::endl;
     return new HBasis(
         (x1 + x2 + x21 / l * r21) / 2,
         (y1 + y2 + y21 / l * r21) / 2,
@@ -190,6 +193,7 @@ HBasis* encloseBasis3(HBasis* a, HBasis* b, HBasis* c) {
       x = x1 + xa - xb * r,
       y = y1 + ya - yb * r;
 
+  //std::cout << "creating new basis(1.3)" << std::endl;
   return new HBasis(
     x, y,
     fmax(fmax(
@@ -280,6 +284,10 @@ HBasis* enclose(std::vector<HBasis*> circles) {
     return encloseBasis(findBasis(circles, circles.size(), std::vector<HBasis*>()));
 }
 
+void printNode(std::string label, HNode* node) {
+    //std::cout << label << ": " << node->x << " " << node->y << " " << node->r << std::endl;
+}
+
 double packEnclose(std::vector<HNode *> circles)
 {
     int n = circles.size();
@@ -325,6 +333,7 @@ double packEnclose(std::vector<HNode *> circles)
     HLNode* k;
     bool kill;
 
+    //std::cout << "creating new hlnode (3)" << std::endl;
     HLNode *a_ = new HLNode(a);
     HLNode *b_ = new HLNode(b);
     HLNode *c_ = new HLNode(c);
@@ -333,12 +342,10 @@ double packEnclose(std::vector<HNode *> circles)
     b_->next = a_->previous = c_;
     c_->next = b_->previous = a_;
 
-    HLNode *d_;
-
     for (i = 3; i < n; ++i) {
         place(a_->_, b_->_, c = circles[i]);
-        delete d_;
-        HLNode *d_ = new HLNode(c);
+        // std::cout << "creating new hlnode" << std::endl;
+        HLNode *c_ = new HLNode(c);
 
         j = b_->next;
         k = a_->previous;
@@ -350,7 +357,7 @@ double packEnclose(std::vector<HNode *> circles)
         {
             if (sj <= sk)
             {
-                if(intersects(j->_, d_->_)) {
+                if(intersects(j->_, c_->_)) {
                     b_ = j;
                     a_->next = b_;
                     b_->previous = a_;
@@ -361,7 +368,7 @@ double packEnclose(std::vector<HNode *> circles)
                     j = j->next;
                 }
             } else {
-                if(intersects(k->_, d_->_)) {
+                if(intersects(k->_, c_->_)) {
                     a_ = k;
                     a_->next = b_;
                     b_->previous = a_;
@@ -382,8 +389,6 @@ double packEnclose(std::vector<HNode *> circles)
             continue;
         }
 
-        c_ = d_;
-        delete d_;
         c_->previous = a_;
         c_->next = b_;
         b_ = c_;
@@ -544,7 +549,9 @@ class Hierarchy {
 };
 
 Hierarchy* createHierarchy(emscripten::val options, emscripten::val node) {
+    //std::cout << "creating new hnode (1)" << std::endl;
     HNode *root = new HNode(node);
+    //std::cout << "creating new hierarchy (1)" << std::endl;
     return new Hierarchy(options, root);
 }
 

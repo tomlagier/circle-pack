@@ -121,7 +121,7 @@
  (import "env" "_pthread_setspecific" (func $_pthread_setspecific (param i32 i32) (result i32)))
  (import "env" "___cxa_throw" (func $___cxa_throw (param i32 i32 i32)))
  (import "env" "__emval_new_cstring" (func $__emval_new_cstring (param i32) (result i32)))
- (import "env" "memory" (memory $0 256))
+ (import "env" "memory" (memory $0 256 256))
  (import "env" "table" (table 4608 4608 anyfunc))
  (import "env" "memoryBase" (global $memoryBase i32))
  (import "env" "tableBase" (global $tableBase i32))
@@ -189,7 +189,6 @@
  (export "dynCall_iii" (func $dynCall_iii))
  (export "dynCall_id" (func $dynCall_id))
  (export "dynCall_iiiiii" (func $dynCall_iiiiii))
- (export "__growWasmMemory" (func $__growWasmMemory))
  (func $stackAlloc (param $size i32) (result i32)
   (local $ret i32)
   (set_local $ret
@@ -412,234 +411,234 @@
   (set_local $$c$addr
    (get_local $$c)
   )
-  ;; hierarchy.cpp:100
+  ;; hierarchy.cpp:101
   (set_local $$0
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:100
+  ;; hierarchy.cpp:101
   (set_local $$1
    (f64.load
     (get_local $$0)
    )
   )
-  ;; hierarchy.cpp:100
+  ;; hierarchy.cpp:101
   (set_local $$ax
    (get_local $$1)
   )
-  ;; hierarchy.cpp:101
+  ;; hierarchy.cpp:102
   (set_local $$2
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:101
+  ;; hierarchy.cpp:102
   (set_local $$y
    (i32.add
     (get_local $$2)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:101
+  ;; hierarchy.cpp:102
   (set_local $$3
    (f64.load
     (get_local $$y)
    )
   )
-  ;; hierarchy.cpp:101
+  ;; hierarchy.cpp:102
   (set_local $$ay
    (get_local $$3)
   )
-  ;; hierarchy.cpp:102
+  ;; hierarchy.cpp:103
   (set_local $$4
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:102
+  ;; hierarchy.cpp:103
   (set_local $$r
    (i32.add
     (get_local $$4)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:102
+  ;; hierarchy.cpp:103
   (set_local $$5
    (f64.load
     (get_local $$r)
    )
   )
-  ;; hierarchy.cpp:102
+  ;; hierarchy.cpp:103
   (set_local $$6
    (get_local $$c$addr)
   )
-  ;; hierarchy.cpp:102
+  ;; hierarchy.cpp:103
   (set_local $$r1
    (i32.add
     (get_local $$6)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:102
+  ;; hierarchy.cpp:103
   (set_local $$7
    (f64.load
     (get_local $$r1)
    )
   )
-  ;; hierarchy.cpp:102
+  ;; hierarchy.cpp:103
   (set_local $$add
    (f64.add
     (get_local $$5)
     (get_local $$7)
    )
   )
-  ;; hierarchy.cpp:102
+  ;; hierarchy.cpp:103
   (set_local $$da
    (get_local $$add)
   )
-  ;; hierarchy.cpp:103
+  ;; hierarchy.cpp:104
   (set_local $$8
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:103
+  ;; hierarchy.cpp:104
   (set_local $$r2
    (i32.add
     (get_local $$8)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:103
+  ;; hierarchy.cpp:104
   (set_local $$9
    (f64.load
     (get_local $$r2)
    )
   )
-  ;; hierarchy.cpp:103
+  ;; hierarchy.cpp:104
   (set_local $$10
    (get_local $$c$addr)
   )
-  ;; hierarchy.cpp:103
+  ;; hierarchy.cpp:104
   (set_local $$r3
    (i32.add
     (get_local $$10)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:103
+  ;; hierarchy.cpp:104
   (set_local $$11
    (f64.load
     (get_local $$r3)
    )
   )
-  ;; hierarchy.cpp:103
+  ;; hierarchy.cpp:104
   (set_local $$add4
    (f64.add
     (get_local $$9)
     (get_local $$11)
    )
   )
-  ;; hierarchy.cpp:103
+  ;; hierarchy.cpp:104
   (set_local $$db
    (get_local $$add4)
   )
-  ;; hierarchy.cpp:104
+  ;; hierarchy.cpp:105
   (set_local $$12
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:104
+  ;; hierarchy.cpp:105
   (set_local $$13
    (f64.load
     (get_local $$12)
    )
   )
-  ;; hierarchy.cpp:104
+  ;; hierarchy.cpp:105
   (set_local $$14
    (get_local $$ax)
   )
-  ;; hierarchy.cpp:104
+  ;; hierarchy.cpp:105
   (set_local $$sub
    (f64.sub
     (get_local $$13)
     (get_local $$14)
    )
   )
-  ;; hierarchy.cpp:104
+  ;; hierarchy.cpp:105
   (set_local $$dx
    (get_local $$sub)
   )
-  ;; hierarchy.cpp:105
+  ;; hierarchy.cpp:106
   (set_local $$15
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:105
+  ;; hierarchy.cpp:106
   (set_local $$y6
    (i32.add
     (get_local $$15)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:105
+  ;; hierarchy.cpp:106
   (set_local $$16
    (f64.load
     (get_local $$y6)
    )
   )
-  ;; hierarchy.cpp:105
+  ;; hierarchy.cpp:106
   (set_local $$17
    (get_local $$ay)
   )
-  ;; hierarchy.cpp:105
+  ;; hierarchy.cpp:106
   (set_local $$sub7
    (f64.sub
     (get_local $$16)
     (get_local $$17)
    )
   )
-  ;; hierarchy.cpp:105
+  ;; hierarchy.cpp:106
   (set_local $$dy
    (get_local $$sub7)
   )
-  ;; hierarchy.cpp:106
+  ;; hierarchy.cpp:107
   (set_local $$18
    (get_local $$dx)
   )
-  ;; hierarchy.cpp:106
+  ;; hierarchy.cpp:107
   (set_local $$19
    (get_local $$dx)
   )
-  ;; hierarchy.cpp:106
+  ;; hierarchy.cpp:107
   (set_local $$mul
    (f64.mul
     (get_local $$18)
     (get_local $$19)
    )
   )
-  ;; hierarchy.cpp:106
+  ;; hierarchy.cpp:107
   (set_local $$20
    (get_local $$dy)
   )
-  ;; hierarchy.cpp:106
+  ;; hierarchy.cpp:107
   (set_local $$21
    (get_local $$dy)
   )
-  ;; hierarchy.cpp:106
+  ;; hierarchy.cpp:107
   (set_local $$mul8
    (f64.mul
     (get_local $$20)
     (get_local $$21)
    )
   )
-  ;; hierarchy.cpp:106
+  ;; hierarchy.cpp:107
   (set_local $$add9
    (f64.add
     (get_local $$mul)
     (get_local $$mul8)
    )
   )
-  ;; hierarchy.cpp:106
+  ;; hierarchy.cpp:107
   (set_local $$dc
    (get_local $$add9)
   )
-  ;; hierarchy.cpp:108
+  ;; hierarchy.cpp:109
   (set_local $$22
    (get_local $$dc)
   )
-  ;; hierarchy.cpp:108
+  ;; hierarchy.cpp:109
   (set_local $$cmp
    (f64.gt
     (get_local $$22)
@@ -649,166 +648,166 @@
   (if
    (get_local $$cmp)
    (block
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$23
      (get_local $$db)
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$24
      (get_local $$db)
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$mul11
      (f64.mul
       (get_local $$24)
       (get_local $$23)
      )
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$db
      (get_local $$mul11)
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$25
      (get_local $$da)
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$26
      (get_local $$da)
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$mul12
      (f64.mul
       (get_local $$26)
       (get_local $$25)
      )
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$da
      (get_local $$mul12)
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$sub13
      (f64.sub
       (get_local $$mul11)
       (get_local $$mul12)
      )
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$27
      (get_local $$dc)
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$mul14
      (f64.mul
       (f64.const 2)
       (get_local $$27)
      )
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$div
      (f64.div
       (get_local $$sub13)
       (get_local $$mul14)
      )
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$add15
      (f64.add
       (f64.const 0.5)
       (get_local $$div)
      )
     )
-    ;; hierarchy.cpp:109
+    ;; hierarchy.cpp:110
     (set_local $$x10
      (get_local $$add15)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$28
      (get_local $$da)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$mul17
      (f64.mul
       (f64.const 2)
       (get_local $$28)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$29
      (get_local $$db)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$30
      (get_local $$dc)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$add18
      (f64.add
       (get_local $$29)
       (get_local $$30)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$mul19
      (f64.mul
       (get_local $$mul17)
       (get_local $$add18)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$31
      (get_local $$dc)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$32
      (get_local $$db)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$sub20
      (f64.sub
       (get_local $$32)
       (get_local $$31)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$db
      (get_local $$sub20)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$33
      (get_local $$db)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$mul21
      (f64.mul
       (get_local $$sub20)
       (get_local $$33)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$sub22
      (f64.sub
       (get_local $$mul19)
       (get_local $$mul21)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$34
      (get_local $$da)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$35
      (get_local $$da)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$mul23
      (f64.mul
       (get_local $$34)
       (get_local $$35)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$sub24
      (f64.sub
       (get_local $$sub22)
@@ -842,140 +841,140 @@
       (get_local $$37)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$call25
      (f64.sqrt
       (get_local $$call$i)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$38
      (get_local $$dc)
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$mul26
      (f64.mul
       (f64.const 2)
       (get_local $$38)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$div27
      (f64.div
       (get_local $$call25)
       (get_local $$mul26)
      )
     )
-    ;; hierarchy.cpp:110
+    ;; hierarchy.cpp:111
     (set_local $$y16
      (get_local $$div27)
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$39
      (get_local $$ax)
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$40
      (get_local $$x10)
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$41
      (get_local $$dx)
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$mul28
      (f64.mul
       (get_local $$40)
       (get_local $$41)
      )
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$add29
      (f64.add
       (get_local $$39)
       (get_local $$mul28)
      )
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$42
      (get_local $$y16)
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$43
      (get_local $$dy)
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$mul30
      (f64.mul
       (get_local $$42)
       (get_local $$43)
      )
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$add31
      (f64.add
       (get_local $$add29)
       (get_local $$mul30)
      )
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (set_local $$44
      (get_local $$c$addr)
     )
-    ;; hierarchy.cpp:111
+    ;; hierarchy.cpp:112
     (f64.store
      (get_local $$44)
      (get_local $$add31)
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$45
      (get_local $$ay)
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$46
      (get_local $$x10)
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$47
      (get_local $$dy)
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$mul33
      (f64.mul
       (get_local $$46)
       (get_local $$47)
      )
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$add34
      (f64.add
       (get_local $$45)
       (get_local $$mul33)
      )
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$48
      (get_local $$y16)
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$49
      (get_local $$dx)
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$mul35
      (f64.mul
       (get_local $$48)
       (get_local $$49)
      )
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$sub36
      (f64.sub
       (get_local $$add34)
       (get_local $$mul35)
      )
     )
-    ;; hierarchy.cpp:112
+    ;; hierarchy.cpp:113
     (set_local $$50
      (get_local $$c$addr)
     )
@@ -998,39 +997,39 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:117
+    ;; hierarchy.cpp:118
     (return)
    )
    (block
-    ;; hierarchy.cpp:114
+    ;; hierarchy.cpp:115
     (set_local $$51
      (get_local $$ax)
     )
-    ;; hierarchy.cpp:114
+    ;; hierarchy.cpp:115
     (set_local $$52
      (get_local $$db)
     )
-    ;; hierarchy.cpp:114
+    ;; hierarchy.cpp:115
     (set_local $$add38
      (f64.add
       (get_local $$51)
       (get_local $$52)
      )
     )
-    ;; hierarchy.cpp:114
+    ;; hierarchy.cpp:115
     (set_local $$53
      (get_local $$c$addr)
     )
-    ;; hierarchy.cpp:114
+    ;; hierarchy.cpp:115
     (f64.store
      (get_local $$53)
      (get_local $$add38)
     )
-    ;; hierarchy.cpp:115
+    ;; hierarchy.cpp:116
     (set_local $$54
      (get_local $$ay)
     )
-    ;; hierarchy.cpp:115
+    ;; hierarchy.cpp:116
     (set_local $$55
      (get_local $$c$addr)
     )
@@ -1053,7 +1052,7 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:117
+    ;; hierarchy.cpp:118
     (return)
    )
   )
@@ -1121,187 +1120,187 @@
   (set_local $$b$addr
    (get_local $$b)
   )
-  ;; hierarchy.cpp:130
+  ;; hierarchy.cpp:131
   (set_local $$0
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:130
+  ;; hierarchy.cpp:131
   (set_local $$1
    (f64.load
     (get_local $$0)
    )
   )
-  ;; hierarchy.cpp:130
+  ;; hierarchy.cpp:131
   (set_local $$2
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:130
+  ;; hierarchy.cpp:131
   (set_local $$3
    (f64.load
     (get_local $$2)
    )
   )
-  ;; hierarchy.cpp:130
+  ;; hierarchy.cpp:131
   (set_local $$sub
    (f64.sub
     (get_local $$1)
     (get_local $$3)
    )
   )
-  ;; hierarchy.cpp:130
+  ;; hierarchy.cpp:131
   (set_local $$dx
    (get_local $$sub)
   )
-  ;; hierarchy.cpp:131
+  ;; hierarchy.cpp:132
   (set_local $$4
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:131
+  ;; hierarchy.cpp:132
   (set_local $$y
    (i32.add
     (get_local $$4)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:131
+  ;; hierarchy.cpp:132
   (set_local $$5
    (f64.load
     (get_local $$y)
    )
   )
-  ;; hierarchy.cpp:131
+  ;; hierarchy.cpp:132
   (set_local $$6
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:131
+  ;; hierarchy.cpp:132
   (set_local $$y2
    (i32.add
     (get_local $$6)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:131
+  ;; hierarchy.cpp:132
   (set_local $$7
    (f64.load
     (get_local $$y2)
    )
   )
-  ;; hierarchy.cpp:131
+  ;; hierarchy.cpp:132
   (set_local $$sub3
    (f64.sub
     (get_local $$5)
     (get_local $$7)
    )
   )
-  ;; hierarchy.cpp:131
+  ;; hierarchy.cpp:132
   (set_local $$dy
    (get_local $$sub3)
   )
-  ;; hierarchy.cpp:132
+  ;; hierarchy.cpp:133
   (set_local $$8
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:132
+  ;; hierarchy.cpp:133
   (set_local $$r
    (i32.add
     (get_local $$8)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:132
+  ;; hierarchy.cpp:133
   (set_local $$9
    (f64.load
     (get_local $$r)
    )
   )
-  ;; hierarchy.cpp:132
+  ;; hierarchy.cpp:133
   (set_local $$10
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:132
+  ;; hierarchy.cpp:133
   (set_local $$r4
    (i32.add
     (get_local $$10)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:132
+  ;; hierarchy.cpp:133
   (set_local $$11
    (f64.load
     (get_local $$r4)
    )
   )
-  ;; hierarchy.cpp:132
+  ;; hierarchy.cpp:133
   (set_local $$add
    (f64.add
     (get_local $$9)
     (get_local $$11)
    )
   )
-  ;; hierarchy.cpp:132
+  ;; hierarchy.cpp:133
   (set_local $$dr
    (get_local $$add)
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$12
    (get_local $$dr)
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$13
    (get_local $$dr)
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$mul
    (f64.mul
     (get_local $$12)
     (get_local $$13)
    )
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$sub5
    (f64.sub
     (get_local $$mul)
     (f64.const 1e-06)
    )
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$14
    (get_local $$dx)
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$15
    (get_local $$dx)
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$mul6
    (f64.mul
     (get_local $$14)
     (get_local $$15)
    )
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$16
    (get_local $$dy)
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$17
    (get_local $$dy)
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$mul7
    (f64.mul
     (get_local $$16)
     (get_local $$17)
    )
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$add8
    (f64.add
     (get_local $$mul6)
     (get_local $$mul7)
    )
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (set_local $$cmp
    (f64.gt
     (get_local $$sub5)
@@ -1311,7 +1310,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:133
+  ;; hierarchy.cpp:134
   (return
    (get_local $$cmp)
   )
@@ -1410,339 +1409,339 @@
   (set_local $$y$addr
    (get_local $$y)
   )
-  ;; hierarchy.cpp:137
+  ;; hierarchy.cpp:138
   (set_local $$0
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:137
+  ;; hierarchy.cpp:138
   (set_local $$1
    (i32.load
     (get_local $$0)
    )
   )
-  ;; hierarchy.cpp:137
+  ;; hierarchy.cpp:138
   (set_local $$a
    (get_local $$1)
   )
-  ;; hierarchy.cpp:138
+  ;; hierarchy.cpp:139
   (set_local $$2
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:138
+  ;; hierarchy.cpp:139
   (set_local $$next
    (i32.add
     (get_local $$2)
     (i32.const 4)
    )
   )
-  ;; hierarchy.cpp:138
+  ;; hierarchy.cpp:139
   (set_local $$3
    (i32.load
     (get_local $$next)
    )
   )
-  ;; hierarchy.cpp:138
+  ;; hierarchy.cpp:139
   (set_local $$4
    (i32.load
     (get_local $$3)
    )
   )
-  ;; hierarchy.cpp:138
+  ;; hierarchy.cpp:139
   (set_local $$b
    (get_local $$4)
   )
-  ;; hierarchy.cpp:139
+  ;; hierarchy.cpp:140
   (set_local $$5
    (get_local $$a)
   )
-  ;; hierarchy.cpp:139
+  ;; hierarchy.cpp:140
   (set_local $$r
    (i32.add
     (get_local $$5)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:139
+  ;; hierarchy.cpp:140
   (set_local $$6
    (f64.load
     (get_local $$r)
    )
   )
-  ;; hierarchy.cpp:139
+  ;; hierarchy.cpp:140
   (set_local $$7
    (get_local $$b)
   )
-  ;; hierarchy.cpp:139
+  ;; hierarchy.cpp:140
   (set_local $$r2
    (i32.add
     (get_local $$7)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:139
+  ;; hierarchy.cpp:140
   (set_local $$8
    (f64.load
     (get_local $$r2)
    )
   )
-  ;; hierarchy.cpp:139
+  ;; hierarchy.cpp:140
   (set_local $$add
    (f64.add
     (get_local $$6)
     (get_local $$8)
    )
   )
-  ;; hierarchy.cpp:139
+  ;; hierarchy.cpp:140
   (set_local $$ab
    (get_local $$add)
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$9
    (get_local $$a)
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$10
    (f64.load
     (get_local $$9)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$11
    (get_local $$b)
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$r4
    (i32.add
     (get_local $$11)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$12
    (f64.load
     (get_local $$r4)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$mul
    (f64.mul
     (get_local $$10)
     (get_local $$12)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$13
    (get_local $$b)
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$14
    (f64.load
     (get_local $$13)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$15
    (get_local $$a)
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$r6
    (i32.add
     (get_local $$15)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$16
    (f64.load
     (get_local $$r6)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$mul7
    (f64.mul
     (get_local $$14)
     (get_local $$16)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$add8
    (f64.add
     (get_local $$mul)
     (get_local $$mul7)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$17
    (get_local $$ab)
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$div
    (f64.div
     (get_local $$add8)
     (get_local $$17)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$18
    (get_local $$x$addr)
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$sub
    (f64.sub
     (get_local $$div)
     (get_local $$18)
    )
   )
-  ;; hierarchy.cpp:140
+  ;; hierarchy.cpp:141
   (set_local $$dx
    (get_local $$sub)
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$19
    (get_local $$a)
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$y9
    (i32.add
     (get_local $$19)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$20
    (f64.load
     (get_local $$y9)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$21
    (get_local $$b)
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$r10
    (i32.add
     (get_local $$21)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$22
    (f64.load
     (get_local $$r10)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$mul11
    (f64.mul
     (get_local $$20)
     (get_local $$22)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$23
    (get_local $$b)
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$y12
    (i32.add
     (get_local $$23)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$24
    (f64.load
     (get_local $$y12)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$25
    (get_local $$a)
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$r13
    (i32.add
     (get_local $$25)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$26
    (f64.load
     (get_local $$r13)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$mul14
    (f64.mul
     (get_local $$24)
     (get_local $$26)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$add15
    (f64.add
     (get_local $$mul11)
     (get_local $$mul14)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$27
    (get_local $$ab)
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$div16
    (f64.div
     (get_local $$add15)
     (get_local $$27)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$28
    (get_local $$y$addr)
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$sub17
    (f64.sub
     (get_local $$div16)
     (get_local $$28)
    )
   )
-  ;; hierarchy.cpp:141
+  ;; hierarchy.cpp:142
   (set_local $$dy
    (get_local $$sub17)
   )
-  ;; hierarchy.cpp:142
+  ;; hierarchy.cpp:143
   (set_local $$29
    (get_local $$dx)
   )
-  ;; hierarchy.cpp:142
+  ;; hierarchy.cpp:143
   (set_local $$30
    (get_local $$dx)
   )
-  ;; hierarchy.cpp:142
+  ;; hierarchy.cpp:143
   (set_local $$mul18
    (f64.mul
     (get_local $$29)
     (get_local $$30)
    )
   )
-  ;; hierarchy.cpp:142
+  ;; hierarchy.cpp:143
   (set_local $$31
    (get_local $$dy)
   )
-  ;; hierarchy.cpp:142
+  ;; hierarchy.cpp:143
   (set_local $$32
    (get_local $$dy)
   )
-  ;; hierarchy.cpp:142
+  ;; hierarchy.cpp:143
   (set_local $$mul19
    (f64.mul
     (get_local $$31)
     (get_local $$32)
    )
   )
-  ;; hierarchy.cpp:142
+  ;; hierarchy.cpp:143
   (set_local $$add20
    (f64.add
     (get_local $$mul18)
@@ -1752,7 +1751,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:142
+  ;; hierarchy.cpp:143
   (return
    (get_local $$add20)
   )
@@ -1823,139 +1822,139 @@
   (set_local $$b$addr
    (get_local $$b)
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$0
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$r
    (i32.add
     (get_local $$0)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$1
    (f64.load
     (get_local $$r)
    )
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$2
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$r1
    (i32.add
     (get_local $$2)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$3
    (f64.load
     (get_local $$r1)
    )
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$sub
    (f64.sub
     (get_local $$1)
     (get_local $$3)
    )
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$add
    (f64.add
     (get_local $$sub)
     (f64.const 1e-09)
    )
   )
-  ;; hierarchy.cpp:146
+  ;; hierarchy.cpp:147
   (set_local $$dr
    (get_local $$add)
   )
-  ;; hierarchy.cpp:147
+  ;; hierarchy.cpp:148
   (set_local $$4
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:147
+  ;; hierarchy.cpp:148
   (set_local $$5
    (f64.load
     (get_local $$4)
    )
   )
-  ;; hierarchy.cpp:147
+  ;; hierarchy.cpp:148
   (set_local $$6
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:147
+  ;; hierarchy.cpp:148
   (set_local $$7
    (f64.load
     (get_local $$6)
    )
   )
-  ;; hierarchy.cpp:147
+  ;; hierarchy.cpp:148
   (set_local $$sub3
    (f64.sub
     (get_local $$5)
     (get_local $$7)
    )
   )
-  ;; hierarchy.cpp:147
+  ;; hierarchy.cpp:148
   (set_local $$dx
    (get_local $$sub3)
   )
-  ;; hierarchy.cpp:148
+  ;; hierarchy.cpp:149
   (set_local $$8
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:148
+  ;; hierarchy.cpp:149
   (set_local $$y
    (i32.add
     (get_local $$8)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:148
+  ;; hierarchy.cpp:149
   (set_local $$9
    (f64.load
     (get_local $$y)
    )
   )
-  ;; hierarchy.cpp:148
+  ;; hierarchy.cpp:149
   (set_local $$10
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:148
+  ;; hierarchy.cpp:149
   (set_local $$y4
    (i32.add
     (get_local $$10)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:148
+  ;; hierarchy.cpp:149
   (set_local $$11
    (f64.load
     (get_local $$y4)
    )
   )
-  ;; hierarchy.cpp:148
+  ;; hierarchy.cpp:149
   (set_local $$sub5
    (f64.sub
     (get_local $$9)
     (get_local $$11)
    )
   )
-  ;; hierarchy.cpp:148
+  ;; hierarchy.cpp:149
   (set_local $$dy
    (get_local $$sub5)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$12
    (get_local $$dr)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$cmp
    (f64.gt
     (get_local $$12)
@@ -1973,65 +1972,65 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:149
+    ;; hierarchy.cpp:150
     (return
      (get_local $$19)
     )
    )
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$13
    (get_local $$dr)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$14
    (get_local $$dr)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$mul
    (f64.mul
     (get_local $$13)
     (get_local $$14)
    )
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$15
    (get_local $$dx)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$16
    (get_local $$dx)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$mul6
    (f64.mul
     (get_local $$15)
     (get_local $$16)
    )
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$17
    (get_local $$dy)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$18
    (get_local $$dy)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$mul7
    (f64.mul
     (get_local $$17)
     (get_local $$18)
    )
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$add8
    (f64.add
     (get_local $$mul6)
     (get_local $$mul7)
    )
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (set_local $$cmp9
    (f64.gt
     (get_local $$mul)
@@ -2044,7 +2043,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:149
+  ;; hierarchy.cpp:150
   (return
    (get_local $$19)
   )
@@ -2091,51 +2090,51 @@
   (set_local $$a$addr
    (get_local $$a)
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$call
    (call $__Znwj
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$0
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$1
    (f64.load
     (get_local $$0)
    )
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$2
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$y
    (i32.add
     (get_local $$2)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$3
    (f64.load
     (get_local $$y)
    )
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$4
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$r
    (i32.add
     (get_local $$4)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (set_local $$5
    (f64.load
     (get_local $$r)
@@ -2144,7 +2143,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:153
+  ;; hierarchy.cpp:155
   (call $invoke_viddd
    (i32.const 98)
    (get_local $$call)
@@ -2173,23 +2172,23 @@
     (set_local $$9
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:154
+    ;; hierarchy.cpp:156
     (set_local $$exn$slot
      (get_local $$8)
     )
-    ;; hierarchy.cpp:154
+    ;; hierarchy.cpp:156
     (set_local $$ehselector$slot
      (get_local $$9)
     )
-    ;; hierarchy.cpp:153
+    ;; hierarchy.cpp:155
     (call $__ZdlPv
      (get_local $$call)
     )
-    ;; hierarchy.cpp:153
+    ;; hierarchy.cpp:155
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:153
+    ;; hierarchy.cpp:155
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -2201,7 +2200,7 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:153
+    ;; hierarchy.cpp:155
     (return
      (get_local $$call)
     )
@@ -2411,365 +2410,365 @@
   (set_local $$b$addr
    (get_local $$b)
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$0
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$1
    (f64.load
     (get_local $$0)
    )
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$x1
    (get_local $$1)
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$2
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$y
    (i32.add
     (get_local $$2)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$3
    (f64.load
     (get_local $$y)
    )
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$y1
    (get_local $$3)
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$4
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$r
    (i32.add
     (get_local $$4)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$5
    (f64.load
     (get_local $$r)
    )
   )
-  ;; hierarchy.cpp:157
+  ;; hierarchy.cpp:159
   (set_local $$r1
    (get_local $$5)
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$6
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$7
    (f64.load
     (get_local $$6)
    )
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$x2
    (get_local $$7)
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$8
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$y4
    (i32.add
     (get_local $$8)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$9
    (f64.load
     (get_local $$y4)
    )
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$y2
    (get_local $$9)
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$10
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$r5
    (i32.add
     (get_local $$10)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$11
    (f64.load
     (get_local $$r5)
    )
   )
-  ;; hierarchy.cpp:158
+  ;; hierarchy.cpp:160
   (set_local $$r2
    (get_local $$11)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$12
    (get_local $$x2)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$13
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$sub
    (f64.sub
     (get_local $$12)
     (get_local $$13)
    )
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$x21
    (get_local $$sub)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$14
    (get_local $$y2)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$15
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$sub6
    (f64.sub
     (get_local $$14)
     (get_local $$15)
    )
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$y21
    (get_local $$sub6)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$16
    (get_local $$r2)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$17
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$sub7
    (f64.sub
     (get_local $$16)
     (get_local $$17)
    )
   )
-  ;; hierarchy.cpp:159
+  ;; hierarchy.cpp:161
   (set_local $$r21
    (get_local $$sub7)
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$18
    (get_local $$x21)
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$19
    (get_local $$x21)
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$mul
    (f64.mul
     (get_local $$18)
     (get_local $$19)
    )
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$20
    (get_local $$y21)
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$21
    (get_local $$y21)
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$mul8
    (f64.mul
     (get_local $$20)
     (get_local $$21)
    )
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$add
    (f64.add
     (get_local $$mul)
     (get_local $$mul8)
    )
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$call
    (f64.sqrt
     (get_local $$add)
    )
   )
-  ;; hierarchy.cpp:160
+  ;; hierarchy.cpp:162
   (set_local $$l
    (get_local $$call)
   )
-  ;; hierarchy.cpp:161
+  ;; hierarchy.cpp:164
   (set_local $$call9
    (call $__Znwj
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$22
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$23
    (get_local $$x2)
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$add10
    (f64.add
     (get_local $$22)
     (get_local $$23)
    )
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$24
    (get_local $$x21)
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$25
    (get_local $$l)
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$div
    (f64.div
     (get_local $$24)
     (get_local $$25)
    )
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$26
    (get_local $$r21)
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$mul11
    (f64.mul
     (get_local $$div)
     (get_local $$26)
    )
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$add12
    (f64.add
     (get_local $$add10)
     (get_local $$mul11)
    )
   )
-  ;; hierarchy.cpp:162
+  ;; hierarchy.cpp:165
   (set_local $$div13
    (f64.div
     (get_local $$add12)
     (f64.const 2)
    )
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$27
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$28
    (get_local $$y2)
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$add14
    (f64.add
     (get_local $$27)
     (get_local $$28)
    )
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$29
    (get_local $$y21)
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$30
    (get_local $$l)
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$div15
    (f64.div
     (get_local $$29)
     (get_local $$30)
    )
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$31
    (get_local $$r21)
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$mul16
    (f64.mul
     (get_local $$div15)
     (get_local $$31)
    )
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$add17
    (f64.add
     (get_local $$add14)
     (get_local $$mul16)
    )
   )
-  ;; hierarchy.cpp:163
+  ;; hierarchy.cpp:166
   (set_local $$div18
    (f64.div
     (get_local $$add17)
     (f64.const 2)
    )
   )
-  ;; hierarchy.cpp:164
+  ;; hierarchy.cpp:167
   (set_local $$32
    (get_local $$l)
   )
-  ;; hierarchy.cpp:164
+  ;; hierarchy.cpp:167
   (set_local $$33
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:164
+  ;; hierarchy.cpp:167
   (set_local $$add19
    (f64.add
     (get_local $$32)
     (get_local $$33)
    )
   )
-  ;; hierarchy.cpp:164
+  ;; hierarchy.cpp:167
   (set_local $$34
    (get_local $$r2)
   )
-  ;; hierarchy.cpp:164
+  ;; hierarchy.cpp:167
   (set_local $$add20
    (f64.add
     (get_local $$add19)
     (get_local $$34)
    )
   )
-  ;; hierarchy.cpp:164
+  ;; hierarchy.cpp:167
   (set_local $$div21
    (f64.div
     (get_local $$add20)
@@ -2779,7 +2778,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:161
+  ;; hierarchy.cpp:164
   (call $invoke_viddd
    (i32.const 98)
    (get_local $$call9)
@@ -2808,23 +2807,23 @@
     (set_local $$38
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:166
+    ;; hierarchy.cpp:169
     (set_local $$exn$slot
      (get_local $$37)
     )
-    ;; hierarchy.cpp:166
+    ;; hierarchy.cpp:169
     (set_local $$ehselector$slot
      (get_local $$38)
     )
-    ;; hierarchy.cpp:161
+    ;; hierarchy.cpp:164
     (call $__ZdlPv
      (get_local $$call9)
     )
-    ;; hierarchy.cpp:161
+    ;; hierarchy.cpp:164
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:161
+    ;; hierarchy.cpp:164
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -2836,7 +2835,7 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:161
+    ;; hierarchy.cpp:164
     (return
      (get_local $$call9)
     )
@@ -3154,959 +3153,959 @@
   (set_local $$c$addr
    (get_local $$c)
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$0
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$1
    (f64.load
     (get_local $$0)
    )
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$x1
    (get_local $$1)
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$2
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$y
    (i32.add
     (get_local $$2)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$3
    (f64.load
     (get_local $$y)
    )
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$y1
    (get_local $$3)
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$4
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$r
    (i32.add
     (get_local $$4)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$5
    (f64.load
     (get_local $$r)
    )
   )
-  ;; hierarchy.cpp:169
+  ;; hierarchy.cpp:172
   (set_local $$r1
    (get_local $$5)
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$6
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$7
    (f64.load
     (get_local $$6)
    )
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$x2
    (get_local $$7)
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$8
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$y4
    (i32.add
     (get_local $$8)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$9
    (f64.load
     (get_local $$y4)
    )
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$y2
    (get_local $$9)
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$10
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$r5
    (i32.add
     (get_local $$10)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$11
    (f64.load
     (get_local $$r5)
    )
   )
-  ;; hierarchy.cpp:170
+  ;; hierarchy.cpp:173
   (set_local $$r2
    (get_local $$11)
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$12
    (get_local $$c$addr)
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$13
    (f64.load
     (get_local $$12)
    )
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$x36
    (get_local $$13)
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$14
    (get_local $$c$addr)
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$y8
    (i32.add
     (get_local $$14)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$15
    (f64.load
     (get_local $$y8)
    )
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$y3
    (get_local $$15)
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$16
    (get_local $$c$addr)
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$r9
    (i32.add
     (get_local $$16)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$17
    (f64.load
     (get_local $$r9)
    )
   )
-  ;; hierarchy.cpp:171
+  ;; hierarchy.cpp:174
   (set_local $$r3
    (get_local $$17)
   )
-  ;; hierarchy.cpp:172
+  ;; hierarchy.cpp:175
   (set_local $$18
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:172
+  ;; hierarchy.cpp:175
   (set_local $$19
    (get_local $$x2)
   )
-  ;; hierarchy.cpp:172
+  ;; hierarchy.cpp:175
   (set_local $$sub
    (f64.sub
     (get_local $$18)
     (get_local $$19)
    )
   )
-  ;; hierarchy.cpp:172
+  ;; hierarchy.cpp:175
   (set_local $$a2
    (get_local $$sub)
   )
-  ;; hierarchy.cpp:173
+  ;; hierarchy.cpp:176
   (set_local $$20
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:173
+  ;; hierarchy.cpp:176
   (set_local $$21
    (get_local $$x36)
   )
-  ;; hierarchy.cpp:173
+  ;; hierarchy.cpp:176
   (set_local $$sub10
    (f64.sub
     (get_local $$20)
     (get_local $$21)
    )
   )
-  ;; hierarchy.cpp:173
+  ;; hierarchy.cpp:176
   (set_local $$a3
    (get_local $$sub10)
   )
-  ;; hierarchy.cpp:174
+  ;; hierarchy.cpp:177
   (set_local $$22
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:174
+  ;; hierarchy.cpp:177
   (set_local $$23
    (get_local $$y2)
   )
-  ;; hierarchy.cpp:174
+  ;; hierarchy.cpp:177
   (set_local $$sub11
    (f64.sub
     (get_local $$22)
     (get_local $$23)
    )
   )
-  ;; hierarchy.cpp:174
+  ;; hierarchy.cpp:177
   (set_local $$b2
    (get_local $$sub11)
   )
-  ;; hierarchy.cpp:175
+  ;; hierarchy.cpp:178
   (set_local $$24
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:175
+  ;; hierarchy.cpp:178
   (set_local $$25
    (get_local $$y3)
   )
-  ;; hierarchy.cpp:175
+  ;; hierarchy.cpp:178
   (set_local $$sub12
    (f64.sub
     (get_local $$24)
     (get_local $$25)
    )
   )
-  ;; hierarchy.cpp:175
+  ;; hierarchy.cpp:178
   (set_local $$b3
    (get_local $$sub12)
   )
-  ;; hierarchy.cpp:176
+  ;; hierarchy.cpp:179
   (set_local $$26
    (get_local $$r2)
   )
-  ;; hierarchy.cpp:176
+  ;; hierarchy.cpp:179
   (set_local $$27
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:176
+  ;; hierarchy.cpp:179
   (set_local $$sub13
    (f64.sub
     (get_local $$26)
     (get_local $$27)
    )
   )
-  ;; hierarchy.cpp:176
+  ;; hierarchy.cpp:179
   (set_local $$c2
    (get_local $$sub13)
   )
-  ;; hierarchy.cpp:177
+  ;; hierarchy.cpp:180
   (set_local $$28
    (get_local $$r3)
   )
-  ;; hierarchy.cpp:177
+  ;; hierarchy.cpp:180
   (set_local $$29
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:177
+  ;; hierarchy.cpp:180
   (set_local $$sub14
    (f64.sub
     (get_local $$28)
     (get_local $$29)
    )
   )
-  ;; hierarchy.cpp:177
+  ;; hierarchy.cpp:180
   (set_local $$c3
    (get_local $$sub14)
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$30
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$31
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$mul
    (f64.mul
     (get_local $$30)
     (get_local $$31)
    )
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$32
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$33
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$mul15
    (f64.mul
     (get_local $$32)
     (get_local $$33)
    )
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$add
    (f64.add
     (get_local $$mul)
     (get_local $$mul15)
    )
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$34
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$35
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$mul16
    (f64.mul
     (get_local $$34)
     (get_local $$35)
    )
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$sub17
    (f64.sub
     (get_local $$add)
     (get_local $$mul16)
    )
   )
-  ;; hierarchy.cpp:178
+  ;; hierarchy.cpp:181
   (set_local $$d1
    (get_local $$sub17)
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$36
    (get_local $$d1)
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$37
    (get_local $$x2)
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$38
    (get_local $$x2)
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$mul18
    (f64.mul
     (get_local $$37)
     (get_local $$38)
    )
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$sub19
    (f64.sub
     (get_local $$36)
     (get_local $$mul18)
    )
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$39
    (get_local $$y2)
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$40
    (get_local $$y2)
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$mul20
    (f64.mul
     (get_local $$39)
     (get_local $$40)
    )
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$sub21
    (f64.sub
     (get_local $$sub19)
     (get_local $$mul20)
    )
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$41
    (get_local $$r2)
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$42
    (get_local $$r2)
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$mul22
    (f64.mul
     (get_local $$41)
     (get_local $$42)
    )
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$add23
    (f64.add
     (get_local $$sub21)
     (get_local $$mul22)
    )
   )
-  ;; hierarchy.cpp:179
+  ;; hierarchy.cpp:182
   (set_local $$d2
    (get_local $$add23)
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$43
    (get_local $$d1)
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$44
    (get_local $$x36)
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$45
    (get_local $$x36)
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$mul24
    (f64.mul
     (get_local $$44)
     (get_local $$45)
    )
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$sub25
    (f64.sub
     (get_local $$43)
     (get_local $$mul24)
    )
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$46
    (get_local $$y3)
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$47
    (get_local $$y3)
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$mul26
    (f64.mul
     (get_local $$46)
     (get_local $$47)
    )
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$sub27
    (f64.sub
     (get_local $$sub25)
     (get_local $$mul26)
    )
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$48
    (get_local $$r3)
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$49
    (get_local $$r3)
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$mul28
    (f64.mul
     (get_local $$48)
     (get_local $$49)
    )
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$add29
    (f64.add
     (get_local $$sub27)
     (get_local $$mul28)
    )
   )
-  ;; hierarchy.cpp:180
+  ;; hierarchy.cpp:183
   (set_local $$d3
    (get_local $$add29)
   )
-  ;; hierarchy.cpp:181
+  ;; hierarchy.cpp:184
   (set_local $$50
    (get_local $$a3)
   )
-  ;; hierarchy.cpp:181
+  ;; hierarchy.cpp:184
   (set_local $$51
    (get_local $$b2)
   )
-  ;; hierarchy.cpp:181
+  ;; hierarchy.cpp:184
   (set_local $$mul30
    (f64.mul
     (get_local $$50)
     (get_local $$51)
    )
   )
-  ;; hierarchy.cpp:181
+  ;; hierarchy.cpp:184
   (set_local $$52
    (get_local $$a2)
   )
-  ;; hierarchy.cpp:181
+  ;; hierarchy.cpp:184
   (set_local $$53
    (get_local $$b3)
   )
-  ;; hierarchy.cpp:181
+  ;; hierarchy.cpp:184
   (set_local $$mul31
    (f64.mul
     (get_local $$52)
     (get_local $$53)
    )
   )
-  ;; hierarchy.cpp:181
+  ;; hierarchy.cpp:184
   (set_local $$sub32
    (f64.sub
     (get_local $$mul30)
     (get_local $$mul31)
    )
   )
-  ;; hierarchy.cpp:181
+  ;; hierarchy.cpp:184
   (set_local $$ab
    (get_local $$sub32)
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$54
    (get_local $$b2)
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$55
    (get_local $$d3)
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$mul33
    (f64.mul
     (get_local $$54)
     (get_local $$55)
    )
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$56
    (get_local $$b3)
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$57
    (get_local $$d2)
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$mul34
    (f64.mul
     (get_local $$56)
     (get_local $$57)
    )
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$sub35
    (f64.sub
     (get_local $$mul33)
     (get_local $$mul34)
    )
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$58
    (get_local $$ab)
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$mul36
    (f64.mul
     (get_local $$58)
     (f64.const 2)
    )
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$div
    (f64.div
     (get_local $$sub35)
     (get_local $$mul36)
    )
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$59
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$sub37
    (f64.sub
     (get_local $$div)
     (get_local $$59)
    )
   )
-  ;; hierarchy.cpp:182
+  ;; hierarchy.cpp:185
   (set_local $$xa
    (get_local $$sub37)
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$60
    (get_local $$b3)
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$61
    (get_local $$c2)
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$mul38
    (f64.mul
     (get_local $$60)
     (get_local $$61)
    )
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$62
    (get_local $$b2)
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$63
    (get_local $$c3)
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$mul39
    (f64.mul
     (get_local $$62)
     (get_local $$63)
    )
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$sub40
    (f64.sub
     (get_local $$mul38)
     (get_local $$mul39)
    )
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$64
    (get_local $$ab)
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$div41
    (f64.div
     (get_local $$sub40)
     (get_local $$64)
    )
   )
-  ;; hierarchy.cpp:183
+  ;; hierarchy.cpp:186
   (set_local $$xb
    (get_local $$div41)
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$65
    (get_local $$a3)
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$66
    (get_local $$d2)
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$mul42
    (f64.mul
     (get_local $$65)
     (get_local $$66)
    )
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$67
    (get_local $$a2)
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$68
    (get_local $$d3)
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$mul43
    (f64.mul
     (get_local $$67)
     (get_local $$68)
    )
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$sub44
    (f64.sub
     (get_local $$mul42)
     (get_local $$mul43)
    )
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$69
    (get_local $$ab)
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$mul45
    (f64.mul
     (get_local $$69)
     (f64.const 2)
    )
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$div46
    (f64.div
     (get_local $$sub44)
     (get_local $$mul45)
    )
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$70
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$sub47
    (f64.sub
     (get_local $$div46)
     (get_local $$70)
    )
   )
-  ;; hierarchy.cpp:184
+  ;; hierarchy.cpp:187
   (set_local $$ya
    (get_local $$sub47)
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$71
    (get_local $$a2)
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$72
    (get_local $$c3)
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$mul48
    (f64.mul
     (get_local $$71)
     (get_local $$72)
    )
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$73
    (get_local $$a3)
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$74
    (get_local $$c2)
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$mul49
    (f64.mul
     (get_local $$73)
     (get_local $$74)
    )
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$sub50
    (f64.sub
     (get_local $$mul48)
     (get_local $$mul49)
    )
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$75
    (get_local $$ab)
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$div51
    (f64.div
     (get_local $$sub50)
     (get_local $$75)
    )
   )
-  ;; hierarchy.cpp:185
+  ;; hierarchy.cpp:188
   (set_local $$yb
    (get_local $$div51)
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$76
    (get_local $$xb)
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$77
    (get_local $$xb)
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$mul52
    (f64.mul
     (get_local $$76)
     (get_local $$77)
    )
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$78
    (get_local $$yb)
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$79
    (get_local $$yb)
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$mul53
    (f64.mul
     (get_local $$78)
     (get_local $$79)
    )
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$add54
    (f64.add
     (get_local $$mul52)
     (get_local $$mul53)
    )
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$sub55
    (f64.sub
     (get_local $$add54)
     (f64.const 1)
    )
   )
-  ;; hierarchy.cpp:186
+  ;; hierarchy.cpp:189
   (set_local $$A
    (get_local $$sub55)
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$80
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$81
    (get_local $$xa)
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$82
    (get_local $$xb)
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$mul56
    (f64.mul
     (get_local $$81)
     (get_local $$82)
    )
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$add57
    (f64.add
     (get_local $$80)
     (get_local $$mul56)
    )
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$83
    (get_local $$ya)
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$84
    (get_local $$yb)
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$mul58
    (f64.mul
     (get_local $$83)
     (get_local $$84)
    )
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$add59
    (f64.add
     (get_local $$add57)
     (get_local $$mul58)
    )
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$mul60
    (f64.mul
     (f64.const 2)
     (get_local $$add59)
    )
   )
-  ;; hierarchy.cpp:187
+  ;; hierarchy.cpp:190
   (set_local $$B
    (get_local $$mul60)
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$85
    (get_local $$xa)
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$86
    (get_local $$xa)
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$mul61
    (f64.mul
     (get_local $$85)
     (get_local $$86)
    )
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$87
    (get_local $$ya)
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$88
    (get_local $$ya)
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$mul62
    (f64.mul
     (get_local $$87)
     (get_local $$88)
    )
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$add63
    (f64.add
     (get_local $$mul61)
     (get_local $$mul62)
    )
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$89
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$90
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$mul64
    (f64.mul
     (get_local $$89)
     (get_local $$90)
    )
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$sub65
    (f64.sub
     (get_local $$add63)
     (get_local $$mul64)
    )
   )
-  ;; hierarchy.cpp:188
+  ;; hierarchy.cpp:191
   (set_local $$C
    (get_local $$sub65)
   )
-  ;; hierarchy.cpp:189
+  ;; hierarchy.cpp:192
   (set_local $$91
    (get_local $$A)
   )
-  ;; hierarchy.cpp:189
+  ;; hierarchy.cpp:192
   (set_local $$tobool
    (f64.ne
     (get_local $$91)
@@ -4116,79 +4115,79 @@
   (if
    (get_local $$tobool)
    (block
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$92
      (get_local $$B)
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$93
      (get_local $$B)
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$94
      (get_local $$B)
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$mul67
      (f64.mul
       (get_local $$93)
       (get_local $$94)
      )
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$95
      (get_local $$A)
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$mul68
      (f64.mul
       (f64.const 4)
       (get_local $$95)
      )
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$96
      (get_local $$C)
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$mul69
      (f64.mul
       (get_local $$mul68)
       (get_local $$96)
      )
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$sub70
      (f64.sub
       (get_local $$mul67)
       (get_local $$mul69)
      )
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$call
      (f64.sqrt
       (get_local $$sub70)
      )
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$add71
      (f64.add
       (get_local $$92)
       (get_local $$call)
      )
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$97
      (get_local $$A)
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$mul72
      (f64.mul
       (f64.const 2)
       (get_local $$97)
      )
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$div73
      (f64.div
       (get_local $$add71)
@@ -4200,15 +4199,15 @@
     )
    )
    (block
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$98
      (get_local $$C)
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$99
      (get_local $$B)
     )
-    ;; hierarchy.cpp:189
+    ;; hierarchy.cpp:192
     (set_local $$div74
      (f64.div
       (get_local $$98)
@@ -4220,366 +4219,366 @@
     )
    )
   )
-  ;; hierarchy.cpp:189
+  ;; hierarchy.cpp:192
   (set_local $$r66
    (get_local $$cond)
   )
-  ;; hierarchy.cpp:190
+  ;; hierarchy.cpp:193
   (set_local $$100
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:190
+  ;; hierarchy.cpp:193
   (set_local $$101
    (get_local $$xa)
   )
-  ;; hierarchy.cpp:190
+  ;; hierarchy.cpp:193
   (set_local $$add76
    (f64.add
     (get_local $$100)
     (get_local $$101)
    )
   )
-  ;; hierarchy.cpp:190
+  ;; hierarchy.cpp:193
   (set_local $$102
    (get_local $$xb)
   )
-  ;; hierarchy.cpp:190
+  ;; hierarchy.cpp:193
   (set_local $$103
    (get_local $$r66)
   )
-  ;; hierarchy.cpp:190
+  ;; hierarchy.cpp:193
   (set_local $$mul77
    (f64.mul
     (get_local $$102)
     (get_local $$103)
    )
   )
-  ;; hierarchy.cpp:190
+  ;; hierarchy.cpp:193
   (set_local $$sub78
    (f64.sub
     (get_local $$add76)
     (get_local $$mul77)
    )
   )
-  ;; hierarchy.cpp:190
+  ;; hierarchy.cpp:193
   (set_local $$x75
    (get_local $$sub78)
   )
-  ;; hierarchy.cpp:191
+  ;; hierarchy.cpp:194
   (set_local $$104
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:191
+  ;; hierarchy.cpp:194
   (set_local $$105
    (get_local $$ya)
   )
-  ;; hierarchy.cpp:191
+  ;; hierarchy.cpp:194
   (set_local $$add80
    (f64.add
     (get_local $$104)
     (get_local $$105)
    )
   )
-  ;; hierarchy.cpp:191
+  ;; hierarchy.cpp:194
   (set_local $$106
    (get_local $$yb)
   )
-  ;; hierarchy.cpp:191
+  ;; hierarchy.cpp:194
   (set_local $$107
    (get_local $$r66)
   )
-  ;; hierarchy.cpp:191
+  ;; hierarchy.cpp:194
   (set_local $$mul81
    (f64.mul
     (get_local $$106)
     (get_local $$107)
    )
   )
-  ;; hierarchy.cpp:191
+  ;; hierarchy.cpp:194
   (set_local $$sub82
    (f64.sub
     (get_local $$add80)
     (get_local $$mul81)
    )
   )
-  ;; hierarchy.cpp:191
+  ;; hierarchy.cpp:194
   (set_local $$y79
    (get_local $$sub82)
   )
-  ;; hierarchy.cpp:193
+  ;; hierarchy.cpp:197
   (set_local $$call83
    (call $__Znwj
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:194
+  ;; hierarchy.cpp:198
   (set_local $$108
    (get_local $$x75)
   )
-  ;; hierarchy.cpp:194
+  ;; hierarchy.cpp:198
   (set_local $$109
    (get_local $$y79)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$110
    (get_local $$x75)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$111
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$sub84
    (f64.sub
     (get_local $$111)
     (get_local $$110)
    )
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$x1
    (get_local $$sub84)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$112
    (get_local $$x1)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$mul85
    (f64.mul
     (get_local $$sub84)
     (get_local $$112)
    )
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$113
    (get_local $$y79)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$114
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$sub86
    (f64.sub
     (get_local $$114)
     (get_local $$113)
    )
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$y1
    (get_local $$sub86)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$115
    (get_local $$y1)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$mul87
    (f64.mul
     (get_local $$sub86)
     (get_local $$115)
    )
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$add88
    (f64.add
     (get_local $$mul85)
     (get_local $$mul87)
    )
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$call89
    (f64.sqrt
     (get_local $$add88)
    )
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$116
    (get_local $$r1)
   )
-  ;; hierarchy.cpp:196
+  ;; hierarchy.cpp:200
   (set_local $$add90
    (f64.add
     (get_local $$call89)
     (get_local $$116)
    )
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$117
    (get_local $$x75)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$118
    (get_local $$x2)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$sub91
    (f64.sub
     (get_local $$118)
     (get_local $$117)
    )
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$x2
    (get_local $$sub91)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$119
    (get_local $$x2)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$mul92
    (f64.mul
     (get_local $$sub91)
     (get_local $$119)
    )
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$120
    (get_local $$y79)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$121
    (get_local $$y2)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$sub93
    (f64.sub
     (get_local $$121)
     (get_local $$120)
    )
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$y2
    (get_local $$sub93)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$122
    (get_local $$y2)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$mul94
    (f64.mul
     (get_local $$sub93)
     (get_local $$122)
    )
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$add95
    (f64.add
     (get_local $$mul92)
     (get_local $$mul94)
    )
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$call96
    (f64.sqrt
     (get_local $$add95)
    )
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$123
    (get_local $$r2)
   )
-  ;; hierarchy.cpp:197
+  ;; hierarchy.cpp:201
   (set_local $$add97
    (f64.add
     (get_local $$call96)
     (get_local $$123)
    )
   )
-  ;; hierarchy.cpp:195
+  ;; hierarchy.cpp:199
   (set_local $$call98
    (call $_fmax
     (get_local $$add90)
     (get_local $$add97)
    )
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$124
    (get_local $$x75)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$125
    (get_local $$x36)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$sub99
    (f64.sub
     (get_local $$125)
     (get_local $$124)
    )
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$x36
    (get_local $$sub99)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$126
    (get_local $$x36)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$mul100
    (f64.mul
     (get_local $$sub99)
     (get_local $$126)
    )
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$127
    (get_local $$y79)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$128
    (get_local $$y3)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$sub101
    (f64.sub
     (get_local $$128)
     (get_local $$127)
    )
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$y3
    (get_local $$sub101)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$129
    (get_local $$y3)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$mul102
    (f64.mul
     (get_local $$sub101)
     (get_local $$129)
    )
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$add103
    (f64.add
     (get_local $$mul100)
     (get_local $$mul102)
    )
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$call104
    (f64.sqrt
     (get_local $$add103)
    )
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$130
    (get_local $$r3)
   )
-  ;; hierarchy.cpp:198
+  ;; hierarchy.cpp:202
   (set_local $$add105
    (f64.add
     (get_local $$call104)
     (get_local $$130)
    )
   )
-  ;; hierarchy.cpp:195
+  ;; hierarchy.cpp:199
   (set_local $$call106
    (call $_fmax
     (get_local $$call98)
@@ -4589,7 +4588,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:193
+  ;; hierarchy.cpp:197
   (call $invoke_viddd
    (i32.const 98)
    (get_local $$call83)
@@ -4618,23 +4617,23 @@
     (set_local $$134
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:200
+    ;; hierarchy.cpp:204
     (set_local $$exn$slot
      (get_local $$133)
     )
-    ;; hierarchy.cpp:200
+    ;; hierarchy.cpp:204
     (set_local $$ehselector$slot
      (get_local $$134)
     )
-    ;; hierarchy.cpp:193
+    ;; hierarchy.cpp:197
     (call $__ZdlPv
      (get_local $$call83)
     )
-    ;; hierarchy.cpp:193
+    ;; hierarchy.cpp:197
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:193
+    ;; hierarchy.cpp:197
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -4646,7 +4645,7 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:193
+    ;; hierarchy.cpp:197
     (return
      (get_local $$call83)
     )
@@ -4710,26 +4709,26 @@
   (set_local $$c$addr
    (get_local $$c)
   )
-  ;; hierarchy.cpp:203
+  ;; hierarchy.cpp:207
   (set_local $$0
    (get_local $$a$addr)
   )
-  ;; hierarchy.cpp:203
+  ;; hierarchy.cpp:207
   (set_local $$1
    (get_local $$b$addr)
   )
-  ;; hierarchy.cpp:203
+  ;; hierarchy.cpp:207
   (set_local $$call
    (call $__Z13encloseBasis2P6HBasisS0_
     (get_local $$0)
     (get_local $$1)
    )
   )
-  ;; hierarchy.cpp:203
+  ;; hierarchy.cpp:207
   (set_local $$2
    (get_local $$c$addr)
   )
-  ;; hierarchy.cpp:203
+  ;; hierarchy.cpp:207
   (set_local $$call1
    (call $__Z8enclosesP6HBasisS0_
     (get_local $$call)
@@ -4742,26 +4741,26 @@
     (i32.const 0)
    )
    (block
-    ;; hierarchy.cpp:204
+    ;; hierarchy.cpp:208
     (set_local $$3
      (get_local $$a$addr)
     )
-    ;; hierarchy.cpp:204
+    ;; hierarchy.cpp:208
     (set_local $$4
      (get_local $$c$addr)
     )
-    ;; hierarchy.cpp:204
+    ;; hierarchy.cpp:208
     (set_local $$call2
      (call $__Z13encloseBasis2P6HBasisS0_
       (get_local $$3)
       (get_local $$4)
      )
     )
-    ;; hierarchy.cpp:204
+    ;; hierarchy.cpp:208
     (set_local $$5
      (get_local $$b$addr)
     )
-    ;; hierarchy.cpp:204
+    ;; hierarchy.cpp:208
     (set_local $$call3
      (call $__Z8enclosesP6HBasisS0_
       (get_local $$call2)
@@ -4774,33 +4773,33 @@
       (i32.const 0)
      )
      (block
-      ;; hierarchy.cpp:205
+      ;; hierarchy.cpp:209
       (set_local $$6
        (get_local $$b$addr)
       )
-      ;; hierarchy.cpp:205
+      ;; hierarchy.cpp:209
       (set_local $$7
        (get_local $$c$addr)
       )
-      ;; hierarchy.cpp:205
+      ;; hierarchy.cpp:209
       (set_local $$call4
        (call $__Z13encloseBasis2P6HBasisS0_
         (get_local $$6)
         (get_local $$7)
        )
       )
-      ;; hierarchy.cpp:205
+      ;; hierarchy.cpp:209
       (set_local $$8
        (get_local $$a$addr)
       )
-      ;; hierarchy.cpp:205
+      ;; hierarchy.cpp:209
       (set_local $$call5
        (call $__Z8enclosesP6HBasisS0_
         (get_local $$call4)
         (get_local $$8)
        )
       )
-      ;; hierarchy.cpp:205
+      ;; hierarchy.cpp:209
       (set_local $$lnot
        (i32.xor
         (get_local $$call5)
@@ -4814,22 +4813,22 @@
     )
    )
   )
-  ;; hierarchy.cpp:203
+  ;; hierarchy.cpp:207
   (set_local $$frombool
    (i32.and
     (get_local $$9)
     (i32.const 1)
    )
   )
-  ;; hierarchy.cpp:203
+  ;; hierarchy.cpp:207
   (set_local $$ret
    (get_local $$frombool)
   )
-  ;; hierarchy.cpp:207
+  ;; hierarchy.cpp:211
   (set_local $$10
    (get_local $$ret)
   )
-  ;; hierarchy.cpp:207
+  ;; hierarchy.cpp:211
   (set_local $$tobool
    (i32.and
     (get_local $$10)
@@ -4839,7 +4838,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:207
+  ;; hierarchy.cpp:211
   (return
    (get_local $$tobool)
   )
@@ -5013,30 +5012,30 @@
          )
         )
        )
-       ;; hierarchy.cpp:213
+       ;; hierarchy.cpp:217
        (set_local $$4
         (i32.load
          (get_local $$arrayidx$i)
         )
        )
-       ;; hierarchy.cpp:213
+       ;; hierarchy.cpp:217
        (set_local $$call2
         (call $__Z13encloseBasis1P6HBasis
          (get_local $$4)
         )
        )
-       ;; hierarchy.cpp:213
+       ;; hierarchy.cpp:217
        (set_local $$retval
         (get_local $$call2)
        )
-       ;; hierarchy.cpp:221
+       ;; hierarchy.cpp:225
        (set_local $$20
         (get_local $$retval)
        )
        (set_global $STACKTOP
         (get_local $sp)
        )
-       ;; hierarchy.cpp:221
+       ;; hierarchy.cpp:225
        (return
         (get_local $$20)
        )
@@ -5073,7 +5072,7 @@
         )
        )
       )
-      ;; hierarchy.cpp:215
+      ;; hierarchy.cpp:219
       (set_local $$7
        (i32.load
         (get_local $$arrayidx$i34)
@@ -5108,31 +5107,31 @@
         )
        )
       )
-      ;; hierarchy.cpp:215
+      ;; hierarchy.cpp:219
       (set_local $$10
        (i32.load
         (get_local $$arrayidx$i39)
        )
       )
-      ;; hierarchy.cpp:215
+      ;; hierarchy.cpp:219
       (set_local $$call6
        (call $__Z13encloseBasis2P6HBasisS0_
         (get_local $$7)
         (get_local $$10)
        )
       )
-      ;; hierarchy.cpp:215
+      ;; hierarchy.cpp:219
       (set_local $$retval
        (get_local $$call6)
       )
-      ;; hierarchy.cpp:221
+      ;; hierarchy.cpp:225
       (set_local $$20
        (get_local $$retval)
       )
       (set_global $STACKTOP
        (get_local $sp)
       )
-      ;; hierarchy.cpp:221
+      ;; hierarchy.cpp:225
       (return
        (get_local $$20)
       )
@@ -5169,7 +5168,7 @@
        )
       )
      )
-     ;; hierarchy.cpp:217
+     ;; hierarchy.cpp:221
      (set_local $$13
       (i32.load
        (get_local $$arrayidx$i29)
@@ -5204,7 +5203,7 @@
        )
       )
      )
-     ;; hierarchy.cpp:217
+     ;; hierarchy.cpp:221
      (set_local $$16
       (i32.load
        (get_local $$arrayidx$i24)
@@ -5239,13 +5238,13 @@
        )
       )
      )
-     ;; hierarchy.cpp:217
+     ;; hierarchy.cpp:221
      (set_local $$19
       (i32.load
        (get_local $$arrayidx$i19)
       )
      )
-     ;; hierarchy.cpp:217
+     ;; hierarchy.cpp:221
      (set_local $$call11
       (call $__Z13encloseBasis3P6HBasisS0_S0_
        (get_local $$13)
@@ -5253,18 +5252,18 @@
        (get_local $$19)
       )
      )
-     ;; hierarchy.cpp:217
+     ;; hierarchy.cpp:221
      (set_local $$retval
       (get_local $$call11)
      )
-     ;; hierarchy.cpp:221
+     ;; hierarchy.cpp:225
      (set_local $$20
       (get_local $$retval)
      )
      (set_global $STACKTOP
       (get_local $sp)
      )
-     ;; hierarchy.cpp:221
+     ;; hierarchy.cpp:225
      (return
       (get_local $$20)
      )
@@ -5272,18 +5271,18 @@
     )
    )
    (block
-    ;; hierarchy.cpp:219
+    ;; hierarchy.cpp:223
     (set_local $$retval
      (i32.const 0)
     )
-    ;; hierarchy.cpp:221
+    ;; hierarchy.cpp:225
     (set_local $$20
      (get_local $$retval)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:221
+    ;; hierarchy.cpp:225
     (return
      (get_local $$20)
     )
@@ -5353,13 +5352,13 @@
   (set_local $$a$addr
    (get_local $$a)
   )
-  ;; hierarchy.cpp:224
+  ;; hierarchy.cpp:228
   (set_local $$i
    (i32.const 0)
   )
   (loop $while-in
    (block $while-out
-    ;; hierarchy.cpp:224
+    ;; hierarchy.cpp:228
     (set_local $$0
      (get_local $$i)
     )
@@ -5413,7 +5412,7 @@
       (i32.const -1)
      )
     )
-    ;; hierarchy.cpp:224
+    ;; hierarchy.cpp:228
     (set_local $$cmp
      (i32.lt_u
       (get_local $$0)
@@ -5431,11 +5430,11 @@
       (br $while-out)
      )
     )
-    ;; hierarchy.cpp:225
+    ;; hierarchy.cpp:229
     (set_local $$3
      (get_local $$a$addr)
     )
-    ;; hierarchy.cpp:225
+    ;; hierarchy.cpp:229
     (set_local $$4
      (get_local $$i)
     )
@@ -5468,13 +5467,13 @@
       )
      )
     )
-    ;; hierarchy.cpp:225
+    ;; hierarchy.cpp:229
     (set_local $$7
      (i32.load
       (get_local $$arrayidx$i)
      )
     )
-    ;; hierarchy.cpp:225
+    ;; hierarchy.cpp:229
     (set_local $$call2
      (call $__Z8enclosesP6HBasisS0_
       (get_local $$3)
@@ -5492,18 +5491,18 @@
       (br $while-out)
      )
     )
-    ;; hierarchy.cpp:224
+    ;; hierarchy.cpp:228
     (set_local $$8
      (get_local $$i)
     )
-    ;; hierarchy.cpp:224
+    ;; hierarchy.cpp:228
     (set_local $$inc
      (i32.add
       (get_local $$8)
       (i32.const 1)
      )
     )
-    ;; hierarchy.cpp:224
+    ;; hierarchy.cpp:228
     (set_local $$i
      (get_local $$inc)
     )
@@ -5516,22 +5515,22 @@
     (i32.const 4)
    )
    (block
-    ;; hierarchy.cpp:226
+    ;; hierarchy.cpp:230
     (set_local $$$expand_i1_val
      (i32.const 0)
     )
-    ;; hierarchy.cpp:226
+    ;; hierarchy.cpp:230
     (i32.store8
      (get_local $$retval)
      (get_local $$$expand_i1_val)
     )
-    ;; hierarchy.cpp:230
+    ;; hierarchy.cpp:234
     (set_local $$$pre_trunc
      (i32.load8_s
       (get_local $$retval)
      )
     )
-    ;; hierarchy.cpp:230
+    ;; hierarchy.cpp:234
     (set_local $$9
      (i32.and
       (get_local $$$pre_trunc)
@@ -5541,7 +5540,7 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:230
+    ;; hierarchy.cpp:234
     (return
      (get_local $$9)
     )
@@ -5552,22 +5551,22 @@
      (i32.const 6)
     )
     (block
-     ;; hierarchy.cpp:229
+     ;; hierarchy.cpp:233
      (set_local $$$expand_i1_val2
       (i32.const 1)
      )
-     ;; hierarchy.cpp:229
+     ;; hierarchy.cpp:233
      (i32.store8
       (get_local $$retval)
       (get_local $$$expand_i1_val2)
      )
-     ;; hierarchy.cpp:230
+     ;; hierarchy.cpp:234
      (set_local $$$pre_trunc
       (i32.load8_s
        (get_local $$retval)
       )
      )
-     ;; hierarchy.cpp:230
+     ;; hierarchy.cpp:234
      (set_local $$9
       (i32.and
        (get_local $$$pre_trunc)
@@ -5577,7 +5576,7 @@
      (set_global $STACKTOP
       (get_local $sp)
      )
-     ;; hierarchy.cpp:230
+     ;; hierarchy.cpp:234
      (return
       (get_local $$9)
      )
@@ -6303,11 +6302,11 @@
    (get_local $$p$addr)
    (get_local $$p)
   )
-  ;; hierarchy.cpp:233
+  ;; hierarchy.cpp:237
   (set_local $$$expand_i1_val
    (i32.const 0)
   )
-  ;; hierarchy.cpp:233
+  ;; hierarchy.cpp:237
   (i32.store8
    (get_local $$nrvo)
    (get_local $$$expand_i1_val)
@@ -6405,7 +6404,7 @@
    (get_local $$this1$i$i$i$i)
    (get_local $$3)
   )
-  ;; hierarchy.cpp:237
+  ;; hierarchy.cpp:241
   (set_local $$4
    (i32.load
     (get_local $$p$addr)
@@ -6414,7 +6413,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:237
+  ;; hierarchy.cpp:241
   (call $invoke_vii
    (i32.const 99)
    (get_local $$agg$tmp)
@@ -6441,7 +6440,7 @@
      (set_global $__THREW__
       (i32.const 0)
      )
-     ;; hierarchy.cpp:237
+     ;; hierarchy.cpp:241
      (set_local $$call
       (call $invoke_iii
        (i32.const 100)
@@ -6470,27 +6469,27 @@
        (set_local $$33
         (get_global $tempRet0)
        )
-       ;; hierarchy.cpp:263
+       ;; hierarchy.cpp:267
        (set_local $$exn$slot
         (get_local $$32)
        )
-       ;; hierarchy.cpp:263
+       ;; hierarchy.cpp:267
        (set_local $$ehselector$slot
         (get_local $$33)
        )
-       ;; hierarchy.cpp:237
+       ;; hierarchy.cpp:241
        (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
         (get_local $$agg$tmp)
        )
-       ;; hierarchy.cpp:263
+       ;; hierarchy.cpp:267
        (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
         (get_local $$agg$result)
        )
-       ;; hierarchy.cpp:263
+       ;; hierarchy.cpp:267
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:263
+       ;; hierarchy.cpp:267
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -6499,7 +6498,7 @@
        )
       )
      )
-     ;; hierarchy.cpp:237
+     ;; hierarchy.cpp:241
      (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
       (get_local $$agg$tmp)
      )
@@ -6784,11 +6783,11 @@
           )
          )
         )
-        ;; hierarchy.cpp:240
+        ;; hierarchy.cpp:244
         (set_local $$$expand_i1_val2
          (i32.const 1)
         )
-        ;; hierarchy.cpp:240
+        ;; hierarchy.cpp:244
         (i32.store8
          (get_local $$nrvo)
          (get_local $$$expand_i1_val2)
@@ -6798,13 +6797,13 @@
         )
        )
        (block
-        ;; hierarchy.cpp:243
+        ;; hierarchy.cpp:247
         (set_local $$i
          (i32.const 0)
         )
         (loop $while-in
          (block $while-out
-          ;; hierarchy.cpp:243
+          ;; hierarchy.cpp:247
           (set_local $$34
            (get_local $$i)
           )
@@ -6858,7 +6857,7 @@
             (i32.const -1)
            )
           )
-          ;; hierarchy.cpp:243
+          ;; hierarchy.cpp:247
           (set_local $$cmp
            (i32.lt_u
             (get_local $$34)
@@ -6876,7 +6875,7 @@
             (br $while-out)
            )
           )
-          ;; hierarchy.cpp:245
+          ;; hierarchy.cpp:249
           (set_local $$37
            (get_local $$i)
           )
@@ -6909,13 +6908,13 @@
             )
            )
           )
-          ;; hierarchy.cpp:245
+          ;; hierarchy.cpp:249
           (set_local $$40
            (i32.load
             (get_local $$arrayidx$i)
            )
           )
-          ;; hierarchy.cpp:245
+          ;; hierarchy.cpp:249
           (set_local $$41
            (i32.load
             (get_local $$p$addr)
@@ -6924,7 +6923,7 @@
           (set_global $__THREW__
            (i32.const 0)
           )
-          ;; hierarchy.cpp:245
+          ;; hierarchy.cpp:249
           (set_local $$call8
            (call $invoke_iii
             (i32.const 102)
@@ -6951,7 +6950,7 @@
           (set_global $__THREW__
            (i32.const 0)
           )
-          ;; hierarchy.cpp:245
+          ;; hierarchy.cpp:249
           (call $invoke_vii
            (i32.const 99)
            (get_local $$agg$tmp9)
@@ -6976,7 +6975,7 @@
           (set_global $__THREW__
            (i32.const 0)
           )
-          ;; hierarchy.cpp:245
+          ;; hierarchy.cpp:249
           (set_local $$call13
            (call $invoke_iii
             (i32.const 100)
@@ -7005,7 +7004,7 @@
             (br $while-out)
            )
           )
-          ;; hierarchy.cpp:245
+          ;; hierarchy.cpp:249
           (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
            (get_local $$agg$tmp9)
           )
@@ -7021,14 +7020,14 @@
             (br $while-out)
            )
           )
-          ;; hierarchy.cpp:243
+          ;; hierarchy.cpp:247
           (set_local $$inc
            (i32.add
             (get_local $$48)
             (i32.const 1)
            )
           )
-          ;; hierarchy.cpp:243
+          ;; hierarchy.cpp:247
           (set_local $$i
            (get_local $$inc)
           )
@@ -7624,11 +7623,11 @@
             )
            )
           )
-          ;; hierarchy.cpp:249
+          ;; hierarchy.cpp:253
           (set_local $$$expand_i1_val4
            (i32.const 1)
           )
-          ;; hierarchy.cpp:249
+          ;; hierarchy.cpp:253
           (i32.store8
            (get_local $$nrvo)
            (get_local $$$expand_i1_val4)
@@ -7650,27 +7649,27 @@
            (set_local $$94
             (get_global $tempRet0)
            )
-           ;; hierarchy.cpp:263
+           ;; hierarchy.cpp:267
            (set_local $$exn$slot
             (get_local $$93)
            )
-           ;; hierarchy.cpp:263
+           ;; hierarchy.cpp:267
            (set_local $$ehselector$slot
             (get_local $$94)
            )
-           ;; hierarchy.cpp:245
+           ;; hierarchy.cpp:249
            (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
             (get_local $$agg$tmp9)
            )
-           ;; hierarchy.cpp:263
+           ;; hierarchy.cpp:267
            (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
             (get_local $$agg$result)
            )
-           ;; hierarchy.cpp:263
+           ;; hierarchy.cpp:267
            (set_local $$exn
             (get_local $$exn$slot)
            )
-           ;; hierarchy.cpp:263
+           ;; hierarchy.cpp:267
            (set_local $$sel
             (get_local $$ehselector$slot)
            )
@@ -7684,13 +7683,13 @@
             (i32.const 25)
            )
            (block
-            ;; hierarchy.cpp:253
+            ;; hierarchy.cpp:257
             (set_local $$i
              (i32.const 0)
             )
             (loop $label$continue$L23
              (block $label$break$L23
-              ;; hierarchy.cpp:253
+              ;; hierarchy.cpp:257
               (set_local $$95
                (get_local $$i)
               )
@@ -7744,14 +7743,14 @@
                 (i32.const -1)
                )
               )
-              ;; hierarchy.cpp:253
+              ;; hierarchy.cpp:257
               (set_local $$sub
                (i32.sub
                 (get_local $$sub$ptr$div$i184)
                 (i32.const 1)
                )
               )
-              ;; hierarchy.cpp:253
+              ;; hierarchy.cpp:257
               (set_local $$cmp22
                (i32.lt_u
                 (get_local $$95)
@@ -7769,24 +7768,24 @@
                 (br $label$break$L23)
                )
               )
-              ;; hierarchy.cpp:254
+              ;; hierarchy.cpp:258
               (set_local $$98
                (get_local $$i)
               )
-              ;; hierarchy.cpp:254
+              ;; hierarchy.cpp:258
               (set_local $$add
                (i32.add
                 (get_local $$98)
                 (i32.const 1)
                )
               )
-              ;; hierarchy.cpp:254
+              ;; hierarchy.cpp:258
               (set_local $$j
                (get_local $$add)
               )
               (loop $while-in2
                (block $while-out1
-                ;; hierarchy.cpp:254
+                ;; hierarchy.cpp:258
                 (set_local $$99
                  (get_local $$j)
                 )
@@ -7840,7 +7839,7 @@
                   (i32.const -1)
                  )
                 )
-                ;; hierarchy.cpp:254
+                ;; hierarchy.cpp:258
                 (set_local $$cmp26
                  (i32.lt_u
                   (get_local $$99)
@@ -7892,13 +7891,13 @@
                   )
                  )
                 )
-                ;; hierarchy.cpp:255
+                ;; hierarchy.cpp:259
                 (set_local $$105
                  (i32.load
                   (get_local $$arrayidx$i197)
                  )
                 )
-                ;; hierarchy.cpp:255
+                ;; hierarchy.cpp:259
                 (set_local $$106
                  (get_local $$j)
                 )
@@ -7931,13 +7930,13 @@
                   )
                  )
                 )
-                ;; hierarchy.cpp:255
+                ;; hierarchy.cpp:259
                 (set_local $$109
                  (i32.load
                   (get_local $$arrayidx$i202)
                  )
                 )
-                ;; hierarchy.cpp:255
+                ;; hierarchy.cpp:259
                 (set_local $$110
                  (i32.load
                   (get_local $$p$addr)
@@ -7946,7 +7945,7 @@
                 (set_global $__THREW__
                  (i32.const 0)
                 )
-                ;; hierarchy.cpp:255
+                ;; hierarchy.cpp:259
                 (set_local $$call33
                  (call $invoke_iiii
                   (i32.const 103)
@@ -7974,7 +7973,7 @@
                 (if
                  (get_local $$call33)
                  (block
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (set_local $$113
                    (get_local $$i)
                   )
@@ -8007,13 +8006,13 @@
                     )
                    )
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (set_local $$116
                    (i32.load
                     (get_local $$arrayidx$i207)
                    )
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (set_local $$117
                    (get_local $$j)
                   )
@@ -8046,13 +8045,13 @@
                     )
                    )
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (set_local $$120
                    (i32.load
                     (get_local $$arrayidx$i212)
                    )
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (set_local $$121
                    (i32.load
                     (get_local $$p$addr)
@@ -8061,7 +8060,7 @@
                   (set_global $__THREW__
                    (i32.const 0)
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (set_local $$call39
                    (call $invoke_iiii
                     (i32.const 104)
@@ -8089,7 +8088,7 @@
                   (set_global $__THREW__
                    (i32.const 0)
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (call $invoke_vii
                    (i32.const 99)
                    (get_local $$agg$tmp40)
@@ -8111,11 +8110,11 @@
                    (get_local $$125)
                    (br $label$break$L1)
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (set_local $$$expand_i1_val7
                    (i32.const 1)
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (i32.store8
                    (get_local $$cleanup$cond)
                    (get_local $$$expand_i1_val7)
@@ -8123,7 +8122,7 @@
                   (set_global $__THREW__
                    (i32.const 0)
                   )
-                  ;; hierarchy.cpp:255
+                  ;; hierarchy.cpp:259
                   (set_local $$call44
                    (call $invoke_iii
                     (i32.const 100)
@@ -8160,13 +8159,13 @@
                   (i32.const 0)
                  )
                 )
-                ;; hierarchy.cpp:255
+                ;; hierarchy.cpp:259
                 (set_local $$cleanup$is_active$pre_trunc
                  (i32.load8_s
                   (get_local $$cleanup$cond)
                  )
                 )
-                ;; hierarchy.cpp:255
+                ;; hierarchy.cpp:259
                 (set_local $$cleanup$is_active
                  (i32.and
                   (get_local $$cleanup$is_active$pre_trunc)
@@ -8175,7 +8174,7 @@
                 )
                 (if
                  (get_local $$cleanup$is_active)
-                 ;; hierarchy.cpp:255
+                 ;; hierarchy.cpp:259
                  (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
                   (get_local $$agg$tmp40)
                  )
@@ -8189,32 +8188,32 @@
                   (br $label$break$L23)
                  )
                 )
-                ;; hierarchy.cpp:254
+                ;; hierarchy.cpp:258
                 (set_local $$199
                  (get_local $$j)
                 )
-                ;; hierarchy.cpp:254
+                ;; hierarchy.cpp:258
                 (set_local $$inc58
                  (i32.add
                   (get_local $$199)
                   (i32.const 1)
                  )
                 )
-                ;; hierarchy.cpp:254
+                ;; hierarchy.cpp:258
                 (set_local $$j
                  (get_local $$inc58)
                 )
                 (br $while-in2)
                )
               )
-              ;; hierarchy.cpp:253
+              ;; hierarchy.cpp:257
               (set_local $$inc61
                (i32.add
                 (get_local $$102)
                 (i32.const 1)
                )
               )
-              ;; hierarchy.cpp:253
+              ;; hierarchy.cpp:257
               (set_local $$i
                (get_local $$inc61)
               )
@@ -8227,7 +8226,7 @@
               (i32.const 37)
              )
              (block
-              ;; hierarchy.cpp:256
+              ;; hierarchy.cpp:260
               (set_local $$128
                (get_local $$i)
               )
@@ -8537,7 +8536,7 @@
                 )
                )
               )
-              ;; hierarchy.cpp:257
+              ;; hierarchy.cpp:261
               (set_local $$152
                (get_local $$j)
               )
@@ -9124,11 +9123,11 @@
                 )
                )
               )
-              ;; hierarchy.cpp:259
+              ;; hierarchy.cpp:263
               (set_local $$$expand_i1_val10
                (i32.const 1)
               )
-              ;; hierarchy.cpp:259
+              ;; hierarchy.cpp:263
               (i32.store8
                (get_local $$nrvo)
                (get_local $$$expand_i1_val10)
@@ -9150,21 +9149,21 @@
                (set_local $$198
                 (get_global $tempRet0)
                )
-               ;; hierarchy.cpp:263
+               ;; hierarchy.cpp:267
                (set_local $$exn$slot
                 (get_local $$197)
                )
-               ;; hierarchy.cpp:263
+               ;; hierarchy.cpp:267
                (set_local $$ehselector$slot
                 (get_local $$198)
                )
-               ;; hierarchy.cpp:255
+               ;; hierarchy.cpp:259
                (set_local $$cleanup$is_active45$pre_trunc
                 (i32.load8_s
                  (get_local $$cleanup$cond)
                 )
                )
-               ;; hierarchy.cpp:255
+               ;; hierarchy.cpp:259
                (set_local $$cleanup$is_active45
                 (i32.and
                  (get_local $$cleanup$is_active45$pre_trunc)
@@ -9176,15 +9175,15 @@
                  (get_local $$cleanup$is_active45)
                 )
                 (block
-                 ;; hierarchy.cpp:263
+                 ;; hierarchy.cpp:267
                  (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
                   (get_local $$agg$result)
                  )
-                 ;; hierarchy.cpp:263
+                 ;; hierarchy.cpp:267
                  (set_local $$exn
                   (get_local $$exn$slot)
                  )
-                 ;; hierarchy.cpp:263
+                 ;; hierarchy.cpp:267
                  (set_local $$sel
                   (get_local $$ehselector$slot)
                  )
@@ -9193,19 +9192,19 @@
                  )
                 )
                )
-               ;; hierarchy.cpp:255
+               ;; hierarchy.cpp:259
                (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
                 (get_local $$agg$tmp40)
                )
-               ;; hierarchy.cpp:263
+               ;; hierarchy.cpp:267
                (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
                 (get_local $$agg$result)
                )
-               ;; hierarchy.cpp:263
+               ;; hierarchy.cpp:267
                (set_local $$exn
                 (get_local $$exn$slot)
                )
-               ;; hierarchy.cpp:263
+               ;; hierarchy.cpp:267
                (set_local $$sel
                 (get_local $$ehselector$slot)
                )
@@ -9218,7 +9217,7 @@
                 (get_local $label)
                 (i32.const 51)
                )
-               ;; hierarchy.cpp:262
+               ;; hierarchy.cpp:266
                (call $_llvm_trap)
               )
              )
@@ -9230,13 +9229,13 @@
        )
       )
      )
-     ;; hierarchy.cpp:263
+     ;; hierarchy.cpp:267
      (set_local $$nrvo$val$pre_trunc
       (i32.load8_s
        (get_local $$nrvo)
       )
      )
-     ;; hierarchy.cpp:263
+     ;; hierarchy.cpp:267
      (set_local $$nrvo$val
       (i32.and
        (get_local $$nrvo$val$pre_trunc)
@@ -9249,18 +9248,18 @@
        (set_global $STACKTOP
         (get_local $sp)
        )
-       ;; hierarchy.cpp:263
+       ;; hierarchy.cpp:267
        (return)
       )
      )
-     ;; hierarchy.cpp:263
+     ;; hierarchy.cpp:267
      (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
       (get_local $$agg$result)
      )
      (set_global $STACKTOP
       (get_local $sp)
      )
-     ;; hierarchy.cpp:263
+     ;; hierarchy.cpp:267
      (return)
     )
    )
@@ -9271,23 +9270,23 @@
   (set_local $$31
    (get_global $tempRet0)
   )
-  ;; hierarchy.cpp:263
+  ;; hierarchy.cpp:267
   (set_local $$exn$slot
    (get_local $$30)
   )
-  ;; hierarchy.cpp:263
+  ;; hierarchy.cpp:267
   (set_local $$ehselector$slot
    (get_local $$31)
   )
-  ;; hierarchy.cpp:263
+  ;; hierarchy.cpp:267
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
    (get_local $$agg$result)
   )
-  ;; hierarchy.cpp:263
+  ;; hierarchy.cpp:267
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:263
+  ;; hierarchy.cpp:267
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -10114,7 +10113,7 @@
   (set_local $$n$addr
    (get_local $$n)
   )
-  ;; hierarchy.cpp:266
+  ;; hierarchy.cpp:270
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEEC2ERKS5_
    (get_local $$agg$tmp)
    (get_local $$B)
@@ -10122,7 +10121,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:266
+  ;; hierarchy.cpp:270
   (set_local $$call
    (call $invoke_ii
     (i32.const 107)
@@ -10150,23 +10149,23 @@
     (set_local $$25
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:277
+    ;; hierarchy.cpp:281
     (set_local $$exn$slot
      (get_local $$24)
     )
-    ;; hierarchy.cpp:277
+    ;; hierarchy.cpp:281
     (set_local $$ehselector$slot
      (get_local $$25)
     )
-    ;; hierarchy.cpp:266
+    ;; hierarchy.cpp:270
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
      (get_local $$agg$tmp)
     )
-    ;; hierarchy.cpp:266
+    ;; hierarchy.cpp:270
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:266
+    ;; hierarchy.cpp:270
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -10175,29 +10174,29 @@
     )
    )
   )
-  ;; hierarchy.cpp:266
+  ;; hierarchy.cpp:270
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
    (get_local $$agg$tmp)
   )
-  ;; hierarchy.cpp:266
+  ;; hierarchy.cpp:270
   (set_local $$circle
    (get_local $$call)
   )
-  ;; hierarchy.cpp:268
+  ;; hierarchy.cpp:272
   (set_local $$i
    (i32.const 0)
   )
   (loop $while-in
    (block $while-out
-    ;; hierarchy.cpp:268
+    ;; hierarchy.cpp:272
     (set_local $$2
      (get_local $$i)
     )
-    ;; hierarchy.cpp:268
+    ;; hierarchy.cpp:272
     (set_local $$3
      (get_local $$n$addr)
     )
-    ;; hierarchy.cpp:268
+    ;; hierarchy.cpp:272
     (set_local $$cmp
      (i32.lt_s
       (get_local $$2)
@@ -10215,7 +10214,7 @@
       (br $while-out)
      )
     )
-    ;; hierarchy.cpp:269
+    ;; hierarchy.cpp:273
     (set_local $$4
      (get_local $$i)
     )
@@ -10248,21 +10247,21 @@
       )
      )
     )
-    ;; hierarchy.cpp:269
+    ;; hierarchy.cpp:273
     (set_local $$7
      (i32.load
       (get_local $$arrayidx$i)
      )
     )
-    ;; hierarchy.cpp:269
+    ;; hierarchy.cpp:273
     (set_local $$p
      (get_local $$7)
     )
-    ;; hierarchy.cpp:270
+    ;; hierarchy.cpp:274
     (set_local $$8
      (get_local $$circle)
     )
-    ;; hierarchy.cpp:270
+    ;; hierarchy.cpp:274
     (set_local $$cmp2
      (i32.eq
       (get_local $$8)
@@ -10275,15 +10274,15 @@
       (i32.const 6)
      )
      (block
-      ;; hierarchy.cpp:270
+      ;; hierarchy.cpp:274
       (set_local $$9
        (get_local $$circle)
       )
-      ;; hierarchy.cpp:270
+      ;; hierarchy.cpp:274
       (set_local $$10
        (get_local $$p)
       )
-      ;; hierarchy.cpp:270
+      ;; hierarchy.cpp:274
       (set_local $$call3
        (call $__Z8enclosesP6HBasisS0_
         (get_local $$9)
@@ -10309,16 +10308,16 @@
       (set_local $label
        (i32.const 0)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEEC2ERKS5_
        (get_local $$agg$tmp5)
        (get_local $$L)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (set_local $$11
        (get_local $$i)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (set_local $$add
        (i32.add
         (get_local $$11)
@@ -10328,7 +10327,7 @@
       (set_global $__THREW__
        (i32.const 0)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $invoke_vii
        (i32.const 99)
        (get_local $$agg$tmp7)
@@ -10355,14 +10354,14 @@
         (br $while-out)
        )
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (set_local $$14
        (get_local $$p)
       )
       (set_global $__THREW__
        (i32.const 0)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $invoke_viii
        (i32.const 108)
        (get_local $$agg$tmp6)
@@ -10393,7 +10392,7 @@
       (set_global $__THREW__
        (i32.const 0)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $invoke_viiii
        (i32.const 109)
        (get_local $$ref$tmp)
@@ -10451,7 +10450,7 @@
       (set_global $__THREW__
        (i32.const 0)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $invoke_vii
        (i32.const 99)
        (get_local $$agg$tmp4)
@@ -10481,7 +10480,7 @@
       (set_global $__THREW__
        (i32.const 0)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (set_local $$call19
        (call $invoke_ii
         (i32.const 107)
@@ -10509,44 +10508,44 @@
         (br $while-out)
        )
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (set_local $$circle
        (get_local $$call19)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
        (get_local $$agg$tmp4)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
        (get_local $$ref$tmp)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
        (get_local $$agg$tmp6)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
        (get_local $$agg$tmp7)
       )
-      ;; hierarchy.cpp:272
+      ;; hierarchy.cpp:276
       (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
        (get_local $$agg$tmp5)
       )
      )
     )
-    ;; hierarchy.cpp:268
+    ;; hierarchy.cpp:272
     (set_local $$36
      (get_local $$i)
     )
-    ;; hierarchy.cpp:268
+    ;; hierarchy.cpp:272
     (set_local $$inc
      (i32.add
       (get_local $$36)
       (i32.const 1)
      )
     )
-    ;; hierarchy.cpp:268
+    ;; hierarchy.cpp:272
     (set_local $$i
      (get_local $$inc)
     )
@@ -10565,11 +10564,11 @@
     (set_local $$27
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:277
+    ;; hierarchy.cpp:281
     (set_local $$exn$slot
      (get_local $$26)
     )
-    ;; hierarchy.cpp:277
+    ;; hierarchy.cpp:281
     (set_local $$ehselector$slot
      (get_local $$27)
     )
@@ -10586,11 +10585,11 @@
      (set_local $$29
       (get_global $tempRet0)
      )
-     ;; hierarchy.cpp:277
+     ;; hierarchy.cpp:281
      (set_local $$exn$slot
       (get_local $$28)
      )
-     ;; hierarchy.cpp:277
+     ;; hierarchy.cpp:281
      (set_local $$ehselector$slot
       (get_local $$29)
      )
@@ -10610,11 +10609,11 @@
       (set_local $$31
        (get_global $tempRet0)
       )
-      ;; hierarchy.cpp:277
+      ;; hierarchy.cpp:281
       (set_local $$exn$slot
        (get_local $$30)
       )
-      ;; hierarchy.cpp:277
+      ;; hierarchy.cpp:281
       (set_local $$ehselector$slot
        (get_local $$31)
       )
@@ -10634,11 +10633,11 @@
        (set_local $$33
         (get_global $tempRet0)
        )
-       ;; hierarchy.cpp:277
+       ;; hierarchy.cpp:281
        (set_local $$exn$slot
         (get_local $$32)
        )
-       ;; hierarchy.cpp:277
+       ;; hierarchy.cpp:281
        (set_local $$ehselector$slot
         (get_local $$33)
        )
@@ -10658,15 +10657,15 @@
         (set_local $$35
          (get_global $tempRet0)
         )
-        ;; hierarchy.cpp:277
+        ;; hierarchy.cpp:281
         (set_local $$exn$slot
          (get_local $$34)
         )
-        ;; hierarchy.cpp:277
+        ;; hierarchy.cpp:281
         (set_local $$ehselector$slot
          (get_local $$35)
         )
-        ;; hierarchy.cpp:272
+        ;; hierarchy.cpp:276
         (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
          (get_local $$agg$tmp4)
         )
@@ -11001,7 +11000,7 @@
          (set_global $STACKTOP
           (get_local $sp)
          )
-         ;; hierarchy.cpp:276
+         ;; hierarchy.cpp:280
          (return)
         )
        )
@@ -11016,7 +11015,7 @@
     (i32.const 18)
    )
    (block
-    ;; hierarchy.cpp:272
+    ;; hierarchy.cpp:276
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
      (get_local $$ref$tmp)
     )
@@ -11031,7 +11030,7 @@
     (i32.const 19)
    )
    (block
-    ;; hierarchy.cpp:272
+    ;; hierarchy.cpp:276
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
      (get_local $$agg$tmp6)
     )
@@ -11045,20 +11044,20 @@
     (get_local $label)
     (i32.const 20)
    )
-   ;; hierarchy.cpp:272
+   ;; hierarchy.cpp:276
    (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
     (get_local $$agg$tmp7)
    )
   )
-  ;; hierarchy.cpp:272
+  ;; hierarchy.cpp:276
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
    (get_local $$agg$tmp5)
   )
-  ;; hierarchy.cpp:266
+  ;; hierarchy.cpp:270
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:266
+  ;; hierarchy.cpp:270
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -11162,7 +11161,7 @@
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:280
+  ;; hierarchy.cpp:284
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEEC2ERKS5_
    (get_local $$agg$tmp1)
    (get_local $$circles)
@@ -11313,7 +11312,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:280
+  ;; hierarchy.cpp:284
   (call $invoke_viiii
    (i32.const 109)
    (get_local $$agg$tmp)
@@ -11342,27 +11341,27 @@
     (set_local $$11
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:281
+    ;; hierarchy.cpp:285
     (set_local $$exn$slot
      (get_local $$10)
     )
-    ;; hierarchy.cpp:281
+    ;; hierarchy.cpp:285
     (set_local $$ehselector$slot
      (get_local $$11)
     )
-    ;; hierarchy.cpp:280
+    ;; hierarchy.cpp:284
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
      (get_local $$agg$tmp2)
     )
-    ;; hierarchy.cpp:280
+    ;; hierarchy.cpp:284
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
      (get_local $$agg$tmp1)
     )
-    ;; hierarchy.cpp:280
+    ;; hierarchy.cpp:284
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:280
+    ;; hierarchy.cpp:284
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -11374,7 +11373,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:280
+  ;; hierarchy.cpp:284
   (set_local $$call5
    (call $invoke_ii
     (i32.const 107)
@@ -11398,22 +11397,22 @@
     (get_local $$9)
    )
    (block
-    ;; hierarchy.cpp:280
+    ;; hierarchy.cpp:284
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
      (get_local $$agg$tmp)
     )
-    ;; hierarchy.cpp:280
+    ;; hierarchy.cpp:284
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
      (get_local $$agg$tmp2)
     )
-    ;; hierarchy.cpp:280
+    ;; hierarchy.cpp:284
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
      (get_local $$agg$tmp1)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:280
+    ;; hierarchy.cpp:284
     (return
      (get_local $$call5)
     )
@@ -11425,31 +11424,31 @@
   (set_local $$13
    (get_global $tempRet0)
   )
-  ;; hierarchy.cpp:281
+  ;; hierarchy.cpp:285
   (set_local $$exn$slot
    (get_local $$12)
   )
-  ;; hierarchy.cpp:281
+  ;; hierarchy.cpp:285
   (set_local $$ehselector$slot
    (get_local $$13)
   )
-  ;; hierarchy.cpp:280
+  ;; hierarchy.cpp:284
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
    (get_local $$agg$tmp)
   )
-  ;; hierarchy.cpp:280
+  ;; hierarchy.cpp:284
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
    (get_local $$agg$tmp2)
   )
-  ;; hierarchy.cpp:280
+  ;; hierarchy.cpp:284
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
    (get_local $$agg$tmp1)
   )
-  ;; hierarchy.cpp:280
+  ;; hierarchy.cpp:284
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:280
+  ;; hierarchy.cpp:284
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -11468,14 +11467,14 @@
   (local $$101 i32)
   (local $$102 i32)
   (local $$103 i32)
-  (local $$104 i32)
-  (local $$105 f64)
+  (local $$104 f64)
+  (local $$105 i32)
   (local $$106 i32)
-  (local $$107 i32)
+  (local $$107 f64)
   (local $$108 f64)
   (local $$109 f64)
   (local $$11 i32)
-  (local $$110 f64)
+  (local $$110 i32)
   (local $$111 i32)
   (local $$112 i32)
   (local $$113 i32)
@@ -11495,10 +11494,10 @@
   (local $$126 i32)
   (local $$127 i32)
   (local $$128 i32)
-  (local $$129 i32)
+  (local $$129 f64)
   (local $$13 i32)
   (local $$130 f64)
-  (local $$131 f64)
+  (local $$131 i32)
   (local $$132 i32)
   (local $$133 i32)
   (local $$134 i32)
@@ -11512,9 +11511,9 @@
   (local $$141 i32)
   (local $$142 i32)
   (local $$143 i32)
-  (local $$144 i32)
+  (local $$144 f64)
   (local $$145 f64)
-  (local $$146 f64)
+  (local $$146 i32)
   (local $$147 i32)
   (local $$148 i32)
   (local $$149 i32)
@@ -11535,41 +11534,41 @@
   (local $$162 i32)
   (local $$163 i32)
   (local $$164 i32)
-  (local $$165 i32)
+  (local $$165 f64)
   (local $$166 i32)
   (local $$167 i32)
   (local $$168 f64)
-  (local $$169 i32)
+  (local $$169 f64)
   (local $$17 f64)
-  (local $$170 i32)
-  (local $$171 f64)
-  (local $$172 f64)
+  (local $$170 f64)
+  (local $$171 i32)
+  (local $$172 i32)
   (local $$173 f64)
-  (local $$174 i32)
-  (local $$175 i32)
-  (local $$176 f64)
-  (local $$177 f64)
+  (local $$174 f64)
+  (local $$175 f64)
+  (local $$176 i32)
+  (local $$177 i32)
   (local $$178 f64)
-  (local $$179 i32)
+  (local $$179 f64)
   (local $$18 i32)
   (local $$180 i32)
   (local $$181 f64)
   (local $$182 f64)
-  (local $$183 i32)
+  (local $$183 f64)
   (local $$184 f64)
-  (local $$185 f64)
-  (local $$186 f64)
-  (local $$187 f64)
+  (local $$185 i32)
+  (local $$186 i32)
+  (local $$187 i32)
   (local $$188 i32)
-  (local $$189 i32)
+  (local $$189 f64)
   (local $$19 i32)
-  (local $$190 i32)
-  (local $$191 i32)
-  (local $$192 f64)
+  (local $$190 f64)
+  (local $$191 f64)
+  (local $$192 i32)
   (local $$193 f64)
-  (local $$194 f64)
+  (local $$194 i32)
   (local $$195 i32)
-  (local $$196 f64)
+  (local $$196 i32)
   (local $$197 i32)
   (local $$198 i32)
   (local $$199 i32)
@@ -11649,24 +11648,21 @@
   (local $$265 i32)
   (local $$266 i32)
   (local $$267 i32)
-  (local $$268 i32)
+  (local $$268 f64)
   (local $$269 i32)
   (local $$27 f64)
-  (local $$270 i32)
-  (local $$271 f64)
-  (local $$272 i32)
-  (local $$273 f64)
-  (local $$274 i32)
-  (local $$275 f64)
+  (local $$270 f64)
+  (local $$271 i32)
+  (local $$272 f64)
+  (local $$273 i32)
+  (local $$274 f64)
+  (local $$275 i32)
   (local $$276 i32)
-  (local $$277 f64)
+  (local $$277 i32)
   (local $$278 i32)
-  (local $$279 i32)
+  (local $$279 f64)
   (local $$28 i32)
-  (local $$280 i32)
-  (local $$281 i32)
-  (local $$282 f64)
-  (local $$283 f64)
+  (local $$280 f64)
   (local $$29 i32)
   (local $$3 i32)
   (local $$30 i32)
@@ -11747,66 +11743,66 @@
   (local $$99 i32)
   (local $$__a$addr$i$i i32)
   (local $$__a$addr$i$i$i i32)
-  (local $$__a$addr$i$i$i217 i32)
-  (local $$__a$addr$i$i222 i32)
+  (local $$__a$addr$i$i$i214 i32)
+  (local $$__a$addr$i$i219 i32)
   (local $$__annotator$i i32)
-  (local $$__annotator$i237 i32)
+  (local $$__annotator$i234 i32)
   (local $$__args$addr$i$i i32)
   (local $$__args$addr$i$i$i i32)
   (local $$__args$addr$i$i$i$i i32)
-  (local $$__args$addr$i$i$i$i215 i32)
-  (local $$__args$addr$i$i$i219 i32)
-  (local $$__args$addr$i$i224 i32)
+  (local $$__args$addr$i$i$i$i212 i32)
+  (local $$__args$addr$i$i$i216 i32)
+  (local $$__args$addr$i$i221 i32)
   (local $$__end_$i i32)
   (local $$__end_$i$i i32)
-  (local $$__end_$i167 i32)
-  (local $$__end_$i205 i32)
-  (local $$__end_$i239 i32)
+  (local $$__end_$i164 i32)
+  (local $$__end_$i202 i32)
+  (local $$__end_$i236 i32)
   (local $$__end_3$i i32)
-  (local $$__end_3$i250 i32)
+  (local $$__end_3$i247 i32)
   (local $$__end_6$i i32)
-  (local $$__end_6$i252 i32)
+  (local $$__end_6$i249 i32)
   (local $$__end_cap_$i$i i32)
-  (local $$__end_cap_$i$i207 i32)
-  (local $$__end_cap_$i$i241 i32)
+  (local $$__end_cap_$i$i204 i32)
+  (local $$__end_cap_$i$i238 i32)
   (local $$__end_cap_$i12$i i32)
-  (local $$__end_cap_$i12$i247 i32)
+  (local $$__end_cap_$i12$i244 i32)
   (local $$__n$addr$i i32)
-  (local $$__n$addr$i177 i32)
-  (local $$__n$addr$i182 i32)
-  (local $$__n$addr$i187 i32)
-  (local $$__n$addr$i192 i32)
+  (local $$__n$addr$i174 i32)
+  (local $$__n$addr$i179 i32)
+  (local $$__n$addr$i184 i32)
+  (local $$__n$addr$i189 i32)
   (local $$__p$addr$i$i i32)
   (local $$__p$addr$i$i$i i32)
   (local $$__p$addr$i$i$i$i i32)
-  (local $$__p$addr$i$i$i$i214 i32)
-  (local $$__p$addr$i$i$i218 i32)
-  (local $$__p$addr$i$i227 i32)
+  (local $$__p$addr$i$i$i$i211 i32)
+  (local $$__p$addr$i$i$i215 i32)
+  (local $$__p$addr$i$i224 i32)
   (local $$__p$addr$i16$i i32)
-  (local $$__p$addr$i16$i223 i32)
+  (local $$__p$addr$i16$i220 i32)
   (local $$__t$addr$i$i i32)
   (local $$__t$addr$i$i$i i32)
   (local $$__t$addr$i$i$i$i i32)
   (local $$__t$addr$i$i$i$i$i i32)
-  (local $$__t$addr$i$i$i$i$i198 i32)
-  (local $$__t$addr$i$i$i$i$i212 i32)
-  (local $$__t$addr$i$i$i$i199 i32)
-  (local $$__t$addr$i$i$i$i216 i32)
-  (local $$__t$addr$i$i$i221 i32)
-  (local $$__t$addr$i$i228 i32)
+  (local $$__t$addr$i$i$i$i$i195 i32)
+  (local $$__t$addr$i$i$i$i$i209 i32)
+  (local $$__t$addr$i$i$i$i196 i32)
+  (local $$__t$addr$i$i$i$i213 i32)
+  (local $$__t$addr$i$i$i218 i32)
+  (local $$__t$addr$i$i225 i32)
   (local $$__t$addr$i18$i i32)
-  (local $$__t$addr$i18$i211 i32)
+  (local $$__t$addr$i18$i208 i32)
   (local $$__t1$addr$i$i$i i32)
   (local $$__t1$addr$i$i$i$i i32)
   (local $$__x$addr$i i32)
-  (local $$__x$addr$i236 i32)
+  (local $$__x$addr$i233 i32)
   (local $$a i32)
   (local $$a_ i32)
   (local $$aa f64)
   (local $$add f64)
-  (local $$add116 f64)
-  (local $$add120 f64)
-  (local $$add124 f64)
+  (local $$add113 f64)
+  (local $$add117 f64)
+  (local $$add121 f64)
   (local $$add26 f64)
   (local $$add27 f64)
   (local $$add32 f64)
@@ -11817,14 +11813,14 @@
   (local $$add92 f64)
   (local $$agg$tmp i32)
   (local $$agg$tmp$i$i i32)
-  (local $$agg$tmp$i$i225 i32)
+  (local $$agg$tmp$i$i222 i32)
   (local $$agg$tmp1$i$i i32)
-  (local $$agg$tmp1$i$i220 i32)
+  (local $$agg$tmp1$i$i217 i32)
   (local $$arrayidx$i i32)
-  (local $$arrayidx$i180 i32)
-  (local $$arrayidx$i185 i32)
-  (local $$arrayidx$i190 i32)
-  (local $$arrayidx$i195 i32)
+  (local $$arrayidx$i177 i32)
+  (local $$arrayidx$i182 i32)
+  (local $$arrayidx$i187 i32)
+  (local $$arrayidx$i192 i32)
   (local $$avec i32)
   (local $$b i32)
   (local $$b_ i32)
@@ -11832,10 +11828,11 @@
   (local $$basis i32)
   (local $$c i32)
   (local $$c_ i32)
+  (local $$c_58 i32)
   (local $$ca f64)
+  (local $$call123 f64)
   (local $$call126 f64)
-  (local $$call129 f64)
-  (local $$call148 i32)
+  (local $$call145 i32)
   (local $$call44 i32)
   (local $$call45 i32)
   (local $$call48 i32)
@@ -11844,41 +11841,37 @@
   (local $$call84 i32)
   (local $$cmp i32)
   (local $$cmp$i i32)
-  (local $$cmp$i245 i32)
+  (local $$cmp$i242 i32)
   (local $$cmp12 i32)
-  (local $$cmp128 i32)
-  (local $$cmp130 i32)
-  (local $$cmp139 i32)
-  (local $$cmp150 i32)
+  (local $$cmp125 i32)
+  (local $$cmp127 i32)
+  (local $$cmp136 i32)
+  (local $$cmp147 i32)
   (local $$cmp3 i32)
   (local $$cmp55 i32)
   (local $$cmp68 i32)
   (local $$cmp99 i32)
   (local $$cx f64)
   (local $$cy f64)
-  (local $$d_ i32)
-  (local $$d_58 i32)
   (local $$dec i32)
   (local $$dec88 i32)
   (local $$div f64)
-  (local $$div125 f64)
+  (local $$div122 f64)
   (local $$ehselector$slot i32)
   (local $$exn i32)
   (local $$exn$slot i32)
   (local $$i i32)
   (local $$inc i32)
-  (local $$inc161 i32)
+  (local $$inc158 i32)
   (local $$incdec$ptr$i i32)
-  (local $$incdec$ptr$i253 i32)
-  (local $$isnull i32)
-  (local $$isnull103 i32)
+  (local $$incdec$ptr$i250 i32)
   (local $$j i32)
   (local $$k i32)
   (local $$kill i32)
   (local $$mul f64)
-  (local $$mul115 f64)
-  (local $$mul119 f64)
-  (local $$mul123 f64)
+  (local $$mul112 f64)
+  (local $$mul116 f64)
+  (local $$mul120 f64)
   (local $$mul22 f64)
   (local $$mul25 f64)
   (local $$mul29 f64)
@@ -11889,11 +11882,11 @@
   (local $$mul42 f64)
   (local $$n i32)
   (local $$next i32)
+  (local $$next104 i32)
   (local $$next107 i32)
-  (local $$next110 i32)
-  (local $$next127 i32)
-  (local $$next133 i32)
-  (local $$next138 i32)
+  (local $$next124 i32)
+  (local $$next130 i32)
+  (local $$next135 i32)
   (local $$next52 i32)
   (local $$next54 i32)
   (local $$next62 i32)
@@ -11905,9 +11898,9 @@
   (local $$ox f64)
   (local $$oy f64)
   (local $$previous i32)
+  (local $$previous103 i32)
+  (local $$previous105 i32)
   (local $$previous106 i32)
-  (local $$previous108 i32)
-  (local $$previous109 i32)
   (local $$previous51 i32)
   (local $$previous53 i32)
   (local $$previous63 i32)
@@ -11915,11 +11908,11 @@
   (local $$previous87 i32)
   (local $$previous93 i32)
   (local $$r i32)
-  (local $$r112 i32)
-  (local $$r114 i32)
+  (local $$r109 i32)
+  (local $$r111 i32)
   (local $$r14 i32)
   (local $$r15 i32)
-  (local $$r163 i32)
+  (local $$r160 i32)
   (local $$r18 i32)
   (local $$r19 i32)
   (local $$r20 i32)
@@ -11933,83 +11926,83 @@
   (local $$r9 i32)
   (local $$r91 i32)
   (local $$ref$tmp i32)
-  (local $$ref$tmp141 i32)
+  (local $$ref$tmp138 i32)
   (local $$retval f64)
   (local $$sel i32)
   (local $$sj f64)
   (local $$sk f64)
   (local $$sub f64)
   (local $$sub$ptr$div$i i32)
-  (local $$sub$ptr$div$i172 i32)
+  (local $$sub$ptr$div$i169 i32)
   (local $$sub$ptr$lhs$cast$i i32)
-  (local $$sub$ptr$lhs$cast$i169 i32)
+  (local $$sub$ptr$lhs$cast$i166 i32)
   (local $$sub$ptr$rhs$cast$i i32)
-  (local $$sub$ptr$rhs$cast$i170 i32)
+  (local $$sub$ptr$rhs$cast$i167 i32)
   (local $$sub$ptr$sub$i i32)
-  (local $$sub$ptr$sub$i171 i32)
+  (local $$sub$ptr$sub$i168 i32)
+  (local $$sub153 f64)
   (local $$sub156 f64)
-  (local $$sub159 f64)
   (local $$this$addr$i i32)
   (local $$this$addr$i$i i32)
   (local $$this$addr$i$i$i i32)
   (local $$this$addr$i$i$i$i i32)
   (local $$this$addr$i$i$i$i$i i32)
-  (local $$this$addr$i$i$i$i200 i32)
-  (local $$this$addr$i$i$i$i232 i32)
+  (local $$this$addr$i$i$i$i197 i32)
+  (local $$this$addr$i$i$i$i229 i32)
   (local $$this$addr$i$i$i15$i i32)
-  (local $$this$addr$i$i$i15$i213 i32)
-  (local $$this$addr$i$i$i201 i32)
-  (local $$this$addr$i$i$i233 i32)
+  (local $$this$addr$i$i$i15$i210 i32)
+  (local $$this$addr$i$i$i198 i32)
+  (local $$this$addr$i$i$i230 i32)
   (local $$this$addr$i$i$i8$i i32)
-  (local $$this$addr$i$i$i8$i229 i32)
-  (local $$this$addr$i$i202 i32)
-  (local $$this$addr$i$i234 i32)
+  (local $$this$addr$i$i$i8$i226 i32)
+  (local $$this$addr$i$i199 i32)
+  (local $$this$addr$i$i231 i32)
   (local $$this$addr$i$i9$i i32)
-  (local $$this$addr$i$i9$i230 i32)
+  (local $$this$addr$i$i9$i227 i32)
   (local $$this$addr$i10$i i32)
-  (local $$this$addr$i10$i231 i32)
-  (local $$this$addr$i165 i32)
+  (local $$this$addr$i10$i228 i32)
+  (local $$this$addr$i162 i32)
+  (local $$this$addr$i170 i32)
   (local $$this$addr$i173 i32)
-  (local $$this$addr$i176 i32)
-  (local $$this$addr$i181 i32)
-  (local $$this$addr$i186 i32)
-  (local $$this$addr$i191 i32)
-  (local $$this$addr$i196 i32)
-  (local $$this$addr$i203 i32)
-  (local $$this$addr$i235 i32)
+  (local $$this$addr$i178 i32)
+  (local $$this$addr$i183 i32)
+  (local $$this$addr$i188 i32)
+  (local $$this$addr$i193 i32)
+  (local $$this$addr$i200 i32)
+  (local $$this$addr$i232 i32)
   (local $$this$addr$i3$i$i i32)
   (local $$this1$i i32)
   (local $$this1$i$i i32)
   (local $$this1$i$i$i$i i32)
-  (local $$this1$i$i$i$i209 i32)
-  (local $$this1$i$i$i$i243 i32)
+  (local $$this1$i$i$i$i206 i32)
+  (local $$this1$i$i$i$i240 i32)
   (local $$this1$i$i$i14$i i32)
-  (local $$this1$i$i$i14$i249 i32)
-  (local $$this1$i$i$i208 i32)
-  (local $$this1$i$i$i242 i32)
+  (local $$this1$i$i$i14$i246 i32)
+  (local $$this1$i$i$i205 i32)
+  (local $$this1$i$i$i239 i32)
   (local $$this1$i$i13$i i32)
-  (local $$this1$i$i13$i248 i32)
-  (local $$this1$i$i206 i32)
-  (local $$this1$i$i240 i32)
+  (local $$this1$i$i13$i245 i32)
+  (local $$this1$i$i203 i32)
+  (local $$this1$i$i237 i32)
   (local $$this1$i11$i i32)
-  (local $$this1$i11$i246 i32)
-  (local $$this1$i166 i32)
-  (local $$this1$i174 i32)
-  (local $$this1$i178 i32)
-  (local $$this1$i183 i32)
-  (local $$this1$i188 i32)
-  (local $$this1$i193 i32)
-  (local $$this1$i197 i32)
-  (local $$this1$i204 i32)
-  (local $$this1$i238 i32)
+  (local $$this1$i11$i243 i32)
+  (local $$this1$i163 i32)
+  (local $$this1$i171 i32)
+  (local $$this1$i175 i32)
+  (local $$this1$i180 i32)
+  (local $$this1$i185 i32)
+  (local $$this1$i190 i32)
+  (local $$this1$i194 i32)
+  (local $$this1$i201 i32)
+  (local $$this1$i235 i32)
   (local $$this1$i4$i$i i32)
   (local $$tobool i32)
   (local $$tobool100 i32)
   (local $$y i32)
   (local $$y11 i32)
-  (local $$y122 i32)
-  (local $$y157 i32)
-  (local $$y158 i32)
+  (local $$y119 i32)
+  (local $$y154 i32)
+  (local $$y155 i32)
   (local $$y36 i32)
   (local $$y38 i32)
   (local $$y41 i32)
@@ -12033,22 +12026,22 @@
     (i32.const 480)
    )
   )
-  (set_local $$agg$tmp1$i$i220
+  (set_local $$agg$tmp1$i$i217
    (i32.add
     (get_local $sp)
     (i32.const 96)
    )
   )
-  (set_local $$agg$tmp$i$i225
+  (set_local $$agg$tmp$i$i222
    (i32.add
     (get_local $sp)
-    (i32.const 468)
+    (i32.const 464)
    )
   )
-  (set_local $$__annotator$i237
+  (set_local $$__annotator$i234
    (i32.add
     (get_local $sp)
-    (i32.const 467)
+    (i32.const 463)
    )
   )
   (set_local $$agg$tmp1$i$i
@@ -12060,25 +12053,25 @@
   (set_local $$agg$tmp$i$i
    (i32.add
     (get_local $sp)
-    (i32.const 466)
+    (i32.const 462)
    )
   )
   (set_local $$__annotator$i
    (i32.add
     (get_local $sp)
-    (i32.const 465)
+    (i32.const 461)
    )
   )
   (set_local $$__t1$addr$i$i$i$i
    (i32.add
     (get_local $sp)
-    (i32.const 264)
+    (i32.const 260)
    )
   )
   (set_local $$__t1$addr$i$i$i
    (i32.add
     (get_local $sp)
-    (i32.const 252)
+    (i32.const 248)
    )
   )
   (set_local $$avec
@@ -12093,7 +12086,7 @@
     (i32.const 120)
    )
   )
-  (set_local $$ref$tmp141
+  (set_local $$ref$tmp138
    (i32.add
     (get_local $sp)
     (i32.const 116)
@@ -12155,69 +12148,69 @@
     (i32.const -1)
    )
   )
-  ;; hierarchy.cpp:285
+  ;; hierarchy.cpp:293
   (set_local $$n
    (get_local $$sub$ptr$div$i)
   )
-  (set_local $$this$addr$i165
+  (set_local $$this$addr$i162
    (get_local $$circles)
   )
-  (set_local $$this1$i166
-   (get_local $$this$addr$i165)
+  (set_local $$this1$i163
+   (get_local $$this$addr$i162)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:640
-  (set_local $$__end_$i167
+  (set_local $$__end_$i164
    (i32.add
-    (get_local $$this1$i166)
+    (get_local $$this1$i163)
     (i32.const 4)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:640
   (set_local $$2
    (i32.load
-    (get_local $$__end_$i167)
+    (get_local $$__end_$i164)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:640
   (set_local $$3
    (i32.load
-    (get_local $$this1$i166)
+    (get_local $$this1$i163)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:640
-  (set_local $$sub$ptr$lhs$cast$i169
+  (set_local $$sub$ptr$lhs$cast$i166
    (get_local $$2)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:640
-  (set_local $$sub$ptr$rhs$cast$i170
+  (set_local $$sub$ptr$rhs$cast$i167
    (get_local $$3)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:640
-  (set_local $$sub$ptr$sub$i171
+  (set_local $$sub$ptr$sub$i168
    (i32.sub
-    (get_local $$sub$ptr$lhs$cast$i169)
-    (get_local $$sub$ptr$rhs$cast$i170)
+    (get_local $$sub$ptr$lhs$cast$i166)
+    (get_local $$sub$ptr$rhs$cast$i167)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:640
-  (set_local $$sub$ptr$div$i172
+  (set_local $$sub$ptr$div$i169
    (i32.and
     (i32.div_s
-     (get_local $$sub$ptr$sub$i171)
+     (get_local $$sub$ptr$sub$i168)
      (i32.const 4)
     )
     (i32.const -1)
    )
   )
-  ;; hierarchy.cpp:287
+  ;; hierarchy.cpp:295
   (set_local $$n
-   (get_local $$sub$ptr$div$i172)
+   (get_local $$sub$ptr$div$i169)
   )
-  ;; hierarchy.cpp:289
+  ;; hierarchy.cpp:297
   (set_local $$4
    (get_local $$n)
   )
-  ;; hierarchy.cpp:289
+  ;; hierarchy.cpp:297
   (set_local $$cmp
    (i32.eq
     (get_local $$4)
@@ -12227,36 +12220,36 @@
   (if
    (get_local $$cmp)
    (block
-    ;; hierarchy.cpp:291
+    ;; hierarchy.cpp:299
     (set_local $$retval
      (f64.const 0)
     )
-    ;; hierarchy.cpp:423
-    (set_local $$283
+    ;; hierarchy.cpp:428
+    (set_local $$280
      (get_local $$retval)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (return
-     (get_local $$283)
+     (get_local $$280)
     )
    )
   )
-  (set_local $$this$addr$i173
+  (set_local $$this$addr$i170
    (get_local $$circles)
   )
   (set_local $$__n$addr$i
    (i32.const 0)
   )
-  (set_local $$this1$i174
-   (get_local $$this$addr$i173)
+  (set_local $$this1$i171
+   (get_local $$this$addr$i170)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
   (set_local $$5
    (i32.load
-    (get_local $$this1$i174)
+    (get_local $$this1$i171)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
@@ -12273,46 +12266,46 @@
     )
    )
   )
-  ;; hierarchy.cpp:298
+  ;; hierarchy.cpp:306
   (set_local $$7
    (i32.load
     (get_local $$arrayidx$i)
    )
   )
-  ;; hierarchy.cpp:298
+  ;; hierarchy.cpp:306
   (set_local $$a
    (get_local $$7)
   )
-  ;; hierarchy.cpp:299
+  ;; hierarchy.cpp:307
   (set_local $$8
    (get_local $$a)
   )
-  ;; hierarchy.cpp:299
+  ;; hierarchy.cpp:307
   (f64.store
    (get_local $$8)
    (f64.const 0)
   )
-  ;; hierarchy.cpp:300
+  ;; hierarchy.cpp:308
   (set_local $$9
    (get_local $$a)
   )
-  ;; hierarchy.cpp:300
+  ;; hierarchy.cpp:308
   (set_local $$y
    (i32.add
     (get_local $$9)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:300
+  ;; hierarchy.cpp:308
   (f64.store
    (get_local $$y)
    (f64.const 0)
   )
-  ;; hierarchy.cpp:302
+  ;; hierarchy.cpp:310
   (set_local $$10
    (get_local $$n)
   )
-  ;; hierarchy.cpp:302
+  ;; hierarchy.cpp:310
   (set_local $$cmp3
    (i32.eq
     (get_local $$10)
@@ -12322,61 +12315,61 @@
   (if
    (get_local $$cmp3)
    (block
-    ;; hierarchy.cpp:303
+    ;; hierarchy.cpp:311
     (set_local $$11
      (get_local $$a)
     )
-    ;; hierarchy.cpp:303
+    ;; hierarchy.cpp:311
     (set_local $$r
      (i32.add
       (get_local $$11)
       (i32.const 16)
      )
     )
-    ;; hierarchy.cpp:303
+    ;; hierarchy.cpp:311
     (set_local $$12
      (f64.load
       (get_local $$r)
      )
     )
-    ;; hierarchy.cpp:303
+    ;; hierarchy.cpp:311
     (set_local $$retval
      (get_local $$12)
     )
-    ;; hierarchy.cpp:423
-    (set_local $$283
+    ;; hierarchy.cpp:428
+    (set_local $$280
      (get_local $$retval)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (return
-     (get_local $$283)
+     (get_local $$280)
     )
    )
   )
-  (set_local $$this$addr$i176
+  (set_local $$this$addr$i173
    (get_local $$circles)
   )
-  (set_local $$__n$addr$i177
+  (set_local $$__n$addr$i174
    (i32.const 1)
   )
-  (set_local $$this1$i178
-   (get_local $$this$addr$i176)
+  (set_local $$this1$i175
+   (get_local $$this$addr$i173)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
   (set_local $$13
    (i32.load
-    (get_local $$this1$i178)
+    (get_local $$this1$i175)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
   (set_local $$14
-   (get_local $$__n$addr$i177)
+   (get_local $$__n$addr$i174)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
-  (set_local $$arrayidx$i180
+  (set_local $$arrayidx$i177
    (i32.add
     (get_local $$13)
     (i32.shl
@@ -12385,95 +12378,95 @@
     )
    )
   )
-  ;; hierarchy.cpp:306
+  ;; hierarchy.cpp:314
   (set_local $$15
    (i32.load
-    (get_local $$arrayidx$i180)
+    (get_local $$arrayidx$i177)
    )
   )
-  ;; hierarchy.cpp:306
+  ;; hierarchy.cpp:314
   (set_local $$b
    (get_local $$15)
   )
-  ;; hierarchy.cpp:307
+  ;; hierarchy.cpp:315
   (set_local $$16
    (get_local $$b)
   )
-  ;; hierarchy.cpp:307
+  ;; hierarchy.cpp:315
   (set_local $$r7
    (i32.add
     (get_local $$16)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:307
+  ;; hierarchy.cpp:315
   (set_local $$17
    (f64.load
     (get_local $$r7)
    )
   )
-  ;; hierarchy.cpp:307
+  ;; hierarchy.cpp:315
   (set_local $$sub
    (f64.neg
     (get_local $$17)
    )
   )
-  ;; hierarchy.cpp:307
+  ;; hierarchy.cpp:315
   (set_local $$18
    (get_local $$a)
   )
-  ;; hierarchy.cpp:307
+  ;; hierarchy.cpp:315
   (f64.store
    (get_local $$18)
    (get_local $$sub)
   )
-  ;; hierarchy.cpp:308
+  ;; hierarchy.cpp:316
   (set_local $$19
    (get_local $$a)
   )
-  ;; hierarchy.cpp:308
+  ;; hierarchy.cpp:316
   (set_local $$r9
    (i32.add
     (get_local $$19)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:308
+  ;; hierarchy.cpp:316
   (set_local $$20
    (f64.load
     (get_local $$r9)
    )
   )
-  ;; hierarchy.cpp:308
+  ;; hierarchy.cpp:316
   (set_local $$21
    (get_local $$b)
   )
-  ;; hierarchy.cpp:308
+  ;; hierarchy.cpp:316
   (f64.store
    (get_local $$21)
    (get_local $$20)
   )
-  ;; hierarchy.cpp:309
+  ;; hierarchy.cpp:317
   (set_local $$22
    (get_local $$b)
   )
-  ;; hierarchy.cpp:309
+  ;; hierarchy.cpp:317
   (set_local $$y11
    (i32.add
     (get_local $$22)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:309
+  ;; hierarchy.cpp:317
   (f64.store
    (get_local $$y11)
    (f64.const 0)
   )
-  ;; hierarchy.cpp:311
+  ;; hierarchy.cpp:319
   (set_local $$23
    (get_local $$n)
   )
-  ;; hierarchy.cpp:311
+  ;; hierarchy.cpp:319
   (set_local $$cmp12
    (i32.eq
     (get_local $$23)
@@ -12483,85 +12476,85 @@
   (if
    (get_local $$cmp12)
    (block
-    ;; hierarchy.cpp:312
+    ;; hierarchy.cpp:320
     (set_local $$24
      (get_local $$a)
     )
-    ;; hierarchy.cpp:312
+    ;; hierarchy.cpp:320
     (set_local $$r14
      (i32.add
       (get_local $$24)
       (i32.const 16)
      )
     )
-    ;; hierarchy.cpp:312
+    ;; hierarchy.cpp:320
     (set_local $$25
      (f64.load
       (get_local $$r14)
      )
     )
-    ;; hierarchy.cpp:312
+    ;; hierarchy.cpp:320
     (set_local $$26
      (get_local $$b)
     )
-    ;; hierarchy.cpp:312
+    ;; hierarchy.cpp:320
     (set_local $$r15
      (i32.add
       (get_local $$26)
       (i32.const 16)
      )
     )
-    ;; hierarchy.cpp:312
+    ;; hierarchy.cpp:320
     (set_local $$27
      (f64.load
       (get_local $$r15)
      )
     )
-    ;; hierarchy.cpp:312
+    ;; hierarchy.cpp:320
     (set_local $$add
      (f64.add
       (get_local $$25)
       (get_local $$27)
      )
     )
-    ;; hierarchy.cpp:312
+    ;; hierarchy.cpp:320
     (set_local $$retval
      (get_local $$add)
     )
-    ;; hierarchy.cpp:423
-    (set_local $$283
+    ;; hierarchy.cpp:428
+    (set_local $$280
      (get_local $$retval)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (return
-     (get_local $$283)
+     (get_local $$280)
     )
    )
   )
-  (set_local $$this$addr$i186
+  (set_local $$this$addr$i183
    (get_local $$circles)
   )
-  (set_local $$__n$addr$i187
+  (set_local $$__n$addr$i184
    (i32.const 2)
   )
-  (set_local $$this1$i188
-   (get_local $$this$addr$i186)
+  (set_local $$this1$i185
+   (get_local $$this$addr$i183)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
   (set_local $$28
    (i32.load
-    (get_local $$this1$i188)
+    (get_local $$this1$i185)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
   (set_local $$29
-   (get_local $$__n$addr$i187)
+   (get_local $$__n$addr$i184)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
-  (set_local $$arrayidx$i190
+  (set_local $$arrayidx$i187
    (i32.add
     (get_local $$28)
     (i32.shl
@@ -12570,396 +12563,396 @@
     )
    )
   )
-  ;; hierarchy.cpp:315
+  ;; hierarchy.cpp:323
   (set_local $$30
    (i32.load
-    (get_local $$arrayidx$i190)
+    (get_local $$arrayidx$i187)
    )
   )
-  ;; hierarchy.cpp:315
+  ;; hierarchy.cpp:323
   (set_local $$c
    (get_local $$30)
   )
-  ;; hierarchy.cpp:316
+  ;; hierarchy.cpp:324
   (set_local $$31
    (get_local $$b)
   )
-  ;; hierarchy.cpp:316
+  ;; hierarchy.cpp:324
   (set_local $$32
    (get_local $$a)
   )
-  ;; hierarchy.cpp:316
+  ;; hierarchy.cpp:324
   (set_local $$33
    (get_local $$c)
   )
-  ;; hierarchy.cpp:316
+  ;; hierarchy.cpp:324
   (call $__Z5placeP5HNodeS0_S0_
    (get_local $$31)
    (get_local $$32)
    (get_local $$33)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$34
    (get_local $$a)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$r18
    (i32.add
     (get_local $$34)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$35
    (f64.load
     (get_local $$r18)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$36
    (get_local $$a)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$r19
    (i32.add
     (get_local $$36)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$37
    (f64.load
     (get_local $$r19)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$mul
    (f64.mul
     (get_local $$35)
     (get_local $$37)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$aa
    (get_local $$mul)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$38
    (get_local $$b)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$r20
    (i32.add
     (get_local $$38)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$39
    (f64.load
     (get_local $$r20)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$40
    (get_local $$b)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$r21
    (i32.add
     (get_local $$40)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$41
    (f64.load
     (get_local $$r21)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$mul22
    (f64.mul
     (get_local $$39)
     (get_local $$41)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$ba
    (get_local $$mul22)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$42
    (get_local $$c)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$r23
    (i32.add
     (get_local $$42)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$43
    (f64.load
     (get_local $$r23)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$44
    (get_local $$c)
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$r24
    (i32.add
     (get_local $$44)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$45
    (f64.load
     (get_local $$r24)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$mul25
    (f64.mul
     (get_local $$43)
     (get_local $$45)
    )
   )
-  ;; hierarchy.cpp:318
+  ;; hierarchy.cpp:326
   (set_local $$ca
    (get_local $$mul25)
   )
-  ;; hierarchy.cpp:319
+  ;; hierarchy.cpp:327
   (set_local $$46
    (get_local $$aa)
   )
-  ;; hierarchy.cpp:319
+  ;; hierarchy.cpp:327
   (set_local $$47
    (get_local $$ba)
   )
-  ;; hierarchy.cpp:319
+  ;; hierarchy.cpp:327
   (set_local $$add26
    (f64.add
     (get_local $$46)
     (get_local $$47)
    )
   )
-  ;; hierarchy.cpp:319
+  ;; hierarchy.cpp:327
   (set_local $$48
    (get_local $$ca)
   )
-  ;; hierarchy.cpp:319
+  ;; hierarchy.cpp:327
   (set_local $$add27
    (f64.add
     (get_local $$add26)
     (get_local $$48)
    )
   )
-  ;; hierarchy.cpp:319
+  ;; hierarchy.cpp:327
   (set_local $$oa
    (get_local $$add27)
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$49
    (get_local $$aa)
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$50
    (get_local $$a)
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$51
    (f64.load
     (get_local $$50)
    )
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$mul29
    (f64.mul
     (get_local $$49)
     (get_local $$51)
    )
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$52
    (get_local $$ba)
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$53
    (get_local $$b)
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$54
    (f64.load
     (get_local $$53)
    )
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$mul31
    (f64.mul
     (get_local $$52)
     (get_local $$54)
    )
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$add32
    (f64.add
     (get_local $$mul29)
     (get_local $$mul31)
    )
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$55
    (get_local $$ca)
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$56
    (get_local $$c)
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$57
    (f64.load
     (get_local $$56)
    )
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$mul34
    (f64.mul
     (get_local $$55)
     (get_local $$57)
    )
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$add35
    (f64.add
     (get_local $$add32)
     (get_local $$mul34)
    )
   )
-  ;; hierarchy.cpp:320
+  ;; hierarchy.cpp:328
   (set_local $$ox
    (get_local $$add35)
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$58
    (get_local $$aa)
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$59
    (get_local $$a)
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$y36
    (i32.add
     (get_local $$59)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$60
    (f64.load
     (get_local $$y36)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$mul37
    (f64.mul
     (get_local $$58)
     (get_local $$60)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$61
    (get_local $$ba)
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$62
    (get_local $$b)
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$y38
    (i32.add
     (get_local $$62)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$63
    (f64.load
     (get_local $$y38)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$mul39
    (f64.mul
     (get_local $$61)
     (get_local $$63)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$add40
    (f64.add
     (get_local $$mul37)
     (get_local $$mul39)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$64
    (get_local $$ca)
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$65
    (get_local $$c)
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$y41
    (i32.add
     (get_local $$65)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$66
    (f64.load
     (get_local $$y41)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$mul42
    (f64.mul
     (get_local $$64)
     (get_local $$66)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$add43
    (f64.add
     (get_local $$add40)
     (get_local $$mul42)
    )
   )
-  ;; hierarchy.cpp:321
+  ;; hierarchy.cpp:329
   (set_local $$oy
    (get_local $$add43)
   )
-  ;; hierarchy.cpp:328
+  ;; hierarchy.cpp:337
   (set_local $$call44
    (call $__Znwj
     (i32.const 12)
    )
   )
-  ;; hierarchy.cpp:328
+  ;; hierarchy.cpp:337
   (set_local $$67
    (get_local $$a)
   )
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:328
+  ;; hierarchy.cpp:337
   (call $invoke_vii
    (i32.const 110)
    (get_local $$call44)
@@ -12980,29 +12973,29 @@
   (if
    (get_local $$69)
    (block
-    (set_local $$121
+    (set_local $$120
      (call $___cxa_find_matching_catch_2)
     )
-    (set_local $$122
+    (set_local $$121
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (set_local $$exn$slot
+     (get_local $$120)
+    )
+    ;; hierarchy.cpp:428
+    (set_local $$ehselector$slot
      (get_local $$121)
     )
-    ;; hierarchy.cpp:423
-    (set_local $$ehselector$slot
-     (get_local $$122)
-    )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (call $__ZdlPv
      (get_local $$call44)
     )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -13011,24 +13004,24 @@
     )
    )
   )
-  ;; hierarchy.cpp:328
+  ;; hierarchy.cpp:337
   (set_local $$a_
    (get_local $$call44)
   )
-  ;; hierarchy.cpp:329
+  ;; hierarchy.cpp:338
   (set_local $$call45
    (call $__Znwj
     (i32.const 12)
    )
   )
-  ;; hierarchy.cpp:329
+  ;; hierarchy.cpp:338
   (set_local $$70
    (get_local $$b)
   )
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:329
+  ;; hierarchy.cpp:338
   (call $invoke_vii
    (i32.const 110)
    (get_local $$call45)
@@ -13049,29 +13042,29 @@
   (if
    (get_local $$72)
    (block
-    (set_local $$123
+    (set_local $$122
      (call $___cxa_find_matching_catch_2)
     )
-    (set_local $$124
+    (set_local $$123
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (set_local $$exn$slot
+     (get_local $$122)
+    )
+    ;; hierarchy.cpp:428
+    (set_local $$ehselector$slot
      (get_local $$123)
     )
-    ;; hierarchy.cpp:423
-    (set_local $$ehselector$slot
-     (get_local $$124)
-    )
-    ;; hierarchy.cpp:329
+    ;; hierarchy.cpp:338
     (call $__ZdlPv
      (get_local $$call45)
     )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -13080,24 +13073,24 @@
     )
    )
   )
-  ;; hierarchy.cpp:329
+  ;; hierarchy.cpp:338
   (set_local $$b_
    (get_local $$call45)
   )
-  ;; hierarchy.cpp:330
+  ;; hierarchy.cpp:339
   (set_local $$call48
    (call $__Znwj
     (i32.const 12)
    )
   )
-  ;; hierarchy.cpp:330
+  ;; hierarchy.cpp:339
   (set_local $$73
    (get_local $$c)
   )
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:330
+  ;; hierarchy.cpp:339
   (call $invoke_vii
    (i32.const 110)
    (get_local $$call48)
@@ -13118,29 +13111,29 @@
   (if
    (get_local $$75)
    (block
-    (set_local $$125
+    (set_local $$124
      (call $___cxa_find_matching_catch_2)
     )
-    (set_local $$126
+    (set_local $$125
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (set_local $$exn$slot
+     (get_local $$124)
+    )
+    ;; hierarchy.cpp:428
+    (set_local $$ehselector$slot
      (get_local $$125)
     )
-    ;; hierarchy.cpp:423
-    (set_local $$ehselector$slot
-     (get_local $$126)
-    )
-    ;; hierarchy.cpp:330
+    ;; hierarchy.cpp:339
     (call $__ZdlPv
      (get_local $$call48)
     )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -13149,133 +13142,133 @@
     )
    )
   )
-  ;; hierarchy.cpp:330
+  ;; hierarchy.cpp:339
   (set_local $$c_
    (get_local $$call48)
   )
-  ;; hierarchy.cpp:332
+  ;; hierarchy.cpp:341
   (set_local $$76
    (get_local $$b_)
   )
-  ;; hierarchy.cpp:332
+  ;; hierarchy.cpp:341
   (set_local $$77
    (get_local $$c_)
   )
-  ;; hierarchy.cpp:332
+  ;; hierarchy.cpp:341
   (set_local $$previous
    (i32.add
     (get_local $$77)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:332
+  ;; hierarchy.cpp:341
   (i32.store
    (get_local $$previous)
    (get_local $$76)
   )
-  ;; hierarchy.cpp:332
+  ;; hierarchy.cpp:341
   (set_local $$78
    (get_local $$a_)
   )
-  ;; hierarchy.cpp:332
+  ;; hierarchy.cpp:341
   (set_local $$next
    (i32.add
     (get_local $$78)
     (i32.const 4)
    )
   )
-  ;; hierarchy.cpp:332
+  ;; hierarchy.cpp:341
   (i32.store
    (get_local $$next)
    (get_local $$76)
   )
-  ;; hierarchy.cpp:333
+  ;; hierarchy.cpp:342
   (set_local $$79
    (get_local $$c_)
   )
-  ;; hierarchy.cpp:333
+  ;; hierarchy.cpp:342
   (set_local $$80
    (get_local $$a_)
   )
-  ;; hierarchy.cpp:333
+  ;; hierarchy.cpp:342
   (set_local $$previous51
    (i32.add
     (get_local $$80)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:333
+  ;; hierarchy.cpp:342
   (i32.store
    (get_local $$previous51)
    (get_local $$79)
   )
-  ;; hierarchy.cpp:333
+  ;; hierarchy.cpp:342
   (set_local $$81
    (get_local $$b_)
   )
-  ;; hierarchy.cpp:333
+  ;; hierarchy.cpp:342
   (set_local $$next52
    (i32.add
     (get_local $$81)
     (i32.const 4)
    )
   )
-  ;; hierarchy.cpp:333
+  ;; hierarchy.cpp:342
   (i32.store
    (get_local $$next52)
    (get_local $$79)
   )
-  ;; hierarchy.cpp:334
+  ;; hierarchy.cpp:343
   (set_local $$82
    (get_local $$a_)
   )
-  ;; hierarchy.cpp:334
+  ;; hierarchy.cpp:343
   (set_local $$83
    (get_local $$b_)
   )
-  ;; hierarchy.cpp:334
+  ;; hierarchy.cpp:343
   (set_local $$previous53
    (i32.add
     (get_local $$83)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:334
+  ;; hierarchy.cpp:343
   (i32.store
    (get_local $$previous53)
    (get_local $$82)
   )
-  ;; hierarchy.cpp:334
+  ;; hierarchy.cpp:343
   (set_local $$84
    (get_local $$c_)
   )
-  ;; hierarchy.cpp:334
+  ;; hierarchy.cpp:343
   (set_local $$next54
    (i32.add
     (get_local $$84)
     (i32.const 4)
    )
   )
-  ;; hierarchy.cpp:334
+  ;; hierarchy.cpp:343
   (i32.store
    (get_local $$next54)
    (get_local $$82)
   )
-  ;; hierarchy.cpp:338
+  ;; hierarchy.cpp:345
   (set_local $$i
    (i32.const 3)
   )
   (loop $while-in
    (block $while-out
-    ;; hierarchy.cpp:338
+    ;; hierarchy.cpp:345
     (set_local $$85
      (get_local $$i)
     )
-    ;; hierarchy.cpp:338
+    ;; hierarchy.cpp:345
     (set_local $$86
      (get_local $$n)
     )
-    ;; hierarchy.cpp:338
+    ;; hierarchy.cpp:345
     (set_local $$cmp55
      (i32.lt_s
       (get_local $$85)
@@ -13288,51 +13281,51 @@
      )
      (br $while-out)
     )
-    ;; hierarchy.cpp:339
+    ;; hierarchy.cpp:346
     (set_local $$87
      (get_local $$a_)
     )
-    ;; hierarchy.cpp:339
+    ;; hierarchy.cpp:346
     (set_local $$88
      (i32.load
       (get_local $$87)
      )
     )
-    ;; hierarchy.cpp:339
+    ;; hierarchy.cpp:346
     (set_local $$89
      (get_local $$b_)
     )
-    ;; hierarchy.cpp:339
+    ;; hierarchy.cpp:346
     (set_local $$90
      (i32.load
       (get_local $$89)
      )
     )
-    ;; hierarchy.cpp:339
+    ;; hierarchy.cpp:346
     (set_local $$91
      (get_local $$i)
     )
-    (set_local $$this$addr$i191
+    (set_local $$this$addr$i188
      (get_local $$circles)
     )
-    (set_local $$__n$addr$i192
+    (set_local $$__n$addr$i189
      (get_local $$91)
     )
-    (set_local $$this1$i193
-     (get_local $$this$addr$i191)
+    (set_local $$this1$i190
+     (get_local $$this$addr$i188)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
     (set_local $$92
      (i32.load
-      (get_local $$this1$i193)
+      (get_local $$this1$i190)
      )
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
     (set_local $$93
-     (get_local $$__n$addr$i192)
+     (get_local $$__n$addr$i189)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
-    (set_local $$arrayidx$i195
+    (set_local $$arrayidx$i192
      (i32.add
       (get_local $$92)
       (i32.shl
@@ -13341,519 +13334,499 @@
       )
      )
     )
-    ;; hierarchy.cpp:339
+    ;; hierarchy.cpp:346
     (set_local $$94
      (i32.load
-      (get_local $$arrayidx$i195)
+      (get_local $$arrayidx$i192)
      )
     )
-    ;; hierarchy.cpp:339
+    ;; hierarchy.cpp:346
     (set_local $$c
      (get_local $$94)
     )
-    ;; hierarchy.cpp:339
+    ;; hierarchy.cpp:346
     (call $__Z5placeP5HNodeS0_S0_
      (get_local $$88)
      (get_local $$90)
      (get_local $$94)
     )
-    ;; hierarchy.cpp:340
-    (set_local $$95
-     (get_local $$d_)
-    )
-    ;; hierarchy.cpp:340
-    (set_local $$isnull
-     (i32.eq
-      (get_local $$95)
-      (i32.const 0)
-     )
-    )
-    (if
-     (i32.eqz
-      (get_local $$isnull)
-     )
-     ;; hierarchy.cpp:340
-     (call $__ZdlPv
-      (get_local $$95)
-     )
-    )
-    ;; hierarchy.cpp:341
+    ;; hierarchy.cpp:348
     (set_local $$call59
      (call $__Znwj
       (i32.const 12)
      )
     )
-    ;; hierarchy.cpp:341
-    (set_local $$96
+    ;; hierarchy.cpp:348
+    (set_local $$95
      (get_local $$c)
     )
     (set_global $__THREW__
      (i32.const 0)
     )
-    ;; hierarchy.cpp:341
+    ;; hierarchy.cpp:348
     (call $invoke_vii
      (i32.const 110)
      (get_local $$call59)
-     (get_local $$96)
+     (get_local $$95)
     )
-    (set_local $$97
+    (set_local $$96
      (get_global $__THREW__)
     )
     (set_global $__THREW__
      (i32.const 0)
     )
-    (set_local $$98
+    (set_local $$97
      (i32.and
-      (get_local $$97)
+      (get_local $$96)
       (i32.const 1)
      )
     )
     (if
-     (get_local $$98)
+     (get_local $$97)
      (block
       (set_local $label
-       (i32.const 22)
+       (i32.const 20)
       )
       (br $while-out)
      )
     )
-    ;; hierarchy.cpp:341
-    (set_local $$d_58
+    ;; hierarchy.cpp:348
+    (set_local $$c_58
      (get_local $$call59)
     )
-    ;; hierarchy.cpp:343
-    (set_local $$99
+    ;; hierarchy.cpp:350
+    (set_local $$98
      (get_local $$b_)
     )
-    ;; hierarchy.cpp:343
+    ;; hierarchy.cpp:350
     (set_local $$next62
      (i32.add
-      (get_local $$99)
+      (get_local $$98)
       (i32.const 4)
      )
     )
-    ;; hierarchy.cpp:343
-    (set_local $$100
+    ;; hierarchy.cpp:350
+    (set_local $$99
      (i32.load
       (get_local $$next62)
      )
     )
-    ;; hierarchy.cpp:343
+    ;; hierarchy.cpp:350
     (set_local $$j
-     (get_local $$100)
+     (get_local $$99)
     )
-    ;; hierarchy.cpp:344
-    (set_local $$101
+    ;; hierarchy.cpp:351
+    (set_local $$100
      (get_local $$a_)
     )
-    ;; hierarchy.cpp:344
+    ;; hierarchy.cpp:351
     (set_local $$previous63
      (i32.add
-      (get_local $$101)
+      (get_local $$100)
       (i32.const 8)
      )
     )
-    ;; hierarchy.cpp:344
-    (set_local $$102
+    ;; hierarchy.cpp:351
+    (set_local $$101
      (i32.load
       (get_local $$previous63)
      )
     )
-    ;; hierarchy.cpp:344
+    ;; hierarchy.cpp:351
     (set_local $$k
-     (get_local $$102)
+     (get_local $$101)
     )
-    ;; hierarchy.cpp:345
-    (set_local $$103
+    ;; hierarchy.cpp:352
+    (set_local $$102
      (get_local $$b_)
     )
-    ;; hierarchy.cpp:345
-    (set_local $$104
+    ;; hierarchy.cpp:352
+    (set_local $$103
      (i32.load
-      (get_local $$103)
+      (get_local $$102)
      )
     )
-    ;; hierarchy.cpp:345
+    ;; hierarchy.cpp:352
     (set_local $$r65
      (i32.add
-      (get_local $$104)
+      (get_local $$103)
       (i32.const 16)
      )
     )
-    ;; hierarchy.cpp:345
-    (set_local $$105
+    ;; hierarchy.cpp:352
+    (set_local $$104
      (f64.load
       (get_local $$r65)
      )
     )
-    ;; hierarchy.cpp:345
+    ;; hierarchy.cpp:352
     (set_local $$sj
-     (get_local $$105)
+     (get_local $$104)
     )
-    ;; hierarchy.cpp:346
-    (set_local $$106
+    ;; hierarchy.cpp:353
+    (set_local $$105
      (get_local $$a_)
     )
-    ;; hierarchy.cpp:346
-    (set_local $$107
+    ;; hierarchy.cpp:353
+    (set_local $$106
      (i32.load
-      (get_local $$106)
+      (get_local $$105)
      )
     )
-    ;; hierarchy.cpp:346
+    ;; hierarchy.cpp:353
     (set_local $$r67
      (i32.add
-      (get_local $$107)
+      (get_local $$106)
       (i32.const 16)
      )
     )
-    ;; hierarchy.cpp:346
-    (set_local $$108
+    ;; hierarchy.cpp:353
+    (set_local $$107
      (f64.load
       (get_local $$r67)
      )
     )
-    ;; hierarchy.cpp:346
+    ;; hierarchy.cpp:353
     (set_local $$sk
-     (get_local $$108)
+     (get_local $$107)
     )
-    ;; hierarchy.cpp:347
+    ;; hierarchy.cpp:354
     (set_local $$kill
      (i32.const 0)
     )
     (loop $while-in1
      (block $while-out0
-      ;; hierarchy.cpp:351
-      (set_local $$109
+      ;; hierarchy.cpp:358
+      (set_local $$108
        (get_local $$sj)
       )
-      ;; hierarchy.cpp:351
-      (set_local $$110
+      ;; hierarchy.cpp:358
+      (set_local $$109
        (get_local $$sk)
       )
-      ;; hierarchy.cpp:351
+      ;; hierarchy.cpp:358
       (set_local $$cmp68
        (f64.le
+        (get_local $$108)
         (get_local $$109)
-        (get_local $$110)
        )
       )
       (block $do-once
        (if
         (get_local $$cmp68)
         (block
-         ;; hierarchy.cpp:353
-         (set_local $$111
+         ;; hierarchy.cpp:360
+         (set_local $$110
           (get_local $$j)
          )
-         ;; hierarchy.cpp:353
-         (set_local $$112
+         ;; hierarchy.cpp:360
+         (set_local $$111
           (i32.load
-           (get_local $$111)
+           (get_local $$110)
           )
          )
-         ;; hierarchy.cpp:353
-         (set_local $$113
-          (get_local $$d_58)
+         ;; hierarchy.cpp:360
+         (set_local $$112
+          (get_local $$c_58)
          )
-         ;; hierarchy.cpp:353
-         (set_local $$114
+         ;; hierarchy.cpp:360
+         (set_local $$113
           (i32.load
+           (get_local $$112)
+          )
+         )
+         ;; hierarchy.cpp:360
+         (set_local $$call72
+          (call $__Z10intersectsP5HNodeS0_
+           (get_local $$111)
            (get_local $$113)
           )
          )
-         ;; hierarchy.cpp:353
-         (set_local $$call72
-          (call $__Z10intersectsP5HNodeS0_
-           (get_local $$112)
-           (get_local $$114)
-          )
-         )
-         (set_local $$115
+         (set_local $$114
           (get_local $$j)
          )
          (if
           (get_local $$call72)
           (block
-           ;; hierarchy.cpp:354
+           ;; hierarchy.cpp:361
            (set_local $$b_
-            (get_local $$115)
+            (get_local $$114)
            )
-           ;; hierarchy.cpp:355
-           (set_local $$116
+           ;; hierarchy.cpp:362
+           (set_local $$115
             (get_local $$b_)
            )
-           ;; hierarchy.cpp:355
-           (set_local $$117
+           ;; hierarchy.cpp:362
+           (set_local $$116
             (get_local $$a_)
            )
-           ;; hierarchy.cpp:355
+           ;; hierarchy.cpp:362
            (set_local $$next74
             (i32.add
-             (get_local $$117)
+             (get_local $$116)
              (i32.const 4)
             )
            )
-           ;; hierarchy.cpp:355
+           ;; hierarchy.cpp:362
            (i32.store
             (get_local $$next74)
-            (get_local $$116)
+            (get_local $$115)
            )
-           ;; hierarchy.cpp:356
-           (set_local $$118
+           ;; hierarchy.cpp:363
+           (set_local $$117
             (get_local $$a_)
            )
-           ;; hierarchy.cpp:356
-           (set_local $$119
+           ;; hierarchy.cpp:363
+           (set_local $$118
             (get_local $$b_)
            )
-           ;; hierarchy.cpp:356
+           ;; hierarchy.cpp:363
            (set_local $$previous75
             (i32.add
-             (get_local $$119)
+             (get_local $$118)
              (i32.const 8)
             )
            )
-           ;; hierarchy.cpp:356
+           ;; hierarchy.cpp:363
            (i32.store
             (get_local $$previous75)
-            (get_local $$118)
+            (get_local $$117)
            )
-           ;; hierarchy.cpp:357
-           (set_local $$120
+           ;; hierarchy.cpp:364
+           (set_local $$119
             (get_local $$i)
            )
-           ;; hierarchy.cpp:357
+           ;; hierarchy.cpp:364
            (set_local $$dec
             (i32.add
-             (get_local $$120)
+             (get_local $$119)
              (i32.const -1)
             )
            )
-           ;; hierarchy.cpp:357
+           ;; hierarchy.cpp:364
            (set_local $$i
             (get_local $$dec)
            )
-           ;; hierarchy.cpp:358
+           ;; hierarchy.cpp:365
            (set_local $$kill
             (i32.const 1)
            )
            (br $do-once)
           )
           (block
-           ;; hierarchy.cpp:360
-           (set_local $$129
+           ;; hierarchy.cpp:367
+           (set_local $$128
             (i32.load
-             (get_local $$115)
+             (get_local $$114)
             )
            )
-           ;; hierarchy.cpp:360
+           ;; hierarchy.cpp:367
            (set_local $$r77
             (i32.add
-             (get_local $$129)
+             (get_local $$128)
              (i32.const 16)
             )
            )
-           ;; hierarchy.cpp:360
-           (set_local $$130
+           ;; hierarchy.cpp:367
+           (set_local $$129
             (f64.load
              (get_local $$r77)
             )
            )
-           ;; hierarchy.cpp:360
-           (set_local $$131
+           ;; hierarchy.cpp:367
+           (set_local $$130
             (get_local $$sj)
            )
-           ;; hierarchy.cpp:360
+           ;; hierarchy.cpp:367
            (set_local $$add78
             (f64.add
-             (get_local $$131)
              (get_local $$130)
+             (get_local $$129)
             )
            )
-           ;; hierarchy.cpp:360
+           ;; hierarchy.cpp:367
            (set_local $$sj
             (get_local $$add78)
            )
-           ;; hierarchy.cpp:361
-           (set_local $$132
+           ;; hierarchy.cpp:368
+           (set_local $$131
             (get_local $$j)
            )
-           ;; hierarchy.cpp:361
+           ;; hierarchy.cpp:368
            (set_local $$next79
             (i32.add
-             (get_local $$132)
+             (get_local $$131)
              (i32.const 4)
             )
            )
-           ;; hierarchy.cpp:361
-           (set_local $$133
+           ;; hierarchy.cpp:368
+           (set_local $$132
             (i32.load
              (get_local $$next79)
             )
            )
-           ;; hierarchy.cpp:361
+           ;; hierarchy.cpp:368
            (set_local $$j
-            (get_local $$133)
+            (get_local $$132)
            )
            (br $do-once)
           )
          )
         )
         (block
-         ;; hierarchy.cpp:364
-         (set_local $$134
+         ;; hierarchy.cpp:371
+         (set_local $$133
           (get_local $$k)
          )
-         ;; hierarchy.cpp:364
-         (set_local $$135
+         ;; hierarchy.cpp:371
+         (set_local $$134
           (i32.load
-           (get_local $$134)
+           (get_local $$133)
           )
          )
-         ;; hierarchy.cpp:364
-         (set_local $$136
-          (get_local $$d_58)
+         ;; hierarchy.cpp:371
+         (set_local $$135
+          (get_local $$c_58)
          )
-         ;; hierarchy.cpp:364
-         (set_local $$137
+         ;; hierarchy.cpp:371
+         (set_local $$136
           (i32.load
+           (get_local $$135)
+          )
+         )
+         ;; hierarchy.cpp:371
+         (set_local $$call84
+          (call $__Z10intersectsP5HNodeS0_
+           (get_local $$134)
            (get_local $$136)
           )
          )
-         ;; hierarchy.cpp:364
-         (set_local $$call84
-          (call $__Z10intersectsP5HNodeS0_
-           (get_local $$135)
-           (get_local $$137)
-          )
-         )
-         (set_local $$138
+         (set_local $$137
           (get_local $$k)
          )
          (if
           (get_local $$call84)
           (block
-           ;; hierarchy.cpp:365
+           ;; hierarchy.cpp:372
            (set_local $$a_
-            (get_local $$138)
+            (get_local $$137)
            )
-           ;; hierarchy.cpp:366
-           (set_local $$139
+           ;; hierarchy.cpp:373
+           (set_local $$138
             (get_local $$b_)
            )
-           ;; hierarchy.cpp:366
-           (set_local $$140
+           ;; hierarchy.cpp:373
+           (set_local $$139
             (get_local $$a_)
            )
-           ;; hierarchy.cpp:366
+           ;; hierarchy.cpp:373
            (set_local $$next86
             (i32.add
-             (get_local $$140)
+             (get_local $$139)
              (i32.const 4)
             )
            )
-           ;; hierarchy.cpp:366
+           ;; hierarchy.cpp:373
            (i32.store
             (get_local $$next86)
-            (get_local $$139)
+            (get_local $$138)
            )
-           ;; hierarchy.cpp:367
-           (set_local $$141
+           ;; hierarchy.cpp:374
+           (set_local $$140
             (get_local $$a_)
            )
-           ;; hierarchy.cpp:367
-           (set_local $$142
+           ;; hierarchy.cpp:374
+           (set_local $$141
             (get_local $$b_)
            )
-           ;; hierarchy.cpp:367
+           ;; hierarchy.cpp:374
            (set_local $$previous87
             (i32.add
-             (get_local $$142)
+             (get_local $$141)
              (i32.const 8)
             )
            )
-           ;; hierarchy.cpp:367
+           ;; hierarchy.cpp:374
            (i32.store
             (get_local $$previous87)
-            (get_local $$141)
+            (get_local $$140)
            )
-           ;; hierarchy.cpp:368
-           (set_local $$143
+           ;; hierarchy.cpp:375
+           (set_local $$142
             (get_local $$i)
            )
-           ;; hierarchy.cpp:368
+           ;; hierarchy.cpp:375
            (set_local $$dec88
             (i32.add
-             (get_local $$143)
+             (get_local $$142)
              (i32.const -1)
             )
            )
-           ;; hierarchy.cpp:368
+           ;; hierarchy.cpp:375
            (set_local $$i
             (get_local $$dec88)
            )
-           ;; hierarchy.cpp:369
+           ;; hierarchy.cpp:376
            (set_local $$kill
             (i32.const 1)
            )
            (br $do-once)
           )
           (block
-           ;; hierarchy.cpp:371
-           (set_local $$144
+           ;; hierarchy.cpp:378
+           (set_local $$143
             (i32.load
-             (get_local $$138)
+             (get_local $$137)
             )
            )
-           ;; hierarchy.cpp:371
+           ;; hierarchy.cpp:378
            (set_local $$r91
             (i32.add
-             (get_local $$144)
+             (get_local $$143)
              (i32.const 16)
             )
            )
-           ;; hierarchy.cpp:371
-           (set_local $$145
+           ;; hierarchy.cpp:378
+           (set_local $$144
             (f64.load
              (get_local $$r91)
             )
            )
-           ;; hierarchy.cpp:371
-           (set_local $$146
+           ;; hierarchy.cpp:378
+           (set_local $$145
             (get_local $$sk)
            )
-           ;; hierarchy.cpp:371
+           ;; hierarchy.cpp:378
            (set_local $$add92
             (f64.add
-             (get_local $$146)
              (get_local $$145)
+             (get_local $$144)
             )
            )
-           ;; hierarchy.cpp:371
+           ;; hierarchy.cpp:378
            (set_local $$sk
             (get_local $$add92)
            )
-           ;; hierarchy.cpp:372
-           (set_local $$147
+           ;; hierarchy.cpp:379
+           (set_local $$146
             (get_local $$k)
            )
-           ;; hierarchy.cpp:372
+           ;; hierarchy.cpp:379
            (set_local $$previous93
             (i32.add
-             (get_local $$147)
+             (get_local $$146)
              (i32.const 8)
             )
            )
-           ;; hierarchy.cpp:372
-           (set_local $$148
+           ;; hierarchy.cpp:379
+           (set_local $$147
             (i32.load
              (get_local $$previous93)
             )
            )
-           ;; hierarchy.cpp:372
+           ;; hierarchy.cpp:379
            (set_local $$k
-            (get_local $$148)
+            (get_local $$147)
            )
            (br $do-once)
           )
@@ -13861,14 +13834,14 @@
         )
        )
       )
-      ;; hierarchy.cpp:376
-      (set_local $$149
+      ;; hierarchy.cpp:383
+      (set_local $$148
        (get_local $$kill)
       )
-      ;; hierarchy.cpp:376
+      ;; hierarchy.cpp:383
       (set_local $$tobool
        (i32.and
-        (get_local $$149)
+        (get_local $$148)
         (i32.const 1)
        )
       )
@@ -13876,32 +13849,32 @@
        (get_local $$tobool)
        (br $while-out0)
       )
-      ;; hierarchy.cpp:379
-      (set_local $$150
+      ;; hierarchy.cpp:386
+      (set_local $$149
        (get_local $$j)
       )
-      ;; hierarchy.cpp:379
-      (set_local $$151
+      ;; hierarchy.cpp:386
+      (set_local $$150
        (get_local $$k)
       )
-      ;; hierarchy.cpp:379
+      ;; hierarchy.cpp:386
       (set_local $$next98
        (i32.add
-        (get_local $$151)
+        (get_local $$150)
         (i32.const 4)
        )
       )
-      ;; hierarchy.cpp:379
-      (set_local $$152
+      ;; hierarchy.cpp:386
+      (set_local $$151
        (i32.load
         (get_local $$next98)
        )
       )
-      ;; hierarchy.cpp:379
+      ;; hierarchy.cpp:386
       (set_local $$cmp99
        (i32.ne
-        (get_local $$150)
-        (get_local $$152)
+        (get_local $$149)
+        (get_local $$151)
        )
       )
       (if
@@ -13913,14 +13886,14 @@
       (br $while-in1)
      )
     )
-    ;; hierarchy.cpp:381
-    (set_local $$153
+    ;; hierarchy.cpp:388
+    (set_local $$152
      (get_local $$kill)
     )
-    ;; hierarchy.cpp:381
+    ;; hierarchy.cpp:388
     (set_local $$tobool100
      (i32.and
-      (get_local $$153)
+      (get_local $$152)
       (i32.const 1)
      )
     )
@@ -13929,487 +13902,459 @@
       (get_local $$tobool100)
      )
      (block
-      ;; hierarchy.cpp:385
-      (set_local $$154
-       (get_local $$d_58)
-      )
-      ;; hierarchy.cpp:385
-      (set_local $$c_
-       (get_local $$154)
-      )
-      ;; hierarchy.cpp:386
-      (set_local $$155
-       (get_local $$d_58)
-      )
-      ;; hierarchy.cpp:386
-      (set_local $$isnull103
-       (i32.eq
-        (get_local $$155)
-        (i32.const 0)
-       )
-      )
-      (if
-       (i32.eqz
-        (get_local $$isnull103)
-       )
-       ;; hierarchy.cpp:386
-       (call $__ZdlPv
-        (get_local $$155)
-       )
-      )
-      ;; hierarchy.cpp:387
-      (set_local $$156
+      ;; hierarchy.cpp:392
+      (set_local $$153
        (get_local $$a_)
       )
-      ;; hierarchy.cpp:387
-      (set_local $$157
-       (get_local $$c_)
+      ;; hierarchy.cpp:392
+      (set_local $$154
+       (get_local $$c_58)
       )
-      ;; hierarchy.cpp:387
-      (set_local $$previous106
+      ;; hierarchy.cpp:392
+      (set_local $$previous103
        (i32.add
-        (get_local $$157)
+        (get_local $$154)
         (i32.const 8)
        )
       )
-      ;; hierarchy.cpp:387
+      ;; hierarchy.cpp:392
       (i32.store
-       (get_local $$previous106)
-       (get_local $$156)
+       (get_local $$previous103)
+       (get_local $$153)
       )
-      ;; hierarchy.cpp:388
+      ;; hierarchy.cpp:393
+      (set_local $$155
+       (get_local $$b_)
+      )
+      ;; hierarchy.cpp:393
+      (set_local $$156
+       (get_local $$c_58)
+      )
+      ;; hierarchy.cpp:393
+      (set_local $$next104
+       (i32.add
+        (get_local $$156)
+        (i32.const 4)
+       )
+      )
+      ;; hierarchy.cpp:393
+      (i32.store
+       (get_local $$next104)
+       (get_local $$155)
+      )
+      ;; hierarchy.cpp:394
+      (set_local $$157
+       (get_local $$c_58)
+      )
+      ;; hierarchy.cpp:394
+      (set_local $$b_
+       (get_local $$157)
+      )
+      ;; hierarchy.cpp:395
       (set_local $$158
        (get_local $$b_)
       )
-      ;; hierarchy.cpp:388
+      ;; hierarchy.cpp:395
       (set_local $$159
-       (get_local $$c_)
+       (get_local $$b_)
       )
-      ;; hierarchy.cpp:388
-      (set_local $$next107
+      ;; hierarchy.cpp:395
+      (set_local $$previous105
        (i32.add
         (get_local $$159)
-        (i32.const 4)
+        (i32.const 8)
        )
       )
-      ;; hierarchy.cpp:388
+      ;; hierarchy.cpp:395
       (i32.store
-       (get_local $$next107)
+       (get_local $$previous105)
        (get_local $$158)
       )
-      ;; hierarchy.cpp:389
+      ;; hierarchy.cpp:396
       (set_local $$160
-       (get_local $$c_)
+       (get_local $$b_)
       )
-      ;; hierarchy.cpp:389
-      (set_local $$b_
-       (get_local $$160)
+      ;; hierarchy.cpp:396
+      (set_local $$previous106
+       (i32.add
+        (get_local $$160)
+        (i32.const 8)
+       )
       )
-      ;; hierarchy.cpp:390
+      ;; hierarchy.cpp:396
       (set_local $$161
-       (get_local $$b_)
-      )
-      ;; hierarchy.cpp:390
-      (set_local $$162
-       (get_local $$b_)
-      )
-      ;; hierarchy.cpp:390
-      (set_local $$previous108
-       (i32.add
-        (get_local $$162)
-        (i32.const 8)
-       )
-      )
-      ;; hierarchy.cpp:390
-      (i32.store
-       (get_local $$previous108)
-       (get_local $$161)
-      )
-      ;; hierarchy.cpp:391
-      (set_local $$163
-       (get_local $$b_)
-      )
-      ;; hierarchy.cpp:391
-      (set_local $$previous109
-       (i32.add
-        (get_local $$163)
-        (i32.const 8)
-       )
-      )
-      ;; hierarchy.cpp:391
-      (set_local $$164
        (i32.load
-        (get_local $$previous109)
+        (get_local $$previous106)
        )
       )
-      ;; hierarchy.cpp:391
-      (set_local $$165
+      ;; hierarchy.cpp:396
+      (set_local $$162
        (get_local $$a_)
       )
-      ;; hierarchy.cpp:391
-      (set_local $$next110
+      ;; hierarchy.cpp:396
+      (set_local $$next107
        (i32.add
-        (get_local $$165)
+        (get_local $$162)
         (i32.const 4)
        )
       )
-      ;; hierarchy.cpp:391
+      ;; hierarchy.cpp:396
       (i32.store
-       (get_local $$next110)
-       (get_local $$164)
+       (get_local $$next107)
+       (get_local $$161)
       )
-      ;; hierarchy.cpp:393
+      ;; hierarchy.cpp:398
+      (set_local $$163
+       (get_local $$c_58)
+      )
+      ;; hierarchy.cpp:398
+      (set_local $$164
+       (i32.load
+        (get_local $$163)
+       )
+      )
+      ;; hierarchy.cpp:398
+      (set_local $$r109
+       (i32.add
+        (get_local $$164)
+        (i32.const 16)
+       )
+      )
+      ;; hierarchy.cpp:398
+      (set_local $$165
+       (f64.load
+        (get_local $$r109)
+       )
+      )
+      ;; hierarchy.cpp:398
       (set_local $$166
-       (get_local $$c_)
+       (get_local $$c_58)
       )
-      ;; hierarchy.cpp:393
+      ;; hierarchy.cpp:398
       (set_local $$167
        (i32.load
         (get_local $$166)
        )
       )
-      ;; hierarchy.cpp:393
-      (set_local $$r112
+      ;; hierarchy.cpp:398
+      (set_local $$r111
        (i32.add
         (get_local $$167)
         (i32.const 16)
        )
       )
-      ;; hierarchy.cpp:393
+      ;; hierarchy.cpp:398
       (set_local $$168
        (f64.load
-        (get_local $$r112)
+        (get_local $$r111)
        )
       )
-      ;; hierarchy.cpp:393
-      (set_local $$169
-       (get_local $$c_)
-      )
-      ;; hierarchy.cpp:393
-      (set_local $$170
-       (i32.load
-        (get_local $$169)
-       )
-      )
-      ;; hierarchy.cpp:393
-      (set_local $$r114
-       (i32.add
-        (get_local $$170)
-        (i32.const 16)
-       )
-      )
-      ;; hierarchy.cpp:393
-      (set_local $$171
-       (f64.load
-        (get_local $$r114)
-       )
-      )
-      ;; hierarchy.cpp:393
-      (set_local $$mul115
+      ;; hierarchy.cpp:398
+      (set_local $$mul112
        (f64.mul
+        (get_local $$165)
         (get_local $$168)
+       )
+      )
+      ;; hierarchy.cpp:398
+      (set_local $$ca
+       (get_local $$mul112)
+      )
+      ;; hierarchy.cpp:398
+      (set_local $$169
+       (get_local $$oa)
+      )
+      ;; hierarchy.cpp:398
+      (set_local $$add113
+       (f64.add
+        (get_local $$169)
+        (get_local $$mul112)
+       )
+      )
+      ;; hierarchy.cpp:398
+      (set_local $$oa
+       (get_local $$add113)
+      )
+      ;; hierarchy.cpp:399
+      (set_local $$170
+       (get_local $$ca)
+      )
+      ;; hierarchy.cpp:399
+      (set_local $$171
+       (get_local $$c_58)
+      )
+      ;; hierarchy.cpp:399
+      (set_local $$172
+       (i32.load
         (get_local $$171)
        )
       )
-      ;; hierarchy.cpp:393
-      (set_local $$ca
-       (get_local $$mul115)
-      )
-      ;; hierarchy.cpp:393
-      (set_local $$172
-       (get_local $$oa)
-      )
-      ;; hierarchy.cpp:393
-      (set_local $$add116
-       (f64.add
+      ;; hierarchy.cpp:399
+      (set_local $$173
+       (f64.load
         (get_local $$172)
-        (get_local $$mul115)
        )
       )
-      ;; hierarchy.cpp:393
-      (set_local $$oa
-       (get_local $$add116)
+      ;; hierarchy.cpp:399
+      (set_local $$mul116
+       (f64.mul
+        (get_local $$170)
+        (get_local $$173)
+       )
       )
-      ;; hierarchy.cpp:394
-      (set_local $$173
+      ;; hierarchy.cpp:399
+      (set_local $$174
+       (get_local $$ox)
+      )
+      ;; hierarchy.cpp:399
+      (set_local $$add117
+       (f64.add
+        (get_local $$174)
+        (get_local $$mul116)
+       )
+      )
+      ;; hierarchy.cpp:399
+      (set_local $$ox
+       (get_local $$add117)
+      )
+      ;; hierarchy.cpp:400
+      (set_local $$175
        (get_local $$ca)
       )
-      ;; hierarchy.cpp:394
-      (set_local $$174
-       (get_local $$c_)
-      )
-      ;; hierarchy.cpp:394
-      (set_local $$175
-       (i32.load
-        (get_local $$174)
-       )
-      )
-      ;; hierarchy.cpp:394
+      ;; hierarchy.cpp:400
       (set_local $$176
-       (f64.load
-        (get_local $$175)
-       )
+       (get_local $$c_58)
       )
-      ;; hierarchy.cpp:394
-      (set_local $$mul119
-       (f64.mul
-        (get_local $$173)
+      ;; hierarchy.cpp:400
+      (set_local $$177
+       (i32.load
         (get_local $$176)
        )
       )
-      ;; hierarchy.cpp:394
-      (set_local $$177
-       (get_local $$ox)
-      )
-      ;; hierarchy.cpp:394
-      (set_local $$add120
-       (f64.add
-        (get_local $$177)
-        (get_local $$mul119)
-       )
-      )
-      ;; hierarchy.cpp:394
-      (set_local $$ox
-       (get_local $$add120)
-      )
-      ;; hierarchy.cpp:395
-      (set_local $$178
-       (get_local $$ca)
-      )
-      ;; hierarchy.cpp:395
-      (set_local $$179
-       (get_local $$c_)
-      )
-      ;; hierarchy.cpp:395
-      (set_local $$180
-       (i32.load
-        (get_local $$179)
-       )
-      )
-      ;; hierarchy.cpp:395
-      (set_local $$y122
+      ;; hierarchy.cpp:400
+      (set_local $$y119
        (i32.add
-        (get_local $$180)
+        (get_local $$177)
         (i32.const 8)
        )
       )
-      ;; hierarchy.cpp:395
-      (set_local $$181
+      ;; hierarchy.cpp:400
+      (set_local $$178
        (f64.load
-        (get_local $$y122)
+        (get_local $$y119)
        )
       )
-      ;; hierarchy.cpp:395
-      (set_local $$mul123
+      ;; hierarchy.cpp:400
+      (set_local $$mul120
        (f64.mul
+        (get_local $$175)
         (get_local $$178)
-        (get_local $$181)
        )
       )
-      ;; hierarchy.cpp:395
-      (set_local $$182
+      ;; hierarchy.cpp:400
+      (set_local $$179
        (get_local $$oy)
       )
-      ;; hierarchy.cpp:395
-      (set_local $$add124
+      ;; hierarchy.cpp:400
+      (set_local $$add121
        (f64.add
-        (get_local $$182)
-        (get_local $$mul123)
+        (get_local $$179)
+        (get_local $$mul120)
        )
       )
-      ;; hierarchy.cpp:395
+      ;; hierarchy.cpp:400
       (set_local $$oy
-       (get_local $$add124)
+       (get_local $$add121)
       )
-      ;; hierarchy.cpp:397
-      (set_local $$183
+      ;; hierarchy.cpp:402
+      (set_local $$180
        (get_local $$a_)
       )
-      ;; hierarchy.cpp:397
-      (set_local $$184
+      ;; hierarchy.cpp:402
+      (set_local $$181
        (get_local $$ox)
       )
-      ;; hierarchy.cpp:397
-      (set_local $$185
+      ;; hierarchy.cpp:402
+      (set_local $$182
        (get_local $$oa)
       )
-      ;; hierarchy.cpp:397
+      ;; hierarchy.cpp:402
       (set_local $$div
        (f64.div
-        (get_local $$184)
-        (get_local $$185)
+        (get_local $$181)
+        (get_local $$182)
        )
       )
-      ;; hierarchy.cpp:397
+      ;; hierarchy.cpp:402
       (set_local $$cx
        (get_local $$div)
       )
-      ;; hierarchy.cpp:397
-      (set_local $$186
+      ;; hierarchy.cpp:402
+      (set_local $$183
        (get_local $$oy)
       )
-      ;; hierarchy.cpp:397
-      (set_local $$187
+      ;; hierarchy.cpp:402
+      (set_local $$184
        (get_local $$oa)
       )
-      ;; hierarchy.cpp:397
-      (set_local $$div125
+      ;; hierarchy.cpp:402
+      (set_local $$div122
        (f64.div
-        (get_local $$186)
-        (get_local $$187)
-       )
-      )
-      ;; hierarchy.cpp:397
-      (set_local $$cy
-       (get_local $$div125)
-      )
-      ;; hierarchy.cpp:397
-      (set_local $$call126
-       (call $__Z9distance2PK6HLNodedd
         (get_local $$183)
-        (get_local $$div)
-        (get_local $$div125)
+        (get_local $$184)
        )
       )
-      ;; hierarchy.cpp:397
+      ;; hierarchy.cpp:402
+      (set_local $$cy
+       (get_local $$div122)
+      )
+      ;; hierarchy.cpp:402
+      (set_local $$call123
+       (call $__Z9distance2PK6HLNodedd
+        (get_local $$180)
+        (get_local $$div)
+        (get_local $$div122)
+       )
+      )
+      ;; hierarchy.cpp:402
       (set_local $$aa
-       (get_local $$call126)
+       (get_local $$call123)
       )
       (loop $while-in3
        (block $while-out2
-        ;; hierarchy.cpp:398
-        (set_local $$188
-         (get_local $$c_)
+        ;; hierarchy.cpp:403
+        (set_local $$185
+         (get_local $$c_58)
         )
-        ;; hierarchy.cpp:398
-        (set_local $$next127
+        ;; hierarchy.cpp:403
+        (set_local $$next124
          (i32.add
-          (get_local $$188)
+          (get_local $$185)
           (i32.const 4)
          )
         )
-        ;; hierarchy.cpp:398
-        (set_local $$189
+        ;; hierarchy.cpp:403
+        (set_local $$186
          (i32.load
-          (get_local $$next127)
+          (get_local $$next124)
          )
         )
-        ;; hierarchy.cpp:398
-        (set_local $$c_
-         (get_local $$189)
+        ;; hierarchy.cpp:403
+        (set_local $$c_58
+         (get_local $$186)
         )
-        ;; hierarchy.cpp:398
-        (set_local $$190
+        ;; hierarchy.cpp:403
+        (set_local $$187
          (get_local $$b_)
         )
-        ;; hierarchy.cpp:398
-        (set_local $$cmp128
+        ;; hierarchy.cpp:403
+        (set_local $$cmp125
          (i32.ne
+          (get_local $$186)
+          (get_local $$187)
+         )
+        )
+        (if
+         (i32.eqz
+          (get_local $$cmp125)
+         )
+         (br $while-out2)
+        )
+        ;; hierarchy.cpp:404
+        (set_local $$188
+         (get_local $$c_58)
+        )
+        ;; hierarchy.cpp:404
+        (set_local $$189
+         (get_local $$cx)
+        )
+        ;; hierarchy.cpp:404
+        (set_local $$190
+         (get_local $$cy)
+        )
+        ;; hierarchy.cpp:404
+        (set_local $$call126
+         (call $__Z9distance2PK6HLNodedd
+          (get_local $$188)
           (get_local $$189)
           (get_local $$190)
          )
         )
-        (if
-         (i32.eqz
-          (get_local $$cmp128)
-         )
-         (br $while-out2)
-        )
-        ;; hierarchy.cpp:399
-        (set_local $$191
-         (get_local $$c_)
-        )
-        ;; hierarchy.cpp:399
-        (set_local $$192
-         (get_local $$cx)
-        )
-        ;; hierarchy.cpp:399
-        (set_local $$193
-         (get_local $$cy)
-        )
-        ;; hierarchy.cpp:399
-        (set_local $$call129
-         (call $__Z9distance2PK6HLNodedd
-          (get_local $$191)
-          (get_local $$192)
-          (get_local $$193)
-         )
-        )
-        ;; hierarchy.cpp:399
+        ;; hierarchy.cpp:404
         (set_local $$ca
-         (get_local $$call129)
+         (get_local $$call126)
         )
-        ;; hierarchy.cpp:399
-        (set_local $$194
+        ;; hierarchy.cpp:404
+        (set_local $$191
          (get_local $$aa)
         )
-        ;; hierarchy.cpp:399
-        (set_local $$cmp130
+        ;; hierarchy.cpp:404
+        (set_local $$cmp127
          (f64.lt
-          (get_local $$call129)
-          (get_local $$194)
+          (get_local $$call126)
+          (get_local $$191)
          )
         )
         (if
          (i32.eqz
-          (get_local $$cmp130)
+          (get_local $$cmp127)
          )
          (br $while-in3)
         )
-        ;; hierarchy.cpp:401
-        (set_local $$195
-         (get_local $$c_)
+        ;; hierarchy.cpp:406
+        (set_local $$192
+         (get_local $$c_58)
         )
-        ;; hierarchy.cpp:401
+        ;; hierarchy.cpp:406
         (set_local $$a_
-         (get_local $$195)
+         (get_local $$192)
         )
-        ;; hierarchy.cpp:401
-        (set_local $$196
+        ;; hierarchy.cpp:406
+        (set_local $$193
          (get_local $$ca)
         )
-        ;; hierarchy.cpp:401
+        ;; hierarchy.cpp:406
         (set_local $$aa
-         (get_local $$196)
+         (get_local $$193)
         )
         (br $while-in3)
        )
       )
-      ;; hierarchy.cpp:404
-      (set_local $$197
+      ;; hierarchy.cpp:409
+      (set_local $$194
        (get_local $$a_)
       )
-      ;; hierarchy.cpp:404
-      (set_local $$next133
+      ;; hierarchy.cpp:409
+      (set_local $$next130
        (i32.add
-        (get_local $$197)
+        (get_local $$194)
         (i32.const 4)
        )
       )
-      ;; hierarchy.cpp:404
-      (set_local $$198
+      ;; hierarchy.cpp:409
+      (set_local $$195
        (i32.load
-        (get_local $$next133)
+        (get_local $$next130)
        )
       )
-      ;; hierarchy.cpp:404
+      ;; hierarchy.cpp:409
       (set_local $$b_
-       (get_local $$198)
+       (get_local $$195)
       )
      )
     )
-    ;; hierarchy.cpp:338
-    (set_local $$199
+    ;; hierarchy.cpp:345
+    (set_local $$196
      (get_local $$i)
     )
-    ;; hierarchy.cpp:338
+    ;; hierarchy.cpp:345
     (set_local $$inc
      (i32.add
-      (get_local $$199)
+      (get_local $$196)
       (i32.const 1)
      )
     )
-    ;; hierarchy.cpp:338
+    ;; hierarchy.cpp:345
     (set_local $$i
      (get_local $$inc)
     )
@@ -14419,32 +14364,32 @@
   (if
    (i32.eq
     (get_local $label)
-    (i32.const 22)
+    (i32.const 20)
    )
    (block
-    (set_local $$127
+    (set_local $$126
      (call $___cxa_find_matching_catch_2)
     )
-    (set_local $$128
+    (set_local $$127
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (set_local $$exn$slot
+     (get_local $$126)
+    )
+    ;; hierarchy.cpp:428
+    (set_local $$ehselector$slot
      (get_local $$127)
     )
-    ;; hierarchy.cpp:423
-    (set_local $$ehselector$slot
-     (get_local $$128)
-    )
-    ;; hierarchy.cpp:341
+    ;; hierarchy.cpp:348
     (call $__ZdlPv
      (get_local $$call59)
     )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:328
+    ;; hierarchy.cpp:337
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -14453,14 +14398,14 @@
     )
    )
   )
-  (set_local $$this$addr$i196
+  (set_local $$this$addr$i193
    (get_local $$avec)
   )
-  (set_local $$this1$i197
-   (get_local $$this$addr$i196)
+  (set_local $$this1$i194
+   (get_local $$this$addr$i193)
   )
   (set_local $$this$addr$i$i
-   (get_local $$this1$i197)
+   (get_local $$this1$i194)
   )
   (set_local $$this1$i$i
    (get_local $$this$addr$i$i)
@@ -14506,13 +14451,13 @@
    (get_local $$__t1$addr$i$i$i)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
-  (set_local $$200
+  (set_local $$197
    (get_local $$__t$addr$i$i$i$i)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:2431
-  (set_local $$201
+  (set_local $$198
    (i32.load
-    (get_local $$200)
+    (get_local $$197)
    )
   )
   (set_local $$this$addr$i$i$i$i
@@ -14520,7 +14465,7 @@
   )
   (i32.store
    (get_local $$__t1$addr$i$i$i$i)
-   (get_local $$201)
+   (get_local $$198)
   )
   (set_local $$this1$i$i$i$i
    (get_local $$this$addr$i$i$i$i)
@@ -14532,301 +14477,301 @@
    (get_local $$__t1$addr$i$i$i$i)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
-  (set_local $$202
+  (set_local $$199
    (get_local $$__t$addr$i$i$i$i$i)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:2252
-  (set_local $$203
+  (set_local $$200
    (i32.load
-    (get_local $$202)
+    (get_local $$199)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:2252
   (i32.store
    (get_local $$this1$i$i$i$i)
-   (get_local $$203)
+   (get_local $$200)
   )
-  ;; hierarchy.cpp:408
-  (set_local $$204
+  ;; hierarchy.cpp:413
+  (set_local $$201
    (get_local $$b_)
   )
-  ;; hierarchy.cpp:408
-  (set_local $$205
+  ;; hierarchy.cpp:413
+  (set_local $$202
    (i32.load
-    (get_local $$204)
+    (get_local $$201)
    )
   )
-  ;; hierarchy.cpp:408
+  ;; hierarchy.cpp:413
   (i32.store
    (get_local $$ref$tmp)
-   (get_local $$205)
+   (get_local $$202)
   )
-  (set_local $$this$addr$i235
+  (set_local $$this$addr$i232
    (get_local $$avec)
   )
-  (set_local $$__x$addr$i236
+  (set_local $$__x$addr$i233
    (get_local $$ref$tmp)
   )
-  (set_local $$this1$i238
-   (get_local $$this$addr$i235)
+  (set_local $$this1$i235
+   (get_local $$this$addr$i232)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1604
-  (set_local $$__end_$i239
+  (set_local $$__end_$i236
    (i32.add
-    (get_local $$this1$i238)
+    (get_local $$this1$i235)
     (i32.const 4)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1604
-  (set_local $$206
+  (set_local $$203
    (i32.load
-    (get_local $$__end_$i239)
+    (get_local $$__end_$i236)
    )
   )
-  (set_local $$this$addr$i$i234
-   (get_local $$this1$i238)
+  (set_local $$this$addr$i$i231
+   (get_local $$this1$i235)
   )
-  (set_local $$this1$i$i240
-   (get_local $$this$addr$i$i234)
+  (set_local $$this1$i$i237
+   (get_local $$this$addr$i$i231)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:357
-  (set_local $$__end_cap_$i$i241
+  (set_local $$__end_cap_$i$i238
    (i32.add
-    (get_local $$this1$i$i240)
+    (get_local $$this1$i$i237)
     (i32.const 8)
    )
   )
-  (set_local $$this$addr$i$i$i233
-   (get_local $$__end_cap_$i$i241)
+  (set_local $$this$addr$i$i$i230
+   (get_local $$__end_cap_$i$i238)
   )
-  (set_local $$this1$i$i$i242
-   (get_local $$this$addr$i$i$i233)
+  (set_local $$this1$i$i$i239
+   (get_local $$this$addr$i$i$i230)
   )
-  (set_local $$this$addr$i$i$i$i232
-   (get_local $$this1$i$i$i242)
+  (set_local $$this$addr$i$i$i$i229
+   (get_local $$this1$i$i$i239)
   )
-  (set_local $$this1$i$i$i$i243
-   (get_local $$this$addr$i$i$i$i232)
+  (set_local $$this1$i$i$i$i240
+   (get_local $$this$addr$i$i$i$i229)
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1604
-  (set_local $$207
+  (set_local $$204
    (i32.load
-    (get_local $$this1$i$i$i$i243)
+    (get_local $$this1$i$i$i$i240)
    )
   )
   ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1604
-  (set_local $$cmp$i245
+  (set_local $$cmp$i242
    (i32.lt_u
-    (get_local $$206)
-    (get_local $$207)
+    (get_local $$203)
+    (get_local $$204)
    )
   )
   (if
-   (get_local $$cmp$i245)
+   (get_local $$cmp$i242)
    (block
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1606
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEE24__RAII_IncreaseAnnotatorC2ERKS5_j
-     (get_local $$__annotator$i237)
-     (get_local $$this1$i238)
+     (get_local $$__annotator$i234)
+     (get_local $$this1$i235)
      (i32.const 1)
     )
-    (set_local $$this$addr$i10$i231
-     (get_local $$this1$i238)
+    (set_local $$this$addr$i10$i228
+     (get_local $$this1$i235)
     )
-    (set_local $$this1$i11$i246
-     (get_local $$this$addr$i10$i231)
+    (set_local $$this1$i11$i243
+     (get_local $$this$addr$i10$i228)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:351
-    (set_local $$__end_cap_$i12$i247
+    (set_local $$__end_cap_$i12$i244
      (i32.add
-      (get_local $$this1$i11$i246)
+      (get_local $$this1$i11$i243)
       (i32.const 8)
      )
     )
-    (set_local $$this$addr$i$i9$i230
-     (get_local $$__end_cap_$i12$i247)
+    (set_local $$this$addr$i$i9$i227
+     (get_local $$__end_cap_$i12$i244)
     )
-    (set_local $$this1$i$i13$i248
-     (get_local $$this$addr$i$i9$i230)
+    (set_local $$this1$i$i13$i245
+     (get_local $$this$addr$i$i9$i227)
     )
-    (set_local $$this$addr$i$i$i8$i229
-     (get_local $$this1$i$i13$i248)
+    (set_local $$this$addr$i$i$i8$i226
+     (get_local $$this1$i$i13$i245)
     )
-    (set_local $$this1$i$i$i14$i249
-     (get_local $$this$addr$i$i$i8$i229)
+    (set_local $$this1$i$i$i14$i246
+     (get_local $$this$addr$i$i$i8$i226)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1608
-    (set_local $$__end_3$i250
+    (set_local $$__end_3$i247
      (i32.add
-      (get_local $$this1$i238)
+      (get_local $$this1$i235)
       (i32.const 4)
      )
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1608
-    (set_local $$208
+    (set_local $$205
      (i32.load
-      (get_local $$__end_3$i250)
+      (get_local $$__end_3$i247)
      )
     )
-    (set_local $$__p$addr$i$i227
-     (get_local $$208)
+    (set_local $$__p$addr$i$i224
+     (get_local $$205)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1067
-    (set_local $$209
-     (get_local $$__p$addr$i$i227)
+    (set_local $$206
+     (get_local $$__p$addr$i$i224)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1609
-    (set_local $$210
-     (get_local $$__x$addr$i236)
+    (set_local $$207
+     (get_local $$__x$addr$i233)
     )
-    (set_local $$__t$addr$i18$i211
-     (get_local $$210)
+    (set_local $$__t$addr$i18$i208
+     (get_local $$207)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2206
+    (set_local $$208
+     (get_local $$__t$addr$i18$i208)
+    )
+    (set_local $$__a$addr$i$i219
+     (get_local $$this1$i$i$i14$i246)
+    )
+    (set_local $$__p$addr$i16$i220
+     (get_local $$206)
+    )
+    (set_local $$__args$addr$i$i221
+     (get_local $$208)
+    )
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
+    (set_local $$209
+     (get_local $$__a$addr$i$i219)
+    )
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
+    (set_local $$210
+     (get_local $$__p$addr$i16$i220)
+    )
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
     (set_local $$211
-     (get_local $$__t$addr$i18$i211)
+     (get_local $$__args$addr$i$i221)
     )
-    (set_local $$__a$addr$i$i222
-     (get_local $$this1$i$i$i14$i249)
-    )
-    (set_local $$__p$addr$i16$i223
-     (get_local $$209)
-    )
-    (set_local $$__args$addr$i$i224
+    (set_local $$__t$addr$i$i$i218
      (get_local $$211)
     )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
-    (set_local $$212
-     (get_local $$__a$addr$i$i222)
-    )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
-    (set_local $$213
-     (get_local $$__p$addr$i16$i223)
-    )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
-    (set_local $$214
-     (get_local $$__args$addr$i$i224)
-    )
-    (set_local $$__t$addr$i$i$i221
-     (get_local $$214)
-    )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
-    (set_local $$215
-     (get_local $$__t$addr$i$i$i221)
+    (set_local $$212
+     (get_local $$__t$addr$i$i$i218)
     )
     (i32.store8
-     (get_local $$agg$tmp1$i$i220)
+     (get_local $$agg$tmp1$i$i217)
      (i32.load8_s
-      (get_local $$agg$tmp$i$i225)
+      (get_local $$agg$tmp$i$i222)
      )
     )
-    (set_local $$__a$addr$i$i$i217
+    (set_local $$__a$addr$i$i$i214
+     (get_local $$209)
+    )
+    (set_local $$__p$addr$i$i$i215
+     (get_local $$210)
+    )
+    (set_local $$__args$addr$i$i$i216
      (get_local $$212)
     )
-    (set_local $$__p$addr$i$i$i218
-     (get_local $$213)
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
+    (set_local $$213
+     (get_local $$__a$addr$i$i$i214)
     )
-    (set_local $$__args$addr$i$i$i219
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
+    (set_local $$214
+     (get_local $$__p$addr$i$i$i215)
+    )
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
+    (set_local $$215
+     (get_local $$__args$addr$i$i$i216)
+    )
+    (set_local $$__t$addr$i$i$i$i213
      (get_local $$215)
     )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
     (set_local $$216
-     (get_local $$__a$addr$i$i$i217)
+     (get_local $$__t$addr$i$i$i$i213)
     )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
+    (set_local $$this$addr$i$i$i15$i210
+     (get_local $$213)
+    )
+    (set_local $$__p$addr$i$i$i$i211
+     (get_local $$214)
+    )
+    (set_local $$__args$addr$i$i$i$i212
+     (get_local $$216)
+    )
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
     (set_local $$217
-     (get_local $$__p$addr$i$i$i218)
+     (get_local $$__p$addr$i$i$i$i211)
     )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
+    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
     (set_local $$218
-     (get_local $$__args$addr$i$i$i219)
+     (get_local $$__args$addr$i$i$i$i212)
     )
-    (set_local $$__t$addr$i$i$i$i216
+    (set_local $$__t$addr$i$i$i$i$i209
      (get_local $$218)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
     (set_local $$219
-     (get_local $$__t$addr$i$i$i$i216)
-    )
-    (set_local $$this$addr$i$i$i15$i213
-     (get_local $$216)
-    )
-    (set_local $$__p$addr$i$i$i$i214
-     (get_local $$217)
-    )
-    (set_local $$__args$addr$i$i$i$i215
-     (get_local $$219)
+     (get_local $$__t$addr$i$i$i$i$i209)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
     (set_local $$220
-     (get_local $$__p$addr$i$i$i$i214)
-    )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
-    (set_local $$221
-     (get_local $$__args$addr$i$i$i$i215)
-    )
-    (set_local $$__t$addr$i$i$i$i$i212
-     (get_local $$221)
-    )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
-    (set_local $$222
-     (get_local $$__t$addr$i$i$i$i$i212)
-    )
-    ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
-    (set_local $$223
      (i32.load
-      (get_local $$222)
+      (get_local $$219)
      )
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
     (i32.store
+     (get_local $$217)
      (get_local $$220)
-     (get_local $$223)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1610
     (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEE24__RAII_IncreaseAnnotator6__doneEv
-     (get_local $$__annotator$i237)
+     (get_local $$__annotator$i234)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1611
-    (set_local $$__end_6$i252
+    (set_local $$__end_6$i249
      (i32.add
-      (get_local $$this1$i238)
+      (get_local $$this1$i235)
       (i32.const 4)
      )
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1611
-    (set_local $$224
+    (set_local $$221
      (i32.load
-      (get_local $$__end_6$i252)
+      (get_local $$__end_6$i249)
      )
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1611
-    (set_local $$incdec$ptr$i253
+    (set_local $$incdec$ptr$i250
      (i32.add
-      (get_local $$224)
+      (get_local $$221)
       (i32.const 4)
      )
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1611
     (i32.store
-     (get_local $$__end_6$i252)
-     (get_local $$incdec$ptr$i253)
+     (get_local $$__end_6$i249)
+     (get_local $$incdec$ptr$i250)
     )
     (set_local $label
-     (i32.const 41)
+     (i32.const 37)
     )
    )
    (block
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1614
-    (set_local $$225
-     (get_local $$__x$addr$i236)
+    (set_local $$222
+     (get_local $$__x$addr$i233)
     )
-    (set_local $$__t$addr$i$i228
-     (get_local $$225)
+    (set_local $$__t$addr$i$i225
+     (get_local $$222)
     )
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2206
-    (set_local $$226
-     (get_local $$__t$addr$i$i228)
+    (set_local $$223
+     (get_local $$__t$addr$i$i225)
     )
     (set_global $__THREW__
      (i32.const 0)
@@ -14834,160 +14779,160 @@
     ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1614
     (call $invoke_vii
      (i32.const 111)
-     (get_local $$this1$i238)
-     (get_local $$226)
+     (get_local $$this1$i235)
+     (get_local $$223)
     )
-    (set_local $$227
+    (set_local $$224
      (get_global $__THREW__)
     )
     (set_global $__THREW__
      (i32.const 0)
     )
-    (set_local $$228
+    (set_local $$225
      (i32.and
-      (get_local $$227)
+      (get_local $$224)
       (i32.const 1)
      )
     )
     (if
-     (get_local $$228)
+     (get_local $$225)
      (set_local $label
-      (i32.const 46)
+      (i32.const 42)
      )
      (set_local $label
-      (i32.const 41)
+      (i32.const 37)
      )
     )
    )
   )
-  (block $label$break$L64
+  (block $label$break$L58
    (if
     (i32.eq
      (get_local $label)
-     (i32.const 41)
+     (i32.const 37)
     )
     (block
-     ;; hierarchy.cpp:409
-     (set_local $$229
+     ;; hierarchy.cpp:414
+     (set_local $$226
       (get_local $$b_)
      )
-     ;; hierarchy.cpp:409
+     ;; hierarchy.cpp:414
      (set_local $$c_
-      (get_local $$229)
+      (get_local $$226)
      )
      (loop $while-in6
       (block $while-out5
-       ;; hierarchy.cpp:410
-       (set_local $$230
+       ;; hierarchy.cpp:415
+       (set_local $$227
         (get_local $$c_)
        )
-       ;; hierarchy.cpp:410
-       (set_local $$next138
+       ;; hierarchy.cpp:415
+       (set_local $$next135
         (i32.add
-         (get_local $$230)
+         (get_local $$227)
          (i32.const 4)
         )
        )
-       ;; hierarchy.cpp:410
-       (set_local $$231
+       ;; hierarchy.cpp:415
+       (set_local $$228
         (i32.load
-         (get_local $$next138)
+         (get_local $$next135)
         )
        )
-       ;; hierarchy.cpp:410
+       ;; hierarchy.cpp:415
        (set_local $$c_
-        (get_local $$231)
+        (get_local $$228)
        )
-       ;; hierarchy.cpp:410
-       (set_local $$232
+       ;; hierarchy.cpp:415
+       (set_local $$229
         (get_local $$b_)
        )
-       ;; hierarchy.cpp:410
-       (set_local $$cmp139
+       ;; hierarchy.cpp:415
+       (set_local $$cmp136
         (i32.ne
-         (get_local $$231)
-         (get_local $$232)
+         (get_local $$228)
+         (get_local $$229)
         )
        )
        (if
         (i32.eqz
-         (get_local $$cmp139)
+         (get_local $$cmp136)
         )
         (br $while-out5)
        )
-       ;; hierarchy.cpp:411
-       (set_local $$233
+       ;; hierarchy.cpp:416
+       (set_local $$230
         (get_local $$c_)
        )
-       ;; hierarchy.cpp:411
-       (set_local $$234
+       ;; hierarchy.cpp:416
+       (set_local $$231
         (i32.load
-         (get_local $$233)
+         (get_local $$230)
         )
        )
-       ;; hierarchy.cpp:411
+       ;; hierarchy.cpp:416
        (i32.store
-        (get_local $$ref$tmp141)
-        (get_local $$234)
+        (get_local $$ref$tmp138)
+        (get_local $$231)
        )
-       (set_local $$this$addr$i203
+       (set_local $$this$addr$i200
         (get_local $$avec)
        )
        (set_local $$__x$addr$i
-        (get_local $$ref$tmp141)
+        (get_local $$ref$tmp138)
        )
-       (set_local $$this1$i204
-        (get_local $$this$addr$i203)
+       (set_local $$this1$i201
+        (get_local $$this$addr$i200)
        )
        ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1604
-       (set_local $$__end_$i205
+       (set_local $$__end_$i202
         (i32.add
-         (get_local $$this1$i204)
+         (get_local $$this1$i201)
          (i32.const 4)
         )
        )
        ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1604
-       (set_local $$235
+       (set_local $$232
         (i32.load
-         (get_local $$__end_$i205)
+         (get_local $$__end_$i202)
         )
        )
-       (set_local $$this$addr$i$i202
-        (get_local $$this1$i204)
+       (set_local $$this$addr$i$i199
+        (get_local $$this1$i201)
        )
-       (set_local $$this1$i$i206
-        (get_local $$this$addr$i$i202)
+       (set_local $$this1$i$i203
+        (get_local $$this$addr$i$i199)
        )
        ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:357
-       (set_local $$__end_cap_$i$i207
+       (set_local $$__end_cap_$i$i204
         (i32.add
-         (get_local $$this1$i$i206)
+         (get_local $$this1$i$i203)
          (i32.const 8)
         )
        )
-       (set_local $$this$addr$i$i$i201
-        (get_local $$__end_cap_$i$i207)
+       (set_local $$this$addr$i$i$i198
+        (get_local $$__end_cap_$i$i204)
        )
-       (set_local $$this1$i$i$i208
-        (get_local $$this$addr$i$i$i201)
+       (set_local $$this1$i$i$i205
+        (get_local $$this$addr$i$i$i198)
        )
-       (set_local $$this$addr$i$i$i$i200
-        (get_local $$this1$i$i$i208)
+       (set_local $$this$addr$i$i$i$i197
+        (get_local $$this1$i$i$i205)
        )
-       (set_local $$this1$i$i$i$i209
-        (get_local $$this$addr$i$i$i$i200)
+       (set_local $$this1$i$i$i$i206
+        (get_local $$this$addr$i$i$i$i197)
        )
        ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1604
-       (set_local $$236
+       (set_local $$233
         (i32.load
-         (get_local $$this1$i$i$i$i209)
+         (get_local $$this1$i$i$i$i206)
         )
        )
        ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1604
        (set_local $$cmp$i
         (i32.lt_u
-         (get_local $$235)
-         (get_local $$236)
+         (get_local $$232)
+         (get_local $$233)
         )
        )
        (if
@@ -14996,11 +14941,11 @@
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1606
          (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEE24__RAII_IncreaseAnnotatorC2ERKS5_j
           (get_local $$__annotator$i)
-          (get_local $$this1$i204)
+          (get_local $$this1$i201)
           (i32.const 1)
          )
          (set_local $$this$addr$i10$i
-          (get_local $$this1$i204)
+          (get_local $$this1$i201)
          )
          (set_local $$this1$i11$i
           (get_local $$this$addr$i10$i)
@@ -15027,60 +14972,60 @@
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1608
          (set_local $$__end_3$i
           (i32.add
-           (get_local $$this1$i204)
+           (get_local $$this1$i201)
            (i32.const 4)
           )
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1608
-         (set_local $$237
+         (set_local $$234
           (i32.load
            (get_local $$__end_3$i)
           )
          )
          (set_local $$__p$addr$i$i
-          (get_local $$237)
+          (get_local $$234)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1067
-         (set_local $$238
+         (set_local $$235
           (get_local $$__p$addr$i$i)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1609
-         (set_local $$239
+         (set_local $$236
           (get_local $$__x$addr$i)
          )
          (set_local $$__t$addr$i18$i
-          (get_local $$239)
+          (get_local $$236)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2206
-         (set_local $$240
+         (set_local $$237
           (get_local $$__t$addr$i18$i)
          )
          (set_local $$__a$addr$i$i
           (get_local $$this1$i$i$i14$i)
          )
          (set_local $$__p$addr$i16$i
-          (get_local $$238)
+          (get_local $$235)
          )
          (set_local $$__args$addr$i$i
-          (get_local $$240)
+          (get_local $$237)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
-         (set_local $$241
+         (set_local $$238
           (get_local $$__a$addr$i$i)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
-         (set_local $$242
+         (set_local $$239
           (get_local $$__p$addr$i16$i)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1503
-         (set_local $$243
+         (set_local $$240
           (get_local $$__args$addr$i$i)
          )
          (set_local $$__t$addr$i$i$i
-          (get_local $$243)
+          (get_local $$240)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
-         (set_local $$244
+         (set_local $$241
           (get_local $$__t$addr$i$i$i)
          )
          (i32.store8
@@ -15090,67 +15035,67 @@
           )
          )
          (set_local $$__a$addr$i$i$i
-          (get_local $$241)
+          (get_local $$238)
          )
          (set_local $$__p$addr$i$i$i
-          (get_local $$242)
+          (get_local $$239)
          )
          (set_local $$__args$addr$i$i$i
-          (get_local $$244)
+          (get_local $$241)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
-         (set_local $$245
+         (set_local $$242
           (get_local $$__a$addr$i$i$i)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
-         (set_local $$246
+         (set_local $$243
           (get_local $$__p$addr$i$i$i)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1656
-         (set_local $$247
+         (set_local $$244
           (get_local $$__args$addr$i$i$i)
          )
-         (set_local $$__t$addr$i$i$i$i199
+         (set_local $$__t$addr$i$i$i$i196
+          (get_local $$244)
+         )
+         ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
+         (set_local $$245
+          (get_local $$__t$addr$i$i$i$i196)
+         )
+         (set_local $$this$addr$i$i$i15$i
+          (get_local $$242)
+         )
+         (set_local $$__p$addr$i$i$i$i
+          (get_local $$243)
+         )
+         (set_local $$__args$addr$i$i$i$i
+          (get_local $$245)
+         )
+         ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
+         (set_local $$246
+          (get_local $$__p$addr$i$i$i$i)
+         )
+         ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
+         (set_local $$247
+          (get_local $$__args$addr$i$i$i$i)
+         )
+         (set_local $$__t$addr$i$i$i$i$i195
           (get_local $$247)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
          (set_local $$248
-          (get_local $$__t$addr$i$i$i$i199)
-         )
-         (set_local $$this$addr$i$i$i15$i
-          (get_local $$245)
-         )
-         (set_local $$__p$addr$i$i$i$i
-          (get_local $$246)
-         )
-         (set_local $$__args$addr$i$i$i$i
-          (get_local $$248)
+          (get_local $$__t$addr$i$i$i$i$i195)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
          (set_local $$249
-          (get_local $$__p$addr$i$i$i$i)
-         )
-         ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
-         (set_local $$250
-          (get_local $$__args$addr$i$i$i$i)
-         )
-         (set_local $$__t$addr$i$i$i$i$i198
-          (get_local $$250)
-         )
-         ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2214
-         (set_local $$251
-          (get_local $$__t$addr$i$i$i$i$i198)
-         )
-         ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
-         (set_local $$252
           (i32.load
-           (get_local $$251)
+           (get_local $$248)
           )
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/memory:1748
          (i32.store
+          (get_local $$246)
           (get_local $$249)
-          (get_local $$252)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1610
          (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEE24__RAII_IncreaseAnnotator6__doneEv
@@ -15159,12 +15104,12 @@
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1611
          (set_local $$__end_6$i
           (i32.add
-           (get_local $$this1$i204)
+           (get_local $$this1$i201)
            (i32.const 4)
           )
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1611
-         (set_local $$253
+         (set_local $$250
           (i32.load
            (get_local $$__end_6$i)
           )
@@ -15172,7 +15117,7 @@
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1611
          (set_local $$incdec$ptr$i
           (i32.add
-           (get_local $$253)
+           (get_local $$250)
            (i32.const 4)
           )
          )
@@ -15185,14 +15130,14 @@
         )
         (block
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1614
-         (set_local $$254
+         (set_local $$251
           (get_local $$__x$addr$i)
          )
          (set_local $$__t$addr$i$i
-          (get_local $$254)
+          (get_local $$251)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/type_traits:2206
-         (set_local $$255
+         (set_local $$252
           (get_local $$__t$addr$i$i)
          )
          (set_global $__THREW__
@@ -15201,28 +15146,28 @@
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1614
          (call $invoke_vii
           (i32.const 111)
-          (get_local $$this1$i204)
-          (get_local $$255)
+          (get_local $$this1$i201)
+          (get_local $$252)
          )
-         (set_local $$256
+         (set_local $$253
           (get_global $__THREW__)
          )
          (set_global $__THREW__
           (i32.const 0)
          )
-         (set_local $$257
+         (set_local $$254
           (i32.and
-           (get_local $$256)
+           (get_local $$253)
            (i32.const 1)
           )
          )
          (if
-          (get_local $$257)
+          (get_local $$254)
           (block
            (set_local $label
-            (i32.const 46)
+            (i32.const 42)
            )
-           (br $label$break$L64)
+           (br $label$break$L58)
           )
           (br $while-in6)
          )
@@ -15234,285 +15179,285 @@
      (set_global $__THREW__
       (i32.const 0)
      )
-     ;; hierarchy.cpp:414
+     ;; hierarchy.cpp:419
      (call $invoke_vii
       (i32.const 99)
       (get_local $$agg$tmp)
       (get_local $$avec)
      )
-     (set_local $$260
+     (set_local $$257
       (get_global $__THREW__)
      )
      (set_global $__THREW__
       (i32.const 0)
      )
-     (set_local $$261
+     (set_local $$258
       (i32.and
-       (get_local $$260)
+       (get_local $$257)
        (i32.const 1)
       )
      )
      (if
-      (get_local $$261)
+      (get_local $$258)
       (set_local $label
-       (i32.const 46)
+       (i32.const 42)
       )
       (block
        (set_global $__THREW__
         (i32.const 0)
        )
-       ;; hierarchy.cpp:414
-       (set_local $$call148
+       ;; hierarchy.cpp:419
+       (set_local $$call145
         (call $invoke_ii
          (i32.const 112)
          (get_local $$agg$tmp)
         )
        )
-       (set_local $$262
+       (set_local $$259
         (get_global $__THREW__)
        )
        (set_global $__THREW__
         (i32.const 0)
        )
-       (set_local $$263
+       (set_local $$260
         (i32.and
-         (get_local $$262)
+         (get_local $$259)
          (i32.const 1)
         )
        )
        (if
-        (get_local $$263)
+        (get_local $$260)
         (block
-         (set_local $$279
+         (set_local $$276
           (call $___cxa_find_matching_catch_2)
          )
-         (set_local $$280
+         (set_local $$277
           (get_global $tempRet0)
          )
-         ;; hierarchy.cpp:423
+         ;; hierarchy.cpp:428
          (set_local $$exn$slot
-          (get_local $$279)
+          (get_local $$276)
          )
-         ;; hierarchy.cpp:423
+         ;; hierarchy.cpp:428
          (set_local $$ehselector$slot
-          (get_local $$280)
+          (get_local $$277)
          )
-         ;; hierarchy.cpp:414
+         ;; hierarchy.cpp:419
          (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
           (get_local $$agg$tmp)
          )
-         (br $label$break$L64)
+         (br $label$break$L58)
         )
        )
-       ;; hierarchy.cpp:414
+       ;; hierarchy.cpp:419
        (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
         (get_local $$agg$tmp)
        )
-       ;; hierarchy.cpp:414
+       ;; hierarchy.cpp:419
        (set_local $$basis
-        (get_local $$call148)
+        (get_local $$call145)
        )
-       ;; hierarchy.cpp:416
+       ;; hierarchy.cpp:421
        (set_local $$i
         (i32.const 0)
        )
        (loop $while-in8
         (block $while-out7
-         ;; hierarchy.cpp:416
-         (set_local $$264
+         ;; hierarchy.cpp:421
+         (set_local $$261
           (get_local $$i)
          )
-         ;; hierarchy.cpp:416
-         (set_local $$265
+         ;; hierarchy.cpp:421
+         (set_local $$262
           (get_local $$n)
          )
-         ;; hierarchy.cpp:416
-         (set_local $$cmp150
+         ;; hierarchy.cpp:421
+         (set_local $$cmp147
           (i32.lt_s
-           (get_local $$264)
-           (get_local $$265)
+           (get_local $$261)
+           (get_local $$262)
           )
          )
          (if
           (i32.eqz
-           (get_local $$cmp150)
+           (get_local $$cmp147)
           )
           (br $while-out7)
          )
-         ;; hierarchy.cpp:417
-         (set_local $$266
+         ;; hierarchy.cpp:422
+         (set_local $$263
           (get_local $$i)
          )
-         (set_local $$this$addr$i181
+         (set_local $$this$addr$i178
           (get_local $$circles)
          )
-         (set_local $$__n$addr$i182
-          (get_local $$266)
+         (set_local $$__n$addr$i179
+          (get_local $$263)
          )
-         (set_local $$this1$i183
-          (get_local $$this$addr$i181)
+         (set_local $$this1$i180
+          (get_local $$this$addr$i178)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
-         (set_local $$267
+         (set_local $$264
           (i32.load
-           (get_local $$this1$i183)
+           (get_local $$this1$i180)
           )
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
-         (set_local $$268
-          (get_local $$__n$addr$i182)
+         (set_local $$265
+          (get_local $$__n$addr$i179)
          )
          ;; /Users/tlagier/Projects/emsdk/emscripten/incoming/system/include/libcxx/vector:1499
-         (set_local $$arrayidx$i185
+         (set_local $$arrayidx$i182
           (i32.add
-           (get_local $$267)
+           (get_local $$264)
            (i32.shl
-            (get_local $$268)
+            (get_local $$265)
             (i32.const 2)
            )
           )
          )
-         ;; hierarchy.cpp:417
-         (set_local $$269
+         ;; hierarchy.cpp:422
+         (set_local $$266
           (i32.load
-           (get_local $$arrayidx$i185)
+           (get_local $$arrayidx$i182)
           )
          )
-         ;; hierarchy.cpp:417
+         ;; hierarchy.cpp:422
          (set_local $$a
-          (get_local $$269)
+          (get_local $$266)
          )
-         ;; hierarchy.cpp:418
-         (set_local $$270
+         ;; hierarchy.cpp:423
+         (set_local $$267
           (get_local $$basis)
          )
-         ;; hierarchy.cpp:418
-         (set_local $$271
+         ;; hierarchy.cpp:423
+         (set_local $$268
           (f64.load
-           (get_local $$270)
+           (get_local $$267)
           )
          )
-         ;; hierarchy.cpp:418
-         (set_local $$272
+         ;; hierarchy.cpp:423
+         (set_local $$269
           (get_local $$a)
          )
-         ;; hierarchy.cpp:418
-         (set_local $$273
+         ;; hierarchy.cpp:423
+         (set_local $$270
           (f64.load
+           (get_local $$269)
+          )
+         )
+         ;; hierarchy.cpp:423
+         (set_local $$sub153
+          (f64.sub
+           (get_local $$270)
+           (get_local $$268)
+          )
+         )
+         ;; hierarchy.cpp:423
+         (f64.store
+          (get_local $$269)
+          (get_local $$sub153)
+         )
+         ;; hierarchy.cpp:424
+         (set_local $$271
+          (get_local $$basis)
+         )
+         ;; hierarchy.cpp:424
+         (set_local $$y154
+          (i32.add
+           (get_local $$271)
+           (i32.const 8)
+          )
+         )
+         ;; hierarchy.cpp:424
+         (set_local $$272
+          (f64.load
+           (get_local $$y154)
+          )
+         )
+         ;; hierarchy.cpp:424
+         (set_local $$273
+          (get_local $$a)
+         )
+         ;; hierarchy.cpp:424
+         (set_local $$y155
+          (i32.add
+           (get_local $$273)
+           (i32.const 8)
+          )
+         )
+         ;; hierarchy.cpp:424
+         (set_local $$274
+          (f64.load
+           (get_local $$y155)
+          )
+         )
+         ;; hierarchy.cpp:424
+         (set_local $$sub156
+          (f64.sub
+           (get_local $$274)
            (get_local $$272)
           )
          )
-         ;; hierarchy.cpp:418
-         (set_local $$sub156
-          (f64.sub
-           (get_local $$273)
-           (get_local $$271)
-          )
-         )
-         ;; hierarchy.cpp:418
+         ;; hierarchy.cpp:424
          (f64.store
-          (get_local $$272)
+          (get_local $$y155)
           (get_local $$sub156)
          )
-         ;; hierarchy.cpp:419
-         (set_local $$274
-          (get_local $$basis)
-         )
-         ;; hierarchy.cpp:419
-         (set_local $$y157
-          (i32.add
-           (get_local $$274)
-           (i32.const 8)
-          )
-         )
-         ;; hierarchy.cpp:419
+         ;; hierarchy.cpp:421
          (set_local $$275
-          (f64.load
-           (get_local $$y157)
-          )
-         )
-         ;; hierarchy.cpp:419
-         (set_local $$276
-          (get_local $$a)
-         )
-         ;; hierarchy.cpp:419
-         (set_local $$y158
-          (i32.add
-           (get_local $$276)
-           (i32.const 8)
-          )
-         )
-         ;; hierarchy.cpp:419
-         (set_local $$277
-          (f64.load
-           (get_local $$y158)
-          )
-         )
-         ;; hierarchy.cpp:419
-         (set_local $$sub159
-          (f64.sub
-           (get_local $$277)
-           (get_local $$275)
-          )
-         )
-         ;; hierarchy.cpp:419
-         (f64.store
-          (get_local $$y158)
-          (get_local $$sub159)
-         )
-         ;; hierarchy.cpp:416
-         (set_local $$278
           (get_local $$i)
          )
-         ;; hierarchy.cpp:416
-         (set_local $$inc161
+         ;; hierarchy.cpp:421
+         (set_local $$inc158
           (i32.add
-           (get_local $$278)
+           (get_local $$275)
            (i32.const 1)
           )
          )
-         ;; hierarchy.cpp:416
+         ;; hierarchy.cpp:421
          (set_local $$i
-          (get_local $$inc161)
+          (get_local $$inc158)
          )
          (br $while-in8)
         )
        )
-       ;; hierarchy.cpp:422
-       (set_local $$281
+       ;; hierarchy.cpp:427
+       (set_local $$278
         (get_local $$basis)
        )
-       ;; hierarchy.cpp:422
-       (set_local $$r163
+       ;; hierarchy.cpp:427
+       (set_local $$r160
         (i32.add
-         (get_local $$281)
+         (get_local $$278)
          (i32.const 16)
         )
        )
-       ;; hierarchy.cpp:422
-       (set_local $$282
+       ;; hierarchy.cpp:427
+       (set_local $$279
         (f64.load
-         (get_local $$r163)
+         (get_local $$r160)
         )
        )
-       ;; hierarchy.cpp:422
+       ;; hierarchy.cpp:427
        (set_local $$retval
-        (get_local $$282)
+        (get_local $$279)
        )
-       ;; hierarchy.cpp:423
+       ;; hierarchy.cpp:428
        (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
         (get_local $$avec)
        )
-       ;; hierarchy.cpp:423
-       (set_local $$283
+       ;; hierarchy.cpp:428
+       (set_local $$280
         (get_local $$retval)
        )
        (set_global $STACKTOP
         (get_local $sp)
        )
-       ;; hierarchy.cpp:423
+       ;; hierarchy.cpp:428
        (return
-        (get_local $$283)
+        (get_local $$280)
        )
       )
      )
@@ -15522,34 +15467,34 @@
   (if
    (i32.eq
     (get_local $label)
-    (i32.const 46)
+    (i32.const 42)
    )
    (block
-    (set_local $$258
+    (set_local $$255
      (call $___cxa_find_matching_catch_2)
     )
-    (set_local $$259
+    (set_local $$256
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (set_local $$exn$slot
-     (get_local $$258)
+     (get_local $$255)
     )
-    ;; hierarchy.cpp:423
+    ;; hierarchy.cpp:428
     (set_local $$ehselector$slot
-     (get_local $$259)
+     (get_local $$256)
     )
    )
   )
-  ;; hierarchy.cpp:423
+  ;; hierarchy.cpp:428
   (call $__ZNSt3__26vectorIP6HBasisNS_9allocatorIS2_EEED2Ev
    (get_local $$avec)
   )
-  ;; hierarchy.cpp:328
+  ;; hierarchy.cpp:337
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:328
+  ;; hierarchy.cpp:337
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -15682,11 +15627,11 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:121
+  ;; hierarchy.cpp:122
   (set_local $$0
    (get_local $$circle$addr)
   )
-  ;; hierarchy.cpp:121
+  ;; hierarchy.cpp:122
   (i32.store
    (get_local $$this1)
    (get_local $$0)
@@ -15694,7 +15639,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:122
+  ;; hierarchy.cpp:123
   (return)
  )
  (func $__Z10radiusLeafNSt3__28functionIFdP5HNodeEEE (param $$agg$result i32) (param $$radius i32)
@@ -15730,7 +15675,7 @@
   (set_local $$agg$tmp
    (get_local $sp)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (call $__ZNSt3__28functionIFdP5HNodeEEC2ERKS4_
    (get_local $$agg$tmp)
    (get_local $$radius)
@@ -15738,7 +15683,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (call $invoke_viii
    (i32.const 113)
    (get_local $$agg$result)
@@ -15766,23 +15711,23 @@
     (set_local $$3
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:433
+    ;; hierarchy.cpp:438
     (set_local $$exn$slot
      (get_local $$2)
     )
-    ;; hierarchy.cpp:433
+    ;; hierarchy.cpp:438
     (set_local $$ehselector$slot
      (get_local $$3)
     )
-    ;; hierarchy.cpp:427
+    ;; hierarchy.cpp:432
     (call $__ZZ10radiusLeafNSt3__28functionIFdP5HNodeEEEEN3__0D2Ev
      (get_local $$agg$tmp)
     )
-    ;; hierarchy.cpp:427
+    ;; hierarchy.cpp:432
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:427
+    ;; hierarchy.cpp:432
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -15791,14 +15736,14 @@
     )
    )
    (block
-    ;; hierarchy.cpp:427
+    ;; hierarchy.cpp:432
     (call $__ZZ10radiusLeafNSt3__28functionIFdP5HNodeEEEEN3__0D2Ev
      (get_local $$agg$tmp)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:427
+    ;; hierarchy.cpp:432
     (return)
    )
   )
@@ -17626,14 +17571,14 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
    (get_local $$this1)
   )
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (return)
  )
  (func $__Z12packChildrenNSt3__28functionIFdP5HNodeEEEd (param $$agg$result i32) (param $$padding i32) (param $$k f64)
@@ -17675,23 +17620,23 @@
   (set_local $$k$addr
    (get_local $$k)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (call $__ZNSt3__28functionIFdP5HNodeEEC2ERKS4_
    (get_local $$agg$tmp)
    (get_local $$padding)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$0
    (i32.add
     (get_local $$agg$tmp)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$1
    (get_local $$k$addr)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (f64.store
    (get_local $$0)
    (get_local $$1)
@@ -17699,7 +17644,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (call $invoke_viii
    (i32.const 114)
    (get_local $$agg$result)
@@ -17727,23 +17672,23 @@
     (set_local $$5
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:461
+    ;; hierarchy.cpp:466
     (set_local $$exn$slot
      (get_local $$4)
     )
-    ;; hierarchy.cpp:461
+    ;; hierarchy.cpp:466
     (set_local $$ehselector$slot
      (get_local $$5)
     )
-    ;; hierarchy.cpp:438
+    ;; hierarchy.cpp:443
     (call $__ZZ12packChildrenNSt3__28functionIFdP5HNodeEEEdEN3__1D2Ev
      (get_local $$agg$tmp)
     )
-    ;; hierarchy.cpp:438
+    ;; hierarchy.cpp:443
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:438
+    ;; hierarchy.cpp:443
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -17752,14 +17697,14 @@
     )
    )
    (block
-    ;; hierarchy.cpp:438
+    ;; hierarchy.cpp:443
     (call $__ZZ12packChildrenNSt3__28functionIFdP5HNodeEEEdEN3__1D2Ev
      (get_local $$agg$tmp)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:438
+    ;; hierarchy.cpp:443
     (return)
    )
   )
@@ -19294,14 +19239,14 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
    (get_local $$this1)
   )
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (return)
  )
  (func $__Z14translateChildd (param $$agg$result i32) (param $$k f64)
@@ -19341,23 +19286,23 @@
   (set_local $$k$addr
    (get_local $$k)
   )
-  ;; hierarchy.cpp:464
+  ;; hierarchy.cpp:469
   (set_local $$0
    (get_local $$k$addr)
   )
-  ;; hierarchy.cpp:464
+  ;; hierarchy.cpp:469
   (f64.store
    (get_local $$agg$tmp)
    (get_local $$0)
   )
-  ;; hierarchy.cpp:464
+  ;; hierarchy.cpp:469
   (i64.store
    (get_local $$agg$tmp$byval_copy)
    (i64.load
     (get_local $$agg$tmp)
    )
   )
-  ;; hierarchy.cpp:464
+  ;; hierarchy.cpp:469
   (call $__ZNSt3__28functionIFvP5HNodeEEC2IZ14translateChilddE3__2EET_PNS_9enable_ifIXaasr10__callableIS7_EE5valuentsr7is_sameIS7_S4_EE5valueEvE4typeE
    (get_local $$agg$result)
    (get_local $$agg$tmp$byval_copy)
@@ -19366,7 +19311,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:464
+  ;; hierarchy.cpp:469
   (return)
  )
  (func $__ZNSt3__28functionIFvP5HNodeEEC2IZ14translateChilddE3__2EET_PNS_9enable_ifIXaasr10__callableIS7_EE5valuentsr7is_sameIS7_S4_EE5valueEvE4typeE (param $$this i32) (param $$__f i32) (param $$0 i32)
@@ -20025,7 +19970,7 @@
     (i32.const 20)
    )
   )
-  ;; hierarchy.cpp:563
+  ;; hierarchy.cpp:553
   (set_local $$call
    (call $__Znwj
     (i32.const 48)
@@ -20041,7 +19986,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:563
+  ;; hierarchy.cpp:553
   (call $invoke_vii
    (i32.const 115)
    (get_local $$agg$tmp)
@@ -20069,11 +20014,11 @@
      (set_local $$10
       (get_global $tempRet0)
      )
-     ;; hierarchy.cpp:565
+     ;; hierarchy.cpp:556
      (set_local $$exn$slot
       (get_local $$9)
      )
-     ;; hierarchy.cpp:565
+     ;; hierarchy.cpp:556
      (set_local $$ehselector$slot
       (get_local $$10)
      )
@@ -20082,7 +20027,7 @@
      (set_global $__THREW__
       (i32.const 0)
      )
-     ;; hierarchy.cpp:563
+     ;; hierarchy.cpp:553
      (call $invoke_vii
       (i32.const 116)
       (get_local $$call)
@@ -20109,39 +20054,39 @@
        (set_local $$12
         (get_global $tempRet0)
        )
-       ;; hierarchy.cpp:565
+       ;; hierarchy.cpp:556
        (set_local $$exn$slot
         (get_local $$11)
        )
-       ;; hierarchy.cpp:565
+       ;; hierarchy.cpp:556
        (set_local $$ehselector$slot
         (get_local $$12)
        )
-       ;; hierarchy.cpp:563
+       ;; hierarchy.cpp:553
        (call $__ZN10emscripten3valD2Ev
         (get_local $$agg$tmp)
        )
        (br $do-once)
       )
      )
-     ;; hierarchy.cpp:563
+     ;; hierarchy.cpp:553
      (set_local $$$expand_i1_val2
       (i32.const 0)
      )
-     ;; hierarchy.cpp:563
+     ;; hierarchy.cpp:553
      (i32.store8
       (get_local $$cleanup$isactive)
       (get_local $$$expand_i1_val2)
      )
-     ;; hierarchy.cpp:563
+     ;; hierarchy.cpp:553
      (call $__ZN10emscripten3valD2Ev
       (get_local $$agg$tmp)
      )
-     ;; hierarchy.cpp:563
+     ;; hierarchy.cpp:553
      (set_local $$root
       (get_local $$call)
      )
-     ;; hierarchy.cpp:564
+     ;; hierarchy.cpp:555
      (set_local $$call3
       (call $__Znwj
        (i32.const 32)
@@ -20157,7 +20102,7 @@
      (set_global $__THREW__
       (i32.const 0)
      )
-     ;; hierarchy.cpp:564
+     ;; hierarchy.cpp:555
      (call $invoke_vii
       (i32.const 115)
       (get_local $$agg$tmp4)
@@ -20185,24 +20130,24 @@
         (set_local $$14
          (get_global $tempRet0)
         )
-        ;; hierarchy.cpp:565
+        ;; hierarchy.cpp:556
         (set_local $$exn$slot
          (get_local $$13)
         )
-        ;; hierarchy.cpp:565
+        ;; hierarchy.cpp:556
         (set_local $$ehselector$slot
          (get_local $$14)
         )
        )
        (block
-        ;; hierarchy.cpp:564
+        ;; hierarchy.cpp:555
         (set_local $$6
          (get_local $$root)
         )
         (set_global $__THREW__
          (i32.const 0)
         )
-        ;; hierarchy.cpp:564
+        ;; hierarchy.cpp:555
         (call $invoke_viii
          (i32.const 117)
          (get_local $$call3)
@@ -20230,38 +20175,38 @@
           (set_local $$16
            (get_global $tempRet0)
           )
-          ;; hierarchy.cpp:565
+          ;; hierarchy.cpp:556
           (set_local $$exn$slot
            (get_local $$15)
           )
-          ;; hierarchy.cpp:565
+          ;; hierarchy.cpp:556
           (set_local $$ehselector$slot
            (get_local $$16)
           )
-          ;; hierarchy.cpp:564
+          ;; hierarchy.cpp:555
           (call $__ZN10emscripten3valD2Ev
            (get_local $$agg$tmp4)
           )
           (br $do-once0)
          )
          (block
-          ;; hierarchy.cpp:564
+          ;; hierarchy.cpp:555
           (set_local $$$expand_i1_val5
            (i32.const 0)
           )
-          ;; hierarchy.cpp:564
+          ;; hierarchy.cpp:555
           (i32.store8
            (get_local $$cleanup$isactive9)
            (get_local $$$expand_i1_val5)
           )
-          ;; hierarchy.cpp:564
+          ;; hierarchy.cpp:555
           (call $__ZN10emscripten3valD2Ev
            (get_local $$agg$tmp4)
           )
           (set_global $STACKTOP
            (get_local $sp)
           )
-          ;; hierarchy.cpp:564
+          ;; hierarchy.cpp:555
           (return
            (get_local $$call3)
           )
@@ -20270,13 +20215,13 @@
        )
       )
      )
-     ;; hierarchy.cpp:564
+     ;; hierarchy.cpp:555
      (set_local $$cleanup$is_active12$pre_trunc
       (i32.load8_s
        (get_local $$cleanup$isactive9)
       )
      )
-     ;; hierarchy.cpp:564
+     ;; hierarchy.cpp:555
      (set_local $$cleanup$is_active12
       (i32.and
        (get_local $$cleanup$is_active12$pre_trunc)
@@ -20288,11 +20233,11 @@
        (get_local $$cleanup$is_active12)
       )
       (block
-       ;; hierarchy.cpp:563
+       ;; hierarchy.cpp:553
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:563
+       ;; hierarchy.cpp:553
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -20301,15 +20246,15 @@
        )
       )
      )
-     ;; hierarchy.cpp:564
+     ;; hierarchy.cpp:555
      (call $__ZdlPv
       (get_local $$call3)
      )
-     ;; hierarchy.cpp:563
+     ;; hierarchy.cpp:553
      (set_local $$exn
       (get_local $$exn$slot)
      )
-     ;; hierarchy.cpp:563
+     ;; hierarchy.cpp:553
      (set_local $$sel
       (get_local $$ehselector$slot)
      )
@@ -20319,13 +20264,13 @@
     )
    )
   )
-  ;; hierarchy.cpp:563
+  ;; hierarchy.cpp:553
   (set_local $$cleanup$is_active$pre_trunc
    (i32.load8_s
     (get_local $$cleanup$isactive)
    )
   )
-  ;; hierarchy.cpp:563
+  ;; hierarchy.cpp:553
   (set_local $$cleanup$is_active
    (i32.and
     (get_local $$cleanup$is_active$pre_trunc)
@@ -20337,11 +20282,11 @@
     (get_local $$cleanup$is_active)
    )
    (block
-    ;; hierarchy.cpp:563
+    ;; hierarchy.cpp:553
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:563
+    ;; hierarchy.cpp:553
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -20350,15 +20295,15 @@
     )
    )
   )
-  ;; hierarchy.cpp:563
+  ;; hierarchy.cpp:553
   (call $__ZdlPv
    (get_local $$call)
   )
-  ;; hierarchy.cpp:563
+  ;; hierarchy.cpp:553
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:563
+  ;; hierarchy.cpp:553
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -20774,14 +20719,14 @@
   (call $__ZN6HBasisC2Ev
    (get_local $$this1)
   )
-  ;; hierarchy.cpp:44
+  ;; hierarchy.cpp:45
   (set_local $$value
    (i32.add
     (get_local $$this1)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:44
+  ;; hierarchy.cpp:45
   (f64.store
    (get_local $$value)
    (f64.const 0)
@@ -20945,11 +20890,11 @@
        (set_local $$75
         (get_global $tempRet0)
        )
-       ;; hierarchy.cpp:36
+       ;; hierarchy.cpp:37
        (set_local $$exn$slot
         (get_local $$74)
        )
-       ;; hierarchy.cpp:36
+       ;; hierarchy.cpp:37
        (set_local $$ehselector$slot
         (get_local $$75)
        )
@@ -20957,15 +20902,15 @@
        (call $__ZN10emscripten3valD2Ev
         (get_local $$ref$tmp)
        )
-       ;; hierarchy.cpp:36
+       ;; hierarchy.cpp:37
        (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
         (get_local $$children)
        )
-       ;; hierarchy.cpp:36
+       ;; hierarchy.cpp:37
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:36
+       ;; hierarchy.cpp:37
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -21048,11 +20993,11 @@
           (set_local $$77
            (get_global $tempRet0)
           )
-          ;; hierarchy.cpp:36
+          ;; hierarchy.cpp:37
           (set_local $$exn$slot
            (get_local $$76)
           )
-          ;; hierarchy.cpp:36
+          ;; hierarchy.cpp:37
           (set_local $$ehselector$slot
            (get_local $$77)
           )
@@ -21088,11 +21033,11 @@
             (set_local $$79
              (get_global $tempRet0)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (set_local $$exn$slot
              (get_local $$78)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (set_local $$ehselector$slot
              (get_local $$79)
             )
@@ -21439,7 +21384,7 @@
             (set_global $STACKTOP
              (get_local $sp)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (return)
            )
           )
@@ -21499,11 +21444,11 @@
             (set_local $$81
              (get_global $tempRet0)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (set_local $$exn$slot
              (get_local $$80)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (set_local $$ehselector$slot
              (get_local $$81)
             )
@@ -21511,15 +21456,15 @@
             (call $__ZN10emscripten3valD2Ev
              (get_local $$agg$tmp)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
              (get_local $$children)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (set_local $$exn
              (get_local $$exn$slot)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (set_local $$sel
              (get_local $$ehselector$slot)
             )
@@ -21610,7 +21555,7 @@
               (br $while-out)
              )
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (set_local $$children19
              (i32.add
               (get_local $$this1)
@@ -21620,7 +21565,7 @@
             (set_global $__THREW__
              (i32.const 0)
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (set_local $$call23
              (call $invoke_ii
               (i32.const 126)
@@ -21655,7 +21600,7 @@
              (get_local $$cleanup$isactive)
              (get_local $$$expand_i1_val3)
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (set_local $$41
              (get_local $$i)
             )
@@ -21691,7 +21636,7 @@
             (set_global $__THREW__
              (i32.const 0)
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (call $invoke_vii
              (i32.const 115)
              (get_local $$agg$tmp24)
@@ -21721,7 +21666,7 @@
             (set_global $__THREW__
              (i32.const 0)
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (call $invoke_viii
              (i32.const 127)
              (get_local $$call23)
@@ -21749,16 +21694,16 @@
               (br $while-out)
              )
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (set_local $$$expand_i1_val5
              (i32.const 0)
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (i32.store8
              (get_local $$cleanup$isactive)
              (get_local $$$expand_i1_val5)
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (i32.store
              (get_local $$ref$tmp20)
              (get_local $$call23)
@@ -22059,7 +22004,7 @@
               )
              )
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (call $__ZN10emscripten3valD2Ev
              (get_local $$agg$tmp24)
             )
@@ -22093,11 +22038,11 @@
             (set_local $$83
              (get_global $tempRet0)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (set_local $$exn$slot
              (get_local $$82)
             )
-            ;; hierarchy.cpp:36
+            ;; hierarchy.cpp:37
             (set_local $$ehselector$slot
              (get_local $$83)
             )
@@ -22114,11 +22059,11 @@
              (set_local $$85
               (get_global $tempRet0)
              )
-             ;; hierarchy.cpp:36
+             ;; hierarchy.cpp:37
              (set_local $$exn$slot
               (get_local $$84)
              )
-             ;; hierarchy.cpp:36
+             ;; hierarchy.cpp:37
              (set_local $$ehselector$slot
               (get_local $$85)
              )
@@ -22138,15 +22083,15 @@
               (set_local $$87
                (get_global $tempRet0)
               )
-              ;; hierarchy.cpp:36
+              ;; hierarchy.cpp:37
               (set_local $$exn$slot
                (get_local $$86)
               )
-              ;; hierarchy.cpp:36
+              ;; hierarchy.cpp:37
               (set_local $$ehselector$slot
                (get_local $$87)
               )
-              ;; hierarchy.cpp:33
+              ;; hierarchy.cpp:34
               (call $__ZN10emscripten3valD2Ev
                (get_local $$agg$tmp24)
               )
@@ -22160,14 +22105,14 @@
                (i32.const 38)
               )
               (block
-               ;; hierarchy.cpp:35
+               ;; hierarchy.cpp:36
                (call $__ZNSt3__26vectorIN10emscripten3valENS_9allocatorIS2_EEED2Ev
                 (get_local $$children_)
                )
                (set_global $STACKTOP
                 (get_local $sp)
                )
-               ;; hierarchy.cpp:36
+               ;; hierarchy.cpp:37
                (return)
               )
              )
@@ -22180,13 +22125,13 @@
             (i32.const 36)
            )
            (block
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (set_local $$cleanup$is_active$pre_trunc
              (i32.load8_s
               (get_local $$cleanup$isactive)
              )
             )
-            ;; hierarchy.cpp:33
+            ;; hierarchy.cpp:34
             (set_local $$cleanup$is_active
              (i32.and
               (get_local $$cleanup$is_active$pre_trunc)
@@ -22195,26 +22140,26 @@
             )
             (if
              (get_local $$cleanup$is_active)
-             ;; hierarchy.cpp:33
+             ;; hierarchy.cpp:34
              (call $__ZdlPv
               (get_local $$call23)
              )
             )
            )
           )
-          ;; hierarchy.cpp:35
+          ;; hierarchy.cpp:36
           (call $__ZNSt3__26vectorIN10emscripten3valENS_9allocatorIS2_EEED2Ev
            (get_local $$children_)
           )
-          ;; hierarchy.cpp:36
+          ;; hierarchy.cpp:37
           (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
            (get_local $$children)
           )
-          ;; hierarchy.cpp:36
+          ;; hierarchy.cpp:37
           (set_local $$exn
            (get_local $$exn$slot)
           )
-          ;; hierarchy.cpp:36
+          ;; hierarchy.cpp:37
           (set_local $$sel
            (get_local $$ehselector$slot)
           )
@@ -22228,15 +22173,15 @@
        (call $__ZN10emscripten3valD2Ev
         (get_local $$ref$tmp7)
        )
-       ;; hierarchy.cpp:36
+       ;; hierarchy.cpp:37
        (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
         (get_local $$children)
        )
-       ;; hierarchy.cpp:36
+       ;; hierarchy.cpp:37
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:36
+       ;; hierarchy.cpp:37
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -22254,23 +22199,23 @@
   (set_local $$73
    (get_global $tempRet0)
   )
-  ;; hierarchy.cpp:36
+  ;; hierarchy.cpp:37
   (set_local $$exn$slot
    (get_local $$72)
   )
-  ;; hierarchy.cpp:36
+  ;; hierarchy.cpp:37
   (set_local $$ehselector$slot
    (get_local $$73)
   )
-  ;; hierarchy.cpp:36
+  ;; hierarchy.cpp:37
   (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
    (get_local $$children)
   )
-  ;; hierarchy.cpp:36
+  ;; hierarchy.cpp:37
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:36
+  ;; hierarchy.cpp:37
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -22401,59 +22346,59 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:488
+  ;; hierarchy.cpp:493
   (f64.store
    (get_local $$this1)
    (f64.const 1)
   )
-  ;; hierarchy.cpp:489
+  ;; hierarchy.cpp:494
   (set_local $$dy
    (i32.add
     (get_local $$this1)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:489
+  ;; hierarchy.cpp:494
   (f64.store
    (get_local $$dy)
    (f64.const 1)
   )
-  ;; hierarchy.cpp:490
+  ;; hierarchy.cpp:495
   (set_local $$padding
    (i32.add
     (get_local $$this1)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:490
+  ;; hierarchy.cpp:495
   (f64.store
    (get_local $$padding)
    (f64.const 0)
   )
-  ;; hierarchy.cpp:480
+  ;; hierarchy.cpp:485
   (set_local $$options2
    (i32.add
     (get_local $$this1)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:480
+  ;; hierarchy.cpp:485
   (call $__ZN10emscripten3valC2IRS0_EEOT_
    (get_local $$options2)
    (get_local $$options)
   )
-  ;; hierarchy.cpp:481
+  ;; hierarchy.cpp:486
   (set_local $$root3
    (i32.add
     (get_local $$this1)
     (i32.const 28)
    )
   )
-  ;; hierarchy.cpp:481
+  ;; hierarchy.cpp:486
   (set_local $$0
    (get_local $$root$addr)
   )
-  ;; hierarchy.cpp:481
+  ;; hierarchy.cpp:486
   (i32.store
    (get_local $$root3)
    (get_local $$0)
@@ -22461,7 +22406,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:482
+  ;; hierarchy.cpp:487
   (return)
  )
  (func $___cxx_global_var_init
@@ -22470,11 +22415,11 @@
   (set_local $sp
    (get_global $STACKTOP)
   )
-  ;; hierarchy.cpp:567
+  ;; hierarchy.cpp:558
   (call $__ZN38EmscriptenBindingInitializer_hierarchyC2Ev
    (i32.const 9768)
   )
-  ;; hierarchy.cpp:567
+  ;; hierarchy.cpp:558
   (return)
  )
  (func $__ZN38EmscriptenBindingInitializer_hierarchyC2Ev (param $$this i32)
@@ -22834,7 +22779,7 @@
   (set_local $$this$addr
    (get_local $$this)
   )
-  ;; hierarchy.cpp:568
+  ;; hierarchy.cpp:559
   (call $__ZN10emscripten15register_vectorIP5HNodeEENS_6class_INSt3__26vectorIT_NS4_9allocatorIS6_EEEENS_8internal11NoBaseClassEEEPKc
    (i32.const 3176)
   )
@@ -23796,19 +23741,19 @@
    (get_local $$56)
    (get_local $$57)
   )
-  ;; hierarchy.cpp:582
+  ;; hierarchy.cpp:573
   (i32.store
    (get_local $$tmp)
    (i32.const 146)
   )
-  ;; hierarchy.cpp:582
+  ;; hierarchy.cpp:573
   (set_local $$tmp$index1
    (i32.add
     (get_local $$tmp)
     (i32.const 4)
    )
   )
-  ;; hierarchy.cpp:582
+  ;; hierarchy.cpp:573
   (i32.store
    (get_local $$tmp$index1)
    (i32.const 0)
@@ -23920,7 +23865,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:583
+  ;; hierarchy.cpp:574
   (return)
  )
  (func $__ZN10emscripten15register_vectorIP5HNodeEENS_6class_INSt3__26vectorIT_NS4_9allocatorIS6_EEEENS_8internal11NoBaseClassEEEPKc (param $$name i32)
@@ -25579,14 +25524,14 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:497
+  ;; hierarchy.cpp:502
   (set_local $$options
    (i32.add
     (get_local $$this1)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:497
+  ;; hierarchy.cpp:502
   (call $__ZNK10emscripten3valixIA5_cEES0_RKT_
    (get_local $$agg$tmp)
    (get_local $$options)
@@ -25696,7 +25641,7 @@
        (set_global $__THREW__
         (i32.const 0)
        )
-       ;; hierarchy.cpp:497
+       ;; hierarchy.cpp:502
        (set_local $$call
         (call $invoke_iiii
          (i32.const 163)
@@ -25726,26 +25671,26 @@
          (set_local $$19
           (get_global $tempRet0)
          )
-         ;; hierarchy.cpp:559
+         ;; hierarchy.cpp:548
          (set_local $$exn$slot
           (get_local $$18)
          )
-         ;; hierarchy.cpp:559
+         ;; hierarchy.cpp:548
          (set_local $$ehselector$slot
           (get_local $$19)
          )
-         ;; hierarchy.cpp:497
+         ;; hierarchy.cpp:502
          (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
           (get_local $$ref$tmp)
          )
          (br $do-once)
         )
        )
-       ;; hierarchy.cpp:497
+       ;; hierarchy.cpp:502
        (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
         (get_local $$ref$tmp)
        )
-       ;; hierarchy.cpp:497
+       ;; hierarchy.cpp:502
        (call $__ZN10emscripten3valD2Ev
         (get_local $$agg$tmp)
        )
@@ -25753,20 +25698,20 @@
         (if
          (get_local $$call)
          (block
-          ;; hierarchy.cpp:499
+          ;; hierarchy.cpp:504
           (set_local $$options5
            (i32.add
             (get_local $$this1)
             (i32.const 24)
            )
           )
-          ;; hierarchy.cpp:499
+          ;; hierarchy.cpp:504
           (call $__ZNK10emscripten3valixIA5_cEES0_RKT_
            (get_local $$temp$lvalue)
            (get_local $$options5)
            (i32.const 3371)
           )
-          ;; hierarchy.cpp:499
+          ;; hierarchy.cpp:504
           (i32.store
            (get_local $$ref$tmp6)
            (i32.const 0)
@@ -25774,7 +25719,7 @@
           (set_global $__THREW__
            (i32.const 0)
           )
-          ;; hierarchy.cpp:499
+          ;; hierarchy.cpp:504
           (call $invoke_viii
            (i32.const 164)
            (get_local $$ref$tmp4)
@@ -25803,11 +25748,11 @@
              (set_local $$21
               (get_global $tempRet0)
              )
-             ;; hierarchy.cpp:559
+             ;; hierarchy.cpp:548
              (set_local $$exn$slot
               (get_local $$20)
              )
-             ;; hierarchy.cpp:559
+             ;; hierarchy.cpp:548
              (set_local $$ehselector$slot
               (get_local $$21)
              )
@@ -25816,7 +25761,7 @@
              (set_global $__THREW__
               (i32.const 0)
              )
-             ;; hierarchy.cpp:499
+             ;; hierarchy.cpp:504
              (set_local $$call11
               (call $invoke_di
                (i32.const 119)
@@ -25844,48 +25789,48 @@
                (set_local $$23
                 (get_global $tempRet0)
                )
-               ;; hierarchy.cpp:559
+               ;; hierarchy.cpp:548
                (set_local $$exn$slot
                 (get_local $$22)
                )
-               ;; hierarchy.cpp:559
+               ;; hierarchy.cpp:548
                (set_local $$ehselector$slot
                 (get_local $$23)
                )
-               ;; hierarchy.cpp:499
+               ;; hierarchy.cpp:504
                (call $__ZN10emscripten3valD2Ev
                 (get_local $$ref$tmp4)
                )
                (br $do-once1)
               )
              )
-             ;; hierarchy.cpp:499
+             ;; hierarchy.cpp:504
              (f64.store
               (get_local $$this1)
               (get_local $$call11)
              )
-             ;; hierarchy.cpp:499
+             ;; hierarchy.cpp:504
              (call $__ZN10emscripten3valD2Ev
               (get_local $$ref$tmp4)
              )
-             ;; hierarchy.cpp:499
+             ;; hierarchy.cpp:504
              (call $__ZN10emscripten3valD2Ev
               (get_local $$temp$lvalue)
              )
-             ;; hierarchy.cpp:500
+             ;; hierarchy.cpp:505
              (set_local $$options16
               (i32.add
                (get_local $$this1)
                (i32.const 24)
               )
              )
-             ;; hierarchy.cpp:500
+             ;; hierarchy.cpp:505
              (call $__ZNK10emscripten3valixIA5_cEES0_RKT_
               (get_local $$temp$lvalue15)
               (get_local $$options16)
               (i32.const 3371)
              )
-             ;; hierarchy.cpp:500
+             ;; hierarchy.cpp:505
              (i32.store
               (get_local $$ref$tmp17)
               (i32.const 1)
@@ -25893,7 +25838,7 @@
              (set_global $__THREW__
               (i32.const 0)
              )
-             ;; hierarchy.cpp:500
+             ;; hierarchy.cpp:505
              (call $invoke_viii
               (i32.const 164)
               (get_local $$ref$tmp14)
@@ -25922,11 +25867,11 @@
                 (set_local $$25
                  (get_global $tempRet0)
                 )
-                ;; hierarchy.cpp:559
+                ;; hierarchy.cpp:548
                 (set_local $$exn$slot
                  (get_local $$24)
                 )
-                ;; hierarchy.cpp:559
+                ;; hierarchy.cpp:548
                 (set_local $$ehselector$slot
                  (get_local $$25)
                 )
@@ -25935,7 +25880,7 @@
                 (set_global $__THREW__
                  (i32.const 0)
                 )
-                ;; hierarchy.cpp:500
+                ;; hierarchy.cpp:505
                 (set_local $$call22
                  (call $invoke_di
                   (i32.const 119)
@@ -25963,38 +25908,38 @@
                   (set_local $$27
                    (get_global $tempRet0)
                   )
-                  ;; hierarchy.cpp:559
+                  ;; hierarchy.cpp:548
                   (set_local $$exn$slot
                    (get_local $$26)
                   )
-                  ;; hierarchy.cpp:559
+                  ;; hierarchy.cpp:548
                   (set_local $$ehselector$slot
                    (get_local $$27)
                   )
-                  ;; hierarchy.cpp:500
+                  ;; hierarchy.cpp:505
                   (call $__ZN10emscripten3valD2Ev
                    (get_local $$ref$tmp14)
                   )
                   (br $do-once3)
                  )
                  (block
-                  ;; hierarchy.cpp:500
+                  ;; hierarchy.cpp:505
                   (set_local $$dy
                    (i32.add
                     (get_local $$this1)
                     (i32.const 8)
                    )
                   )
-                  ;; hierarchy.cpp:500
+                  ;; hierarchy.cpp:505
                   (f64.store
                    (get_local $$dy)
                    (get_local $$call22)
                   )
-                  ;; hierarchy.cpp:500
+                  ;; hierarchy.cpp:505
                   (call $__ZN10emscripten3valD2Ev
                    (get_local $$ref$tmp14)
                   )
-                  ;; hierarchy.cpp:500
+                  ;; hierarchy.cpp:505
                   (call $__ZN10emscripten3valD2Ev
                    (get_local $$temp$lvalue15)
                   )
@@ -26004,15 +25949,15 @@
                )
               )
              )
-             ;; hierarchy.cpp:500
+             ;; hierarchy.cpp:505
              (call $__ZN10emscripten3valD2Ev
               (get_local $$temp$lvalue15)
              )
-             ;; hierarchy.cpp:497
+             ;; hierarchy.cpp:502
              (set_local $$exn
               (get_local $$exn$slot)
              )
-             ;; hierarchy.cpp:497
+             ;; hierarchy.cpp:502
              (set_local $$sel
               (get_local $$ehselector$slot)
              )
@@ -26022,15 +25967,15 @@
             )
            )
           )
-          ;; hierarchy.cpp:499
+          ;; hierarchy.cpp:504
           (call $__ZN10emscripten3valD2Ev
            (get_local $$temp$lvalue)
           )
-          ;; hierarchy.cpp:497
+          ;; hierarchy.cpp:502
           (set_local $$exn
            (get_local $$exn$slot)
           )
-          ;; hierarchy.cpp:497
+          ;; hierarchy.cpp:502
           (set_local $$sel
            (get_local $$ehselector$slot)
           )
@@ -26040,14 +25985,14 @@
          )
         )
        )
-       ;; hierarchy.cpp:503
+       ;; hierarchy.cpp:508
        (set_local $$options26
         (i32.add
          (get_local $$this1)
          (i32.const 24)
         )
        )
-       ;; hierarchy.cpp:503
+       ;; hierarchy.cpp:508
        (call $__ZNK10emscripten3valixIA8_cEES0_RKT_
         (get_local $$agg$tmp25)
         (get_local $$options26)
@@ -26157,7 +26102,7 @@
             (set_global $__THREW__
              (i32.const 0)
             )
-            ;; hierarchy.cpp:503
+            ;; hierarchy.cpp:508
             (set_local $$call32
              (call $invoke_iiii
               (i32.const 163)
@@ -26187,26 +26132,26 @@
               (set_local $$41
                (get_global $tempRet0)
               )
-              ;; hierarchy.cpp:559
+              ;; hierarchy.cpp:548
               (set_local $$exn$slot
                (get_local $$40)
               )
-              ;; hierarchy.cpp:559
+              ;; hierarchy.cpp:548
               (set_local $$ehselector$slot
                (get_local $$41)
               )
-              ;; hierarchy.cpp:503
+              ;; hierarchy.cpp:508
               (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
                (get_local $$ref$tmp27)
               )
               (br $do-once5)
              )
             )
-            ;; hierarchy.cpp:503
+            ;; hierarchy.cpp:508
             (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
              (get_local $$ref$tmp27)
             )
-            ;; hierarchy.cpp:503
+            ;; hierarchy.cpp:508
             (call $__ZN10emscripten3valD2Ev
              (get_local $$agg$tmp25)
             )
@@ -26214,14 +26159,14 @@
              (if
               (get_local $$call32)
               (block
-               ;; hierarchy.cpp:505
+               ;; hierarchy.cpp:510
                (set_local $$options37
                 (i32.add
                  (get_local $$this1)
                  (i32.const 24)
                 )
                )
-               ;; hierarchy.cpp:505
+               ;; hierarchy.cpp:510
                (call $__ZNK10emscripten3valixIA8_cEES0_RKT_
                 (get_local $$ref$tmp36)
                 (get_local $$options37)
@@ -26230,7 +26175,7 @@
                (set_global $__THREW__
                 (i32.const 0)
                )
-               ;; hierarchy.cpp:505
+               ;; hierarchy.cpp:510
                (set_local $$call40
                 (call $invoke_di
                  (i32.const 119)
@@ -26254,19 +26199,19 @@
                  (get_local $$37)
                 )
                 (block
-                 ;; hierarchy.cpp:505
+                 ;; hierarchy.cpp:510
                  (set_local $$padding
                   (i32.add
                    (get_local $$this1)
                    (i32.const 16)
                   )
                  )
-                 ;; hierarchy.cpp:505
+                 ;; hierarchy.cpp:510
                  (f64.store
                   (get_local $$padding)
                   (get_local $$call40)
                  )
-                 ;; hierarchy.cpp:505
+                 ;; hierarchy.cpp:510
                  (call $__ZN10emscripten3valD2Ev
                   (get_local $$ref$tmp36)
                  )
@@ -26279,23 +26224,23 @@
                (set_local $$43
                 (get_global $tempRet0)
                )
-               ;; hierarchy.cpp:559
+               ;; hierarchy.cpp:548
                (set_local $$exn$slot
                 (get_local $$42)
                )
-               ;; hierarchy.cpp:559
+               ;; hierarchy.cpp:548
                (set_local $$ehselector$slot
                 (get_local $$43)
                )
-               ;; hierarchy.cpp:505
+               ;; hierarchy.cpp:510
                (call $__ZN10emscripten3valD2Ev
                 (get_local $$ref$tmp36)
                )
-               ;; hierarchy.cpp:497
+               ;; hierarchy.cpp:502
                (set_local $$exn
                 (get_local $$exn$slot)
                )
-               ;; hierarchy.cpp:497
+               ;; hierarchy.cpp:502
                (set_local $$sel
                 (get_local $$ehselector$slot)
                )
@@ -26305,101 +26250,101 @@
               )
              )
             )
-            ;; hierarchy.cpp:508
+            ;; hierarchy.cpp:513
             (set_local $$44
              (f64.load
               (get_local $$this1)
              )
             )
-            ;; hierarchy.cpp:508
+            ;; hierarchy.cpp:513
             (set_local $$div
              (f64.div
               (get_local $$44)
               (f64.const 2)
              )
             )
-            ;; hierarchy.cpp:508
+            ;; hierarchy.cpp:513
             (set_local $$root
              (i32.add
               (get_local $$this1)
               (i32.const 28)
              )
             )
-            ;; hierarchy.cpp:508
+            ;; hierarchy.cpp:513
             (set_local $$45
              (i32.load
               (get_local $$root)
              )
             )
-            ;; hierarchy.cpp:508
+            ;; hierarchy.cpp:513
             (f64.store
              (get_local $$45)
              (get_local $$div)
             )
-            ;; hierarchy.cpp:509
+            ;; hierarchy.cpp:514
             (set_local $$dy44
              (i32.add
               (get_local $$this1)
               (i32.const 8)
              )
             )
-            ;; hierarchy.cpp:509
+            ;; hierarchy.cpp:514
             (set_local $$46
              (f64.load
               (get_local $$dy44)
              )
             )
-            ;; hierarchy.cpp:509
+            ;; hierarchy.cpp:514
             (set_local $$div45
              (f64.div
               (get_local $$46)
               (f64.const 2)
              )
             )
-            ;; hierarchy.cpp:509
+            ;; hierarchy.cpp:514
             (set_local $$root46
              (i32.add
               (get_local $$this1)
               (i32.const 28)
              )
             )
-            ;; hierarchy.cpp:509
+            ;; hierarchy.cpp:514
             (set_local $$47
              (i32.load
               (get_local $$root46)
              )
             )
-            ;; hierarchy.cpp:509
+            ;; hierarchy.cpp:514
             (set_local $$y
              (i32.add
               (get_local $$47)
               (i32.const 8)
              )
             )
-            ;; hierarchy.cpp:509
+            ;; hierarchy.cpp:514
             (f64.store
              (get_local $$y)
              (get_local $$div45)
             )
-            ;; hierarchy.cpp:510
+            ;; hierarchy.cpp:515
             (i32.store
              (get_local $$agg$tmp47)
              (get_local $$this1)
             )
-            ;; hierarchy.cpp:510
+            ;; hierarchy.cpp:515
             (i32.store
              (get_local $$agg$tmp47$byval_copy)
              (i32.load
               (get_local $$agg$tmp47)
              )
             )
-            ;; hierarchy.cpp:510
+            ;; hierarchy.cpp:515
             (call $__ZNSt3__28functionIFdP5HNodeEEC2IZN9Hierarchy4packEvEUlS2_E_EET_PNS_9enable_ifIXaasr10__callableIS8_EE5valuentsr7is_sameIS8_S4_EE5valueEvE4typeE
              (get_local $$radiusFunction)
              (get_local $$agg$tmp47$byval_copy)
              (i32.const 0)
             )
-            ;; hierarchy.cpp:517
+            ;; hierarchy.cpp:522
             (i32.store
              (get_local $$agg$tmp48)
              (get_local $$this1)
@@ -26407,14 +26352,14 @@
             (set_global $__THREW__
              (i32.const 0)
             )
-            ;; hierarchy.cpp:517
+            ;; hierarchy.cpp:522
             (i32.store
              (get_local $$agg$tmp48$byval_copy)
              (i32.load
               (get_local $$agg$tmp48)
              )
             )
-            ;; hierarchy.cpp:517
+            ;; hierarchy.cpp:522
             (call $invoke_viii
              (i32.const 165)
              (get_local $$paddingFunction)
@@ -26442,11 +26387,11 @@
               (set_local $$94
                (get_global $tempRet0)
               )
-              ;; hierarchy.cpp:559
+              ;; hierarchy.cpp:548
               (set_local $$exn$slot
                (get_local $$93)
               )
-              ;; hierarchy.cpp:559
+              ;; hierarchy.cpp:548
               (set_local $$ehselector$slot
                (get_local $$94)
               )
@@ -26455,14 +26400,14 @@
               (set_global $__THREW__
                (i32.const 0)
               )
-              ;; hierarchy.cpp:526
+              ;; hierarchy.cpp:531
               (i32.store8
                (get_local $$agg$tmp51$byval_copy)
                (i32.load8_s
                 (get_local $$agg$tmp51)
                )
               )
-              ;; hierarchy.cpp:526
+              ;; hierarchy.cpp:531
               (call $invoke_viii
                (i32.const 166)
                (get_local $$zeroFn)
@@ -26490,17 +26435,17 @@
                 (set_local $$96
                  (get_global $tempRet0)
                 )
-                ;; hierarchy.cpp:559
+                ;; hierarchy.cpp:548
                 (set_local $$exn$slot
                  (get_local $$95)
                 )
-                ;; hierarchy.cpp:559
+                ;; hierarchy.cpp:548
                 (set_local $$ehselector$slot
                  (get_local $$96)
                 )
                )
                (block
-                ;; hierarchy.cpp:528
+                ;; hierarchy.cpp:533
                 (set_local $$options55
                  (i32.add
                   (get_local $$this1)
@@ -26524,7 +26469,7 @@
                 (set_global $__THREW__
                  (i32.const 0)
                 )
-                ;; hierarchy.cpp:528
+                ;; hierarchy.cpp:533
                 (call $invoke_viii
                  (i32.const 167)
                  (get_local $$agg$tmp54)
@@ -26653,7 +26598,7 @@
                        (set_global $__THREW__
                         (i32.const 0)
                        )
-                       ;; hierarchy.cpp:528
+                       ;; hierarchy.cpp:533
                        (set_local $$call63
                         (call $invoke_iiii
                          (i32.const 163)
@@ -26688,7 +26633,7 @@
                              (i32.const 1)
                             )
                             (block
-                             ;; hierarchy.cpp:529
+                             ;; hierarchy.cpp:534
                              (set_local $$options65
                               (i32.add
                                (get_local $$this1)
@@ -26698,7 +26643,7 @@
                              (set_global $__THREW__
                               (i32.const 0)
                              )
-                             ;; hierarchy.cpp:529
+                             ;; hierarchy.cpp:534
                              (call $invoke_viii
                               (i32.const 167)
                               (get_local $$agg$tmp64)
@@ -26726,11 +26671,11 @@
                                (br $label$break$L50)
                               )
                              )
-                             ;; hierarchy.cpp:529
+                             ;; hierarchy.cpp:534
                              (set_local $$$expand_i1_val3
                               (i32.const 1)
                              )
-                             ;; hierarchy.cpp:529
+                             ;; hierarchy.cpp:534
                              (i32.store8
                               (get_local $$cleanup$cond)
                               (get_local $$$expand_i1_val3)
@@ -26839,11 +26784,11 @@
                                   (br $do-once12)
                                  )
                                 )
-                                ;; hierarchy.cpp:529
+                                ;; hierarchy.cpp:534
                                 (set_local $$$expand_i1_val5
                                  (i32.const 1)
                                 )
-                                ;; hierarchy.cpp:529
+                                ;; hierarchy.cpp:534
                                 (i32.store8
                                  (get_local $$cleanup$cond70)
                                  (get_local $$$expand_i1_val5)
@@ -26851,7 +26796,7 @@
                                 (set_global $__THREW__
                                  (i32.const 0)
                                 )
-                                ;; hierarchy.cpp:529
+                                ;; hierarchy.cpp:534
                                 (set_local $$call73
                                  (call $invoke_iiii
                                   (i32.const 163)
@@ -26889,21 +26834,21 @@
                                 (set_local $$106
                                  (get_global $tempRet0)
                                 )
-                                ;; hierarchy.cpp:559
+                                ;; hierarchy.cpp:548
                                 (set_local $$exn$slot
                                  (get_local $$105)
                                 )
-                                ;; hierarchy.cpp:559
+                                ;; hierarchy.cpp:548
                                 (set_local $$ehselector$slot
                                  (get_local $$106)
                                 )
-                                ;; hierarchy.cpp:528
+                                ;; hierarchy.cpp:533
                                 (set_local $$cleanup$is_active75$pre_trunc
                                  (i32.load8_s
                                   (get_local $$cleanup$cond70)
                                  )
                                 )
-                                ;; hierarchy.cpp:528
+                                ;; hierarchy.cpp:533
                                 (set_local $$cleanup$is_active75
                                  (i32.and
                                   (get_local $$cleanup$is_active75$pre_trunc)
@@ -26916,7 +26861,7 @@
                                  )
                                  (br $do-once12)
                                 )
-                                ;; hierarchy.cpp:528
+                                ;; hierarchy.cpp:533
                                 (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
                                  (get_local $$ref$tmp67)
                                 )
@@ -26935,23 +26880,23 @@
                                (set_local $$104
                                 (get_global $tempRet0)
                                )
-                               ;; hierarchy.cpp:559
+                               ;; hierarchy.cpp:548
                                (set_local $$exn$slot
                                 (get_local $$103)
                                )
-                               ;; hierarchy.cpp:559
+                               ;; hierarchy.cpp:548
                                (set_local $$ehselector$slot
                                 (get_local $$104)
                                )
                               )
                              )
-                             ;; hierarchy.cpp:528
+                             ;; hierarchy.cpp:533
                              (set_local $$cleanup$is_active82$pre_trunc
                               (i32.load8_s
                                (get_local $$cleanup$cond)
                               )
                              )
-                             ;; hierarchy.cpp:528
+                             ;; hierarchy.cpp:533
                              (set_local $$cleanup$is_active82
                               (i32.and
                                (get_local $$cleanup$is_active82$pre_trunc)
@@ -26964,7 +26909,7 @@
                               )
                               (br $label$break$L50)
                              )
-                             ;; hierarchy.cpp:528
+                             ;; hierarchy.cpp:533
                              (call $__ZN10emscripten3valD2Ev
                               (get_local $$agg$tmp64)
                              )
@@ -26972,13 +26917,13 @@
                             )
                            )
                           )
-                          ;; hierarchy.cpp:528
+                          ;; hierarchy.cpp:533
                           (set_local $$cleanup$is_active$pre_trunc
                            (i32.load8_s
                             (get_local $$cleanup$cond70)
                            )
                           )
-                          ;; hierarchy.cpp:528
+                          ;; hierarchy.cpp:533
                           (set_local $$cleanup$is_active
                            (i32.and
                             (get_local $$cleanup$is_active$pre_trunc)
@@ -26987,18 +26932,18 @@
                           )
                           (if
                            (get_local $$cleanup$is_active)
-                           ;; hierarchy.cpp:528
+                           ;; hierarchy.cpp:533
                            (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
                             (get_local $$ref$tmp67)
                            )
                           )
-                          ;; hierarchy.cpp:528
+                          ;; hierarchy.cpp:533
                           (set_local $$cleanup$is_active78$pre_trunc
                            (i32.load8_s
                             (get_local $$cleanup$cond)
                            )
                           )
-                          ;; hierarchy.cpp:528
+                          ;; hierarchy.cpp:533
                           (set_local $$cleanup$is_active78
                            (i32.and
                             (get_local $$cleanup$is_active78$pre_trunc)
@@ -27007,35 +26952,35 @@
                           )
                           (if
                            (get_local $$cleanup$is_active78)
-                           ;; hierarchy.cpp:528
+                           ;; hierarchy.cpp:533
                            (call $__ZN10emscripten3valD2Ev
                             (get_local $$agg$tmp64)
                            )
                           )
-                          ;; hierarchy.cpp:528
+                          ;; hierarchy.cpp:533
                           (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
                            (get_local $$ref$tmp58)
                           )
-                          ;; hierarchy.cpp:528
+                          ;; hierarchy.cpp:533
                           (call $__ZN10emscripten3valD2Ev
                            (get_local $$agg$tmp54)
                           )
-                          ;; hierarchy.cpp:528
+                          ;; hierarchy.cpp:533
                           (set_local $$frombool
                            (i32.and
                             (get_local $$72)
                             (i32.const 1)
                            )
                           )
-                          ;; hierarchy.cpp:528
+                          ;; hierarchy.cpp:533
                           (set_local $$hasRadius
                            (get_local $$frombool)
                           )
-                          ;; hierarchy.cpp:531
+                          ;; hierarchy.cpp:536
                           (set_local $$73
                            (get_local $$hasRadius)
                           )
-                          ;; hierarchy.cpp:531
+                          ;; hierarchy.cpp:536
                           (set_local $$tobool
                            (i32.and
                             (get_local $$73)
@@ -27059,7 +27004,7 @@
                             (set_global $__THREW__
                              (i32.const 0)
                             )
-                            ;; hierarchy.cpp:532
+                            ;; hierarchy.cpp:537
                             (call $invoke_vii
                              (i32.const 168)
                              (get_local $$agg$tmp90)
@@ -27089,7 +27034,7 @@
                             (set_global $__THREW__
                              (i32.const 0)
                             )
-                            ;; hierarchy.cpp:532
+                            ;; hierarchy.cpp:537
                             (call $invoke_vii
                              (i32.const 169)
                              (get_local $$agg$tmp89)
@@ -27117,11 +27062,11 @@
                                (set_local $$108
                                 (get_global $tempRet0)
                                )
-                               ;; hierarchy.cpp:559
+                               ;; hierarchy.cpp:548
                                (set_local $$exn$slot
                                 (get_local $$107)
                                )
-                               ;; hierarchy.cpp:559
+                               ;; hierarchy.cpp:548
                                (set_local $$ehselector$slot
                                 (get_local $$108)
                                )
@@ -27130,7 +27075,7 @@
                                (set_global $__THREW__
                                 (i32.const 0)
                                )
-                               ;; hierarchy.cpp:532
+                               ;; hierarchy.cpp:537
                                (call $invoke_viii
                                 (i32.const 170)
                                 (get_local $$agg$tmp$ensured)
@@ -27158,41 +27103,41 @@
                                  (set_local $$110
                                   (get_global $tempRet0)
                                  )
-                                 ;; hierarchy.cpp:559
+                                 ;; hierarchy.cpp:548
                                  (set_local $$exn$slot
                                   (get_local $$109)
                                  )
-                                 ;; hierarchy.cpp:559
+                                 ;; hierarchy.cpp:548
                                  (set_local $$ehselector$slot
                                   (get_local $$110)
                                  )
-                                 ;; hierarchy.cpp:532
+                                 ;; hierarchy.cpp:537
                                  (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                   (get_local $$agg$tmp89)
                                  )
                                  (br $do-once14)
                                 )
                                )
-                               ;; hierarchy.cpp:532
+                               ;; hierarchy.cpp:537
                                (call $__ZN5HNodeD2Ev
                                 (get_local $$agg$tmp$ensured)
                                )
-                               ;; hierarchy.cpp:532
+                               ;; hierarchy.cpp:537
                                (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                 (get_local $$agg$tmp89)
                                )
-                               ;; hierarchy.cpp:532
+                               ;; hierarchy.cpp:537
                                (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                 (get_local $$agg$tmp90)
                                )
-                               ;; hierarchy.cpp:533
+                               ;; hierarchy.cpp:538
                                (set_local $$root99
                                 (i32.add
                                  (get_local $$this1)
                                  (i32.const 28)
                                 )
                                )
-                               ;; hierarchy.cpp:533
+                               ;; hierarchy.cpp:538
                                (set_local $$81
                                 (i32.load
                                  (get_local $$root99)
@@ -27201,7 +27146,7 @@
                                (set_global $__THREW__
                                 (i32.const 0)
                                )
-                               ;; hierarchy.cpp:533
+                               ;; hierarchy.cpp:538
                                (call $invoke_vii
                                 (i32.const 168)
                                 (get_local $$agg$tmp101)
@@ -27231,7 +27176,7 @@
                                (set_global $__THREW__
                                 (i32.const 0)
                                )
-                               ;; hierarchy.cpp:533
+                               ;; hierarchy.cpp:538
                                (call $invoke_viid
                                 (i32.const 171)
                                 (get_local $$agg$tmp100)
@@ -27260,11 +27205,11 @@
                                   (set_local $$112
                                    (get_global $tempRet0)
                                   )
-                                  ;; hierarchy.cpp:559
+                                  ;; hierarchy.cpp:548
                                   (set_local $$exn$slot
                                    (get_local $$111)
                                   )
-                                  ;; hierarchy.cpp:559
+                                  ;; hierarchy.cpp:548
                                   (set_local $$ehselector$slot
                                    (get_local $$112)
                                   )
@@ -27273,7 +27218,7 @@
                                   (set_global $__THREW__
                                    (i32.const 0)
                                   )
-                                  ;; hierarchy.cpp:533
+                                  ;; hierarchy.cpp:538
                                   (call $invoke_viii
                                    (i32.const 172)
                                    (get_local $$agg$tmp$ensured98)
@@ -27301,41 +27246,41 @@
                                     (set_local $$114
                                      (get_global $tempRet0)
                                     )
-                                    ;; hierarchy.cpp:559
+                                    ;; hierarchy.cpp:548
                                     (set_local $$exn$slot
                                      (get_local $$113)
                                     )
-                                    ;; hierarchy.cpp:559
+                                    ;; hierarchy.cpp:548
                                     (set_local $$ehselector$slot
                                      (get_local $$114)
                                     )
-                                    ;; hierarchy.cpp:533
+                                    ;; hierarchy.cpp:538
                                     (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                      (get_local $$agg$tmp100)
                                     )
                                     (br $do-once16)
                                    )
                                   )
-                                  ;; hierarchy.cpp:533
+                                  ;; hierarchy.cpp:538
                                   (call $__ZN5HNodeD2Ev
                                    (get_local $$agg$tmp$ensured98)
                                   )
-                                  ;; hierarchy.cpp:533
+                                  ;; hierarchy.cpp:538
                                   (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                    (get_local $$agg$tmp100)
                                   )
-                                  ;; hierarchy.cpp:533
+                                  ;; hierarchy.cpp:538
                                   (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                    (get_local $$agg$tmp101)
                                   )
-                                  ;; hierarchy.cpp:534
+                                  ;; hierarchy.cpp:539
                                   (set_local $$root110
                                    (i32.add
                                     (get_local $$this1)
                                     (i32.const 28)
                                    )
                                   )
-                                  ;; hierarchy.cpp:534
+                                  ;; hierarchy.cpp:539
                                   (set_local $$88
                                    (i32.load
                                     (get_local $$root110)
@@ -27344,7 +27289,7 @@
                                   (set_global $__THREW__
                                    (i32.const 0)
                                   )
-                                  ;; hierarchy.cpp:534
+                                  ;; hierarchy.cpp:539
                                   (call $invoke_vid
                                    (i32.const 173)
                                    (get_local $$agg$tmp111)
@@ -27374,7 +27319,7 @@
                                   (set_global $__THREW__
                                    (i32.const 0)
                                   )
-                                  ;; hierarchy.cpp:534
+                                  ;; hierarchy.cpp:539
                                   (call $invoke_viii
                                    (i32.const 170)
                                    (get_local $$agg$tmp$ensured109)
@@ -27402,65 +27347,65 @@
                                     (set_local $$116
                                      (get_global $tempRet0)
                                     )
-                                    ;; hierarchy.cpp:559
+                                    ;; hierarchy.cpp:548
                                     (set_local $$exn$slot
                                      (get_local $$115)
                                     )
-                                    ;; hierarchy.cpp:559
+                                    ;; hierarchy.cpp:548
                                     (set_local $$ehselector$slot
                                      (get_local $$116)
                                     )
-                                    ;; hierarchy.cpp:534
+                                    ;; hierarchy.cpp:539
                                     (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                      (get_local $$agg$tmp111)
                                     )
                                     (br $label$break$L45)
                                    )
                                   )
-                                  ;; hierarchy.cpp:534
+                                  ;; hierarchy.cpp:539
                                   (call $__ZN5HNodeD2Ev
                                    (get_local $$agg$tmp$ensured109)
                                   )
-                                  ;; hierarchy.cpp:534
+                                  ;; hierarchy.cpp:539
                                   (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                    (get_local $$agg$tmp111)
                                   )
-                                  ;; hierarchy.cpp:558
+                                  ;; hierarchy.cpp:547
                                   (set_local $$root168
                                    (i32.add
                                     (get_local $$this1)
                                     (i32.const 28)
                                    )
                                   )
-                                  ;; hierarchy.cpp:558
+                                  ;; hierarchy.cpp:547
                                   (set_local $$164
                                    (i32.load
                                     (get_local $$root168)
                                    )
                                   )
-                                  ;; hierarchy.cpp:559
+                                  ;; hierarchy.cpp:548
                                   (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                    (get_local $$zeroFn)
                                   )
-                                  ;; hierarchy.cpp:559
+                                  ;; hierarchy.cpp:548
                                   (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                    (get_local $$paddingFunction)
                                   )
-                                  ;; hierarchy.cpp:559
+                                  ;; hierarchy.cpp:548
                                   (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                    (get_local $$radiusFunction)
                                   )
                                   (set_global $STACKTOP
                                    (get_local $sp)
                                   )
-                                  ;; hierarchy.cpp:559
+                                  ;; hierarchy.cpp:548
                                   (return
                                    (get_local $$164)
                                   )
                                  )
                                 )
                                )
-                               ;; hierarchy.cpp:533
+                               ;; hierarchy.cpp:538
                                (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                 (get_local $$agg$tmp101)
                                )
@@ -27468,7 +27413,7 @@
                               )
                              )
                             )
-                            ;; hierarchy.cpp:532
+                            ;; hierarchy.cpp:537
                             (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                              (get_local $$agg$tmp90)
                             )
@@ -27478,7 +27423,7 @@
                           (set_global $__THREW__
                            (i32.const 0)
                           )
-                          ;; hierarchy.cpp:536
+                          ;; hierarchy.cpp:541
                           (call $invoke_vii
                            (i32.const 168)
                            (get_local $$agg$tmp119)
@@ -27508,7 +27453,7 @@
                           (set_global $__THREW__
                            (i32.const 0)
                           )
-                          ;; hierarchy.cpp:536
+                          ;; hierarchy.cpp:541
                           (call $invoke_vii
                            (i32.const 169)
                            (get_local $$agg$tmp118)
@@ -27536,11 +27481,11 @@
                              (set_local $$151
                               (get_global $tempRet0)
                              )
-                             ;; hierarchy.cpp:559
+                             ;; hierarchy.cpp:548
                              (set_local $$exn$slot
                               (get_local $$150)
                              )
-                             ;; hierarchy.cpp:559
+                             ;; hierarchy.cpp:548
                              (set_local $$ehselector$slot
                               (get_local $$151)
                              )
@@ -27549,7 +27494,7 @@
                              (set_global $__THREW__
                               (i32.const 0)
                              )
-                             ;; hierarchy.cpp:536
+                             ;; hierarchy.cpp:541
                              (call $invoke_viii
                               (i32.const 170)
                               (get_local $$agg$tmp$ensured116)
@@ -27577,41 +27522,41 @@
                                (set_local $$153
                                 (get_global $tempRet0)
                                )
-                               ;; hierarchy.cpp:559
+                               ;; hierarchy.cpp:548
                                (set_local $$exn$slot
                                 (get_local $$152)
                                )
-                               ;; hierarchy.cpp:559
+                               ;; hierarchy.cpp:548
                                (set_local $$ehselector$slot
                                 (get_local $$153)
                                )
-                               ;; hierarchy.cpp:536
+                               ;; hierarchy.cpp:541
                                (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                 (get_local $$agg$tmp118)
                                )
                                (br $do-once18)
                               )
                              )
-                             ;; hierarchy.cpp:536
+                             ;; hierarchy.cpp:541
                              (call $__ZN5HNodeD2Ev
                               (get_local $$agg$tmp$ensured116)
                              )
-                             ;; hierarchy.cpp:536
+                             ;; hierarchy.cpp:541
                              (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                               (get_local $$agg$tmp118)
                              )
-                             ;; hierarchy.cpp:536
+                             ;; hierarchy.cpp:541
                              (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                               (get_local $$agg$tmp119)
                              )
-                             ;; hierarchy.cpp:541
+                             ;; hierarchy.cpp:542
                              (set_local $$root128
                               (i32.add
                                (get_local $$this1)
                                (i32.const 28)
                               )
                              )
-                             ;; hierarchy.cpp:541
+                             ;; hierarchy.cpp:542
                              (set_local $$123
                               (i32.load
                                (get_local $$root128)
@@ -27620,7 +27565,7 @@
                              (set_global $__THREW__
                               (i32.const 0)
                              )
-                             ;; hierarchy.cpp:541
+                             ;; hierarchy.cpp:542
                              (call $invoke_vii
                               (i32.const 168)
                               (get_local $$agg$tmp130)
@@ -27650,7 +27595,7 @@
                              (set_global $__THREW__
                               (i32.const 0)
                              )
-                             ;; hierarchy.cpp:541
+                             ;; hierarchy.cpp:542
                              (call $invoke_viid
                               (i32.const 171)
                               (get_local $$agg$tmp129)
@@ -27679,11 +27624,11 @@
                                 (set_local $$155
                                  (get_global $tempRet0)
                                 )
-                                ;; hierarchy.cpp:559
+                                ;; hierarchy.cpp:548
                                 (set_local $$exn$slot
                                  (get_local $$154)
                                 )
-                                ;; hierarchy.cpp:559
+                                ;; hierarchy.cpp:548
                                 (set_local $$ehselector$slot
                                  (get_local $$155)
                                 )
@@ -27692,7 +27637,7 @@
                                 (set_global $__THREW__
                                  (i32.const 0)
                                 )
-                                ;; hierarchy.cpp:541
+                                ;; hierarchy.cpp:542
                                 (call $invoke_viii
                                  (i32.const 172)
                                  (get_local $$agg$tmp$ensured127)
@@ -27720,41 +27665,41 @@
                                   (set_local $$157
                                    (get_global $tempRet0)
                                   )
-                                  ;; hierarchy.cpp:559
+                                  ;; hierarchy.cpp:548
                                   (set_local $$exn$slot
                                    (get_local $$156)
                                   )
-                                  ;; hierarchy.cpp:559
+                                  ;; hierarchy.cpp:548
                                   (set_local $$ehselector$slot
                                    (get_local $$157)
                                   )
-                                  ;; hierarchy.cpp:541
+                                  ;; hierarchy.cpp:542
                                   (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                    (get_local $$agg$tmp129)
                                   )
                                   (br $do-once20)
                                  )
                                 )
-                                ;; hierarchy.cpp:541
+                                ;; hierarchy.cpp:542
                                 (call $__ZN5HNodeD2Ev
                                  (get_local $$agg$tmp$ensured127)
                                 )
-                                ;; hierarchy.cpp:541
+                                ;; hierarchy.cpp:542
                                 (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                  (get_local $$agg$tmp129)
                                 )
-                                ;; hierarchy.cpp:541
+                                ;; hierarchy.cpp:542
                                 (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                  (get_local $$agg$tmp130)
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$root139
                                  (i32.add
                                   (get_local $$this1)
                                   (i32.const 28)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$130
                                  (i32.load
                                   (get_local $$root139)
@@ -27763,7 +27708,7 @@
                                 (set_global $__THREW__
                                  (i32.const 0)
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (call $invoke_vii
                                  (i32.const 168)
                                  (get_local $$agg$tmp141)
@@ -27790,59 +27735,59 @@
                                   (br $label$break$L45)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$root143
                                  (i32.add
                                   (get_local $$this1)
                                   (i32.const 28)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$133
                                  (i32.load
                                   (get_local $$root143)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$r
                                  (i32.add
                                   (get_local $$133)
                                   (i32.const 16)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$134
                                  (f64.load
                                   (get_local $$r)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$135
                                  (f64.load
                                   (get_local $$this1)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$dy145
                                  (i32.add
                                   (get_local $$this1)
                                   (i32.const 8)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$136
                                  (f64.load
                                   (get_local $$dy145)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$call146
                                  (call $_fmin
                                   (get_local $$135)
                                   (get_local $$136)
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (set_local $$div147
                                  (f64.div
                                   (get_local $$134)
@@ -27852,7 +27797,7 @@
                                 (set_global $__THREW__
                                  (i32.const 0)
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (call $invoke_viid
                                  (i32.const 171)
                                  (get_local $$agg$tmp140)
@@ -27881,11 +27826,11 @@
                                    (set_local $$159
                                     (get_global $tempRet0)
                                    )
-                                   ;; hierarchy.cpp:559
+                                   ;; hierarchy.cpp:548
                                    (set_local $$exn$slot
                                     (get_local $$158)
                                    )
-                                   ;; hierarchy.cpp:559
+                                   ;; hierarchy.cpp:548
                                    (set_local $$ehselector$slot
                                     (get_local $$159)
                                    )
@@ -27894,7 +27839,7 @@
                                    (set_global $__THREW__
                                     (i32.const 0)
                                    )
-                                   ;; hierarchy.cpp:546
+                                   ;; hierarchy.cpp:543
                                    (call $invoke_viii
                                     (i32.const 172)
                                     (get_local $$agg$tmp$ensured138)
@@ -27922,106 +27867,106 @@
                                      (set_local $$161
                                       (get_global $tempRet0)
                                      )
-                                     ;; hierarchy.cpp:559
+                                     ;; hierarchy.cpp:548
                                      (set_local $$exn$slot
                                       (get_local $$160)
                                      )
-                                     ;; hierarchy.cpp:559
+                                     ;; hierarchy.cpp:548
                                      (set_local $$ehselector$slot
                                       (get_local $$161)
                                      )
-                                     ;; hierarchy.cpp:546
+                                     ;; hierarchy.cpp:543
                                      (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                       (get_local $$agg$tmp140)
                                      )
                                      (br $do-once22)
                                     )
                                    )
-                                   ;; hierarchy.cpp:546
+                                   ;; hierarchy.cpp:543
                                    (call $__ZN5HNodeD2Ev
                                     (get_local $$agg$tmp$ensured138)
                                    )
-                                   ;; hierarchy.cpp:546
+                                   ;; hierarchy.cpp:543
                                    (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                     (get_local $$agg$tmp140)
                                    )
-                                   ;; hierarchy.cpp:546
+                                   ;; hierarchy.cpp:543
                                    (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                     (get_local $$agg$tmp141)
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$root155
                                     (i32.add
                                      (get_local $$this1)
                                      (i32.const 28)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$141
                                     (i32.load
                                      (get_local $$root155)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$142
                                     (f64.load
                                      (get_local $$this1)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$dy158
                                     (i32.add
                                      (get_local $$this1)
                                      (i32.const 8)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$143
                                     (f64.load
                                      (get_local $$dy158)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$call159
                                     (call $_fmin
                                      (get_local $$142)
                                      (get_local $$143)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$root160
                                     (i32.add
                                      (get_local $$this1)
                                      (i32.const 28)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$144
                                     (i32.load
                                      (get_local $$root160)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$r161
                                     (i32.add
                                      (get_local $$144)
                                      (i32.const 16)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$145
                                     (f64.load
                                      (get_local $$r161)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$mul
                                     (f64.mul
                                      (f64.const 2)
                                      (get_local $$145)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (set_local $$div162
                                     (f64.div
                                      (get_local $$call159)
@@ -28031,7 +27976,7 @@
                                    (set_global $__THREW__
                                     (i32.const 0)
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (call $invoke_vid
                                     (i32.const 173)
                                     (get_local $$agg$tmp156)
@@ -28061,7 +28006,7 @@
                                    (set_global $__THREW__
                                     (i32.const 0)
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (call $invoke_viii
                                     (i32.const 170)
                                     (get_local $$agg$tmp$ensured154)
@@ -28089,65 +28034,65 @@
                                      (set_local $$163
                                       (get_global $tempRet0)
                                      )
-                                     ;; hierarchy.cpp:559
+                                     ;; hierarchy.cpp:548
                                      (set_local $$exn$slot
                                       (get_local $$162)
                                      )
-                                     ;; hierarchy.cpp:559
+                                     ;; hierarchy.cpp:548
                                      (set_local $$ehselector$slot
                                       (get_local $$163)
                                      )
-                                     ;; hierarchy.cpp:551
+                                     ;; hierarchy.cpp:544
                                      (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                       (get_local $$agg$tmp156)
                                      )
                                      (br $label$break$L45)
                                     )
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (call $__ZN5HNodeD2Ev
                                     (get_local $$agg$tmp$ensured154)
                                    )
-                                   ;; hierarchy.cpp:551
+                                   ;; hierarchy.cpp:544
                                    (call $__ZNSt3__28functionIFvP5HNodeEED2Ev
                                     (get_local $$agg$tmp156)
                                    )
-                                   ;; hierarchy.cpp:558
+                                   ;; hierarchy.cpp:547
                                    (set_local $$root168
                                     (i32.add
                                      (get_local $$this1)
                                      (i32.const 28)
                                     )
                                    )
-                                   ;; hierarchy.cpp:558
+                                   ;; hierarchy.cpp:547
                                    (set_local $$164
                                     (i32.load
                                      (get_local $$root168)
                                     )
                                    )
-                                   ;; hierarchy.cpp:559
+                                   ;; hierarchy.cpp:548
                                    (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                     (get_local $$zeroFn)
                                    )
-                                   ;; hierarchy.cpp:559
+                                   ;; hierarchy.cpp:548
                                    (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                     (get_local $$paddingFunction)
                                    )
-                                   ;; hierarchy.cpp:559
+                                   ;; hierarchy.cpp:548
                                    (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                     (get_local $$radiusFunction)
                                    )
                                    (set_global $STACKTOP
                                     (get_local $sp)
                                    )
-                                   ;; hierarchy.cpp:559
+                                   ;; hierarchy.cpp:548
                                    (return
                                     (get_local $$164)
                                    )
                                   )
                                  )
                                 )
-                                ;; hierarchy.cpp:546
+                                ;; hierarchy.cpp:543
                                 (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                                  (get_local $$agg$tmp141)
                                 )
@@ -28155,7 +28100,7 @@
                                )
                               )
                              )
-                             ;; hierarchy.cpp:541
+                             ;; hierarchy.cpp:542
                              (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                               (get_local $$agg$tmp130)
                              )
@@ -28163,7 +28108,7 @@
                             )
                            )
                           )
-                          ;; hierarchy.cpp:536
+                          ;; hierarchy.cpp:541
                           (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                            (get_local $$agg$tmp119)
                           )
@@ -28183,17 +28128,17 @@
                          (set_local $$102
                           (get_global $tempRet0)
                          )
-                         ;; hierarchy.cpp:559
+                         ;; hierarchy.cpp:548
                          (set_local $$exn$slot
                           (get_local $$101)
                          )
-                         ;; hierarchy.cpp:559
+                         ;; hierarchy.cpp:548
                          (set_local $$ehselector$slot
                           (get_local $$102)
                          )
                         )
                        )
-                       ;; hierarchy.cpp:528
+                       ;; hierarchy.cpp:533
                        (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
                         (get_local $$ref$tmp58)
                        )
@@ -28213,17 +28158,17 @@
                      (set_local $$100
                       (get_global $tempRet0)
                      )
-                     ;; hierarchy.cpp:559
+                     ;; hierarchy.cpp:548
                      (set_local $$exn$slot
                       (get_local $$99)
                      )
-                     ;; hierarchy.cpp:559
+                     ;; hierarchy.cpp:548
                      (set_local $$ehselector$slot
                       (get_local $$100)
                      )
                     )
                    )
-                   ;; hierarchy.cpp:528
+                   ;; hierarchy.cpp:533
                    (call $__ZN10emscripten3valD2Ev
                     (get_local $$agg$tmp54)
                    )
@@ -28242,37 +28187,37 @@
                   (set_local $$98
                    (get_global $tempRet0)
                   )
-                  ;; hierarchy.cpp:559
+                  ;; hierarchy.cpp:548
                   (set_local $$exn$slot
                    (get_local $$97)
                   )
-                  ;; hierarchy.cpp:559
+                  ;; hierarchy.cpp:548
                   (set_local $$ehselector$slot
                    (get_local $$98)
                   )
                  )
                 )
-                ;; hierarchy.cpp:559
+                ;; hierarchy.cpp:548
                 (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                  (get_local $$zeroFn)
                 )
                )
               )
-              ;; hierarchy.cpp:559
+              ;; hierarchy.cpp:548
               (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
                (get_local $$paddingFunction)
               )
              )
             )
-            ;; hierarchy.cpp:559
+            ;; hierarchy.cpp:548
             (call $__ZNSt3__28functionIFdP5HNodeEED2Ev
              (get_local $$radiusFunction)
             )
-            ;; hierarchy.cpp:497
+            ;; hierarchy.cpp:502
             (set_local $$exn
              (get_local $$exn$slot)
             )
-            ;; hierarchy.cpp:497
+            ;; hierarchy.cpp:502
             (set_local $$sel
              (get_local $$ehselector$slot)
             )
@@ -28296,25 +28241,25 @@
          (set_local $$39
           (get_global $tempRet0)
          )
-         ;; hierarchy.cpp:559
+         ;; hierarchy.cpp:548
          (set_local $$exn$slot
           (get_local $$38)
          )
-         ;; hierarchy.cpp:559
+         ;; hierarchy.cpp:548
          (set_local $$ehselector$slot
           (get_local $$39)
          )
         )
        )
-       ;; hierarchy.cpp:503
+       ;; hierarchy.cpp:508
        (call $__ZN10emscripten3valD2Ev
         (get_local $$agg$tmp25)
        )
-       ;; hierarchy.cpp:497
+       ;; hierarchy.cpp:502
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:497
+       ;; hierarchy.cpp:502
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -28338,25 +28283,25 @@
     (set_local $$17
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:559
+    ;; hierarchy.cpp:548
     (set_local $$exn$slot
      (get_local $$16)
     )
-    ;; hierarchy.cpp:559
+    ;; hierarchy.cpp:548
     (set_local $$ehselector$slot
      (get_local $$17)
     )
    )
   )
-  ;; hierarchy.cpp:497
+  ;; hierarchy.cpp:502
   (call $__ZN10emscripten3valD2Ev
    (get_local $$agg$tmp)
   )
-  ;; hierarchy.cpp:497
+  ;; hierarchy.cpp:502
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:497
+  ;; hierarchy.cpp:502
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -30806,7 +30751,7 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:39
+  ;; hierarchy.cpp:40
   (call $__ZN10emscripten3valC2ERKS0_
    (get_local $$agg$tmp)
    (get_local $$node)
@@ -30814,7 +30759,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:39
+  ;; hierarchy.cpp:40
   (call $invoke_vii
    (i32.const 116)
    (get_local $$this1)
@@ -30841,23 +30786,23 @@
     (set_local $$4
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:42
+    ;; hierarchy.cpp:43
     (set_local $$exn$slot
      (get_local $$3)
     )
-    ;; hierarchy.cpp:42
+    ;; hierarchy.cpp:43
     (set_local $$ehselector$slot
      (get_local $$4)
     )
-    ;; hierarchy.cpp:39
+    ;; hierarchy.cpp:40
     (call $__ZN10emscripten3valD2Ev
      (get_local $$agg$tmp)
     )
-    ;; hierarchy.cpp:39
+    ;; hierarchy.cpp:40
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:39
+    ;; hierarchy.cpp:40
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -30866,22 +30811,22 @@
     )
    )
    (block
-    ;; hierarchy.cpp:39
+    ;; hierarchy.cpp:40
     (call $__ZN10emscripten3valD2Ev
      (get_local $$agg$tmp)
     )
-    ;; hierarchy.cpp:41
+    ;; hierarchy.cpp:42
     (set_local $$2
      (get_local $$parent_$addr)
     )
-    ;; hierarchy.cpp:41
+    ;; hierarchy.cpp:42
     (set_local $$parent
      (i32.add
       (get_local $$this1)
       (i32.const 44)
      )
     )
-    ;; hierarchy.cpp:41
+    ;; hierarchy.cpp:42
     (i32.store
      (get_local $$parent)
      (get_local $$2)
@@ -30889,7 +30834,7 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:42
+    ;; hierarchy.cpp:43
     (return)
    )
   )
@@ -42557,7 +42502,7 @@
   (set_local $$type$addr
    (get_local $$type)
   )
-  ;; hierarchy.cpp:485
+  ;; hierarchy.cpp:490
   (call $__ZNK10emscripten3val6typeofEv
    (get_local $$ref$tmp2)
    (get_local $$value)
@@ -42565,7 +42510,7 @@
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:485
+  ;; hierarchy.cpp:490
   (call $invoke_vii
    (i32.const 122)
    (get_local $$ref$tmp)
@@ -42592,23 +42537,23 @@
     (set_local $$50
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:486
+    ;; hierarchy.cpp:491
     (set_local $$exn$slot
      (get_local $$49)
     )
-    ;; hierarchy.cpp:486
+    ;; hierarchy.cpp:491
     (set_local $$ehselector$slot
      (get_local $$50)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (call $__ZN10emscripten3valD2Ev
      (get_local $$ref$tmp2)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -42617,7 +42562,7 @@
     )
    )
   )
-  ;; hierarchy.cpp:485
+  ;; hierarchy.cpp:490
   (set_local $$2
    (get_local $$type$addr)
   )
@@ -42955,18 +42900,18 @@
       (i32.const 1)
      )
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
      (get_local $$ref$tmp)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (call $__ZN10emscripten3valD2Ev
      (get_local $$ref$tmp2)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (return
      (get_local $$48)
     )
@@ -43412,18 +43357,18 @@
       (i32.const 1)
      )
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
      (get_local $$ref$tmp)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (call $__ZN10emscripten3valD2Ev
      (get_local $$ref$tmp2)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (return
      (get_local $$48)
     )
@@ -43585,18 +43530,18 @@
       (i32.const 1)
      )
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
      (get_local $$ref$tmp)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (call $__ZN10emscripten3valD2Ev
      (get_local $$ref$tmp2)
     )
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:485
+    ;; hierarchy.cpp:490
     (return
      (get_local $$48)
     )
@@ -43629,18 +43574,18 @@
        (i32.const 1)
       )
      )
-     ;; hierarchy.cpp:485
+     ;; hierarchy.cpp:490
      (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
       (get_local $$ref$tmp)
      )
-     ;; hierarchy.cpp:485
+     ;; hierarchy.cpp:490
      (call $__ZN10emscripten3valD2Ev
       (get_local $$ref$tmp2)
      )
      (set_global $STACKTOP
       (get_local $sp)
      )
-     ;; hierarchy.cpp:485
+     ;; hierarchy.cpp:490
      (return
       (get_local $$48)
      )
@@ -46009,12 +45954,12 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:52
+  ;; hierarchy.cpp:53
   (i32.store
    (get_local $$ref$tmp)
    (get_local $$this1)
   )
-  ;; hierarchy.cpp:52
+  ;; hierarchy.cpp:53
   (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEEC2EjRKS2_
    (get_local $$nodes)
    (i32.const 1)
@@ -46119,20 +46064,20 @@
       )
      )
     )
-    ;; hierarchy.cpp:56
+    ;; hierarchy.cpp:57
     (set_local $$4
      (i32.load
       (get_local $$add$ptr3$i)
      )
     )
-    ;; hierarchy.cpp:56
+    ;; hierarchy.cpp:57
     (set_local $$node
      (get_local $$4)
     )
     (set_global $__THREW__
      (i32.const 0)
     )
-    ;; hierarchy.cpp:57
+    ;; hierarchy.cpp:58
     (call $invoke_vi
      (i32.const 188)
      (get_local $$nodes)
@@ -46158,14 +46103,14 @@
       (br $label$break$L1)
      )
     )
-    ;; hierarchy.cpp:58
+    ;; hierarchy.cpp:59
     (set_local $$7
      (get_local $$node)
     )
     (set_global $__THREW__
      (i32.const 0)
     )
-    ;; hierarchy.cpp:58
+    ;; hierarchy.cpp:59
     (call $invoke_vii
      (i32.const 189)
      (get_local $$callback)
@@ -46192,11 +46137,11 @@
       (br $label$break$L1)
      )
     )
-    ;; hierarchy.cpp:59
+    ;; hierarchy.cpp:60
     (set_local $$10
      (get_local $$node)
     )
-    ;; hierarchy.cpp:59
+    ;; hierarchy.cpp:60
     (set_local $$children
      (i32.add
       (get_local $$10)
@@ -46241,21 +46186,21 @@
        (get_local $$cmp$i)
       )
       (block
-       ;; hierarchy.cpp:61
+       ;; hierarchy.cpp:62
        (set_local $$i
         (i32.const 0)
        )
        (loop $while-in
         (block $while-out
-         ;; hierarchy.cpp:61
+         ;; hierarchy.cpp:62
          (set_local $$13
           (get_local $$i)
          )
-         ;; hierarchy.cpp:61
+         ;; hierarchy.cpp:62
          (set_local $$14
           (get_local $$node)
          )
-         ;; hierarchy.cpp:61
+         ;; hierarchy.cpp:62
          (set_local $$children5
           (i32.add
            (get_local $$14)
@@ -46312,7 +46257,7 @@
            (i32.const -1)
           )
          )
-         ;; hierarchy.cpp:61
+         ;; hierarchy.cpp:62
          (set_local $$cmp
           (i32.lt_u
            (get_local $$13)
@@ -46325,18 +46270,18 @@
           )
           (br $label$break$L5)
          )
-         ;; hierarchy.cpp:62
+         ;; hierarchy.cpp:63
          (set_local $$17
           (get_local $$node)
          )
-         ;; hierarchy.cpp:62
+         ;; hierarchy.cpp:63
          (set_local $$children7
           (i32.add
            (get_local $$17)
            (i32.const 32)
           )
          )
-         ;; hierarchy.cpp:62
+         ;; hierarchy.cpp:63
          (set_local $$18
           (get_local $$i)
          )
@@ -46372,7 +46317,7 @@
          (set_global $__THREW__
           (i32.const 0)
          )
-         ;; hierarchy.cpp:62
+         ;; hierarchy.cpp:63
          (call $invoke_vii
           (i32.const 190)
           (get_local $$nodes)
@@ -46399,18 +46344,18 @@
            (br $label$break$L1)
           )
          )
-         ;; hierarchy.cpp:61
+         ;; hierarchy.cpp:62
          (set_local $$23
           (get_local $$i)
          )
-         ;; hierarchy.cpp:61
+         ;; hierarchy.cpp:62
          (set_local $$inc
           (i32.add
            (get_local $$23)
            (i32.const 1)
           )
          )
-         ;; hierarchy.cpp:61
+         ;; hierarchy.cpp:62
          (set_local $$i
           (get_local $$inc)
          )
@@ -46464,7 +46409,7 @@
       (i32.const 0)
      )
     )
-    ;; hierarchy.cpp:65
+    ;; hierarchy.cpp:66
     (set_local $$lnot
      (i32.xor
       (get_local $$cmp$i24)
@@ -46497,23 +46442,23 @@
     (set_local $$25
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:68
+    ;; hierarchy.cpp:69
     (set_local $$exn$slot
      (get_local $$24)
     )
-    ;; hierarchy.cpp:68
+    ;; hierarchy.cpp:69
     (set_local $$ehselector$slot
      (get_local $$25)
     )
-    ;; hierarchy.cpp:68
+    ;; hierarchy.cpp:69
     (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
      (get_local $$nodes)
     )
-    ;; hierarchy.cpp:68
+    ;; hierarchy.cpp:69
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:68
+    ;; hierarchy.cpp:69
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -46530,7 +46475,7 @@
      (set_global $__THREW__
       (i32.const 0)
      )
-     ;; hierarchy.cpp:67
+     ;; hierarchy.cpp:68
      (call $invoke_vii
       (i32.const 191)
       (get_local $$agg$result)
@@ -46557,23 +46502,23 @@
        (set_local $$25
         (get_global $tempRet0)
        )
-       ;; hierarchy.cpp:68
+       ;; hierarchy.cpp:69
        (set_local $$exn$slot
         (get_local $$24)
        )
-       ;; hierarchy.cpp:68
+       ;; hierarchy.cpp:69
        (set_local $$ehselector$slot
         (get_local $$25)
        )
-       ;; hierarchy.cpp:68
+       ;; hierarchy.cpp:69
        (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
         (get_local $$nodes)
        )
-       ;; hierarchy.cpp:68
+       ;; hierarchy.cpp:69
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:68
+       ;; hierarchy.cpp:69
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -46582,14 +46527,14 @@
        )
       )
       (block
-       ;; hierarchy.cpp:68
+       ;; hierarchy.cpp:69
        (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
         (get_local $$nodes)
        )
        (set_global $STACKTOP
         (get_local $sp)
        )
-       ;; hierarchy.cpp:68
+       ;; hierarchy.cpp:69
        (return)
       )
      )
@@ -47067,36 +47012,36 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:73
+  ;; hierarchy.cpp:74
   (i32.store
    (get_local $$ref$tmp)
    (get_local $$this1)
   )
-  ;; hierarchy.cpp:73
+  ;; hierarchy.cpp:74
   (i32.store
    (get_local $$agg$tmp)
    (get_local $$ref$tmp)
   )
-  ;; hierarchy.cpp:73
+  ;; hierarchy.cpp:74
   (set_local $$__size_
    (i32.add
     (get_local $$agg$tmp)
     (i32.const 4)
    )
   )
-  ;; hierarchy.cpp:73
+  ;; hierarchy.cpp:74
   (i32.store
    (get_local $$__size_)
    (i32.const 1)
   )
-  ;; hierarchy.cpp:73
+  ;; hierarchy.cpp:74
   (i64.store align=4
    (get_local $$agg$tmp$byval_copy)
    (i64.load align=4
     (get_local $$agg$tmp)
    )
   )
-  ;; hierarchy.cpp:73
+  ;; hierarchy.cpp:74
   (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEEC2ESt16initializer_listIS2_E
    (get_local $$nodes)
    (get_local $$agg$tmp$byval_copy)
@@ -47381,13 +47326,13 @@
       )
      )
     )
-    ;; hierarchy.cpp:78
+    ;; hierarchy.cpp:79
     (set_local $$12
      (i32.load
       (get_local $$add$ptr3$i)
      )
     )
-    ;; hierarchy.cpp:78
+    ;; hierarchy.cpp:79
     (i32.store
      (get_local $$node)
      (get_local $$12)
@@ -47395,7 +47340,7 @@
     (set_global $__THREW__
      (i32.const 0)
     )
-    ;; hierarchy.cpp:79
+    ;; hierarchy.cpp:80
     (call $invoke_vii
      (i32.const 190)
      (get_local $$next)
@@ -47425,7 +47370,7 @@
     (set_global $__THREW__
      (i32.const 0)
     )
-    ;; hierarchy.cpp:80
+    ;; hierarchy.cpp:81
     (call $invoke_vi
      (i32.const 188)
      (get_local $$nodes)
@@ -47451,13 +47396,13 @@
       (br $label$break$L1)
      )
     )
-    ;; hierarchy.cpp:81
+    ;; hierarchy.cpp:82
     (set_local $$17
      (i32.load
       (get_local $$node)
      )
     )
-    ;; hierarchy.cpp:81
+    ;; hierarchy.cpp:82
     (set_local $$children
      (i32.add
       (get_local $$17)
@@ -47502,23 +47447,23 @@
        (get_local $$cmp$i)
       )
       (block
-       ;; hierarchy.cpp:83
+       ;; hierarchy.cpp:84
        (set_local $$i
         (i32.const 0)
        )
        (loop $while-in
         (block $while-out
-         ;; hierarchy.cpp:83
+         ;; hierarchy.cpp:84
          (set_local $$20
           (get_local $$i)
          )
-         ;; hierarchy.cpp:83
+         ;; hierarchy.cpp:84
          (set_local $$21
           (i32.load
            (get_local $$node)
           )
          )
-         ;; hierarchy.cpp:83
+         ;; hierarchy.cpp:84
          (set_local $$children5
           (i32.add
            (get_local $$21)
@@ -47575,7 +47520,7 @@
            (i32.const -1)
           )
          )
-         ;; hierarchy.cpp:83
+         ;; hierarchy.cpp:84
          (set_local $$cmp
           (i32.lt_u
            (get_local $$20)
@@ -47588,20 +47533,20 @@
           )
           (br $label$break$L5)
          )
-         ;; hierarchy.cpp:84
+         ;; hierarchy.cpp:85
          (set_local $$24
           (i32.load
            (get_local $$node)
           )
          )
-         ;; hierarchy.cpp:84
+         ;; hierarchy.cpp:85
          (set_local $$children7
           (i32.add
            (get_local $$24)
            (i32.const 32)
           )
          )
-         ;; hierarchy.cpp:84
+         ;; hierarchy.cpp:85
          (set_local $$25
           (get_local $$i)
          )
@@ -47637,7 +47582,7 @@
          (set_global $__THREW__
           (i32.const 0)
          )
-         ;; hierarchy.cpp:84
+         ;; hierarchy.cpp:85
          (call $invoke_vii
           (i32.const 190)
           (get_local $$nodes)
@@ -47664,18 +47609,18 @@
            (br $label$break$L1)
           )
          )
-         ;; hierarchy.cpp:83
+         ;; hierarchy.cpp:84
          (set_local $$30
           (get_local $$i)
          )
-         ;; hierarchy.cpp:83
+         ;; hierarchy.cpp:84
          (set_local $$inc
           (i32.add
            (get_local $$30)
            (i32.const 1)
           )
          )
-         ;; hierarchy.cpp:83
+         ;; hierarchy.cpp:84
          (set_local $$i
           (get_local $$inc)
          )
@@ -47729,7 +47674,7 @@
       (i32.const 0)
      )
     )
-    ;; hierarchy.cpp:87
+    ;; hierarchy.cpp:88
     (set_local $$lnot
      (i32.xor
       (get_local $$cmp$i57)
@@ -47762,27 +47707,27 @@
     (set_local $$32
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:96
+    ;; hierarchy.cpp:97
     (set_local $$exn$slot
      (get_local $$31)
     )
-    ;; hierarchy.cpp:96
+    ;; hierarchy.cpp:97
     (set_local $$ehselector$slot
      (get_local $$32)
     )
-    ;; hierarchy.cpp:96
+    ;; hierarchy.cpp:97
     (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
      (get_local $$next)
     )
-    ;; hierarchy.cpp:96
+    ;; hierarchy.cpp:97
     (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
      (get_local $$nodes)
     )
-    ;; hierarchy.cpp:96
+    ;; hierarchy.cpp:97
     (set_local $$exn
      (get_local $$exn$slot)
     )
-    ;; hierarchy.cpp:96
+    ;; hierarchy.cpp:97
     (set_local $$sel
      (get_local $$ehselector$slot)
     )
@@ -47898,13 +47843,13 @@
          )
         )
        )
-       ;; hierarchy.cpp:90
+       ;; hierarchy.cpp:91
        (set_local $$38
         (i32.load
          (get_local $$add$ptr3$i69)
         )
        )
-       ;; hierarchy.cpp:90
+       ;; hierarchy.cpp:91
        (i32.store
         (get_local $$node)
         (get_local $$38)
@@ -47912,7 +47857,7 @@
        (set_global $__THREW__
         (i32.const 0)
        )
-       ;; hierarchy.cpp:91
+       ;; hierarchy.cpp:92
        (call $invoke_vi
         (i32.const 188)
         (get_local $$next)
@@ -47938,7 +47883,7 @@
          (br $while-out0)
         )
        )
-       ;; hierarchy.cpp:92
+       ;; hierarchy.cpp:93
        (set_local $$41
         (i32.load
          (get_local $$node)
@@ -47947,7 +47892,7 @@
        (set_global $__THREW__
         (i32.const 0)
        )
-       ;; hierarchy.cpp:92
+       ;; hierarchy.cpp:93
        (call $invoke_vii
         (i32.const 189)
         (get_local $$callback)
@@ -48018,7 +47963,7 @@
          (i32.const 0)
         )
        )
-       ;; hierarchy.cpp:93
+       ;; hierarchy.cpp:94
        (set_local $$lnot19
         (i32.xor
          (get_local $$cmp$i43)
@@ -48052,27 +47997,27 @@
        (set_local $$32
         (get_global $tempRet0)
        )
-       ;; hierarchy.cpp:96
+       ;; hierarchy.cpp:97
        (set_local $$exn$slot
         (get_local $$31)
        )
-       ;; hierarchy.cpp:96
+       ;; hierarchy.cpp:97
        (set_local $$ehselector$slot
         (get_local $$32)
        )
-       ;; hierarchy.cpp:96
+       ;; hierarchy.cpp:97
        (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
         (get_local $$next)
        )
-       ;; hierarchy.cpp:96
+       ;; hierarchy.cpp:97
        (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
         (get_local $$nodes)
        )
-       ;; hierarchy.cpp:96
+       ;; hierarchy.cpp:97
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:96
+       ;; hierarchy.cpp:97
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -48089,7 +48034,7 @@
         (set_global $__THREW__
          (i32.const 0)
         )
-        ;; hierarchy.cpp:95
+        ;; hierarchy.cpp:96
         (call $invoke_vii
          (i32.const 191)
          (get_local $$agg$result)
@@ -48116,27 +48061,27 @@
           (set_local $$32
            (get_global $tempRet0)
           )
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (set_local $$exn$slot
            (get_local $$31)
           )
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (set_local $$ehselector$slot
            (get_local $$32)
           )
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
            (get_local $$next)
           )
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
            (get_local $$nodes)
           )
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (set_local $$exn
            (get_local $$exn$slot)
           )
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (set_local $$sel
            (get_local $$ehselector$slot)
           )
@@ -48145,18 +48090,18 @@
           )
          )
          (block
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
            (get_local $$next)
           )
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (call $__ZNSt3__25dequeIP5HNodeNS_9allocatorIS2_EEED2Ev
            (get_local $$nodes)
           )
           (set_global $STACKTOP
            (get_local $sp)
           )
-          ;; hierarchy.cpp:96
+          ;; hierarchy.cpp:97
           (return)
          )
         )
@@ -51769,14 +51714,14 @@
     (get_local $$this1)
    )
   )
-  ;; hierarchy.cpp:511
+  ;; hierarchy.cpp:516
   (set_local $$options
    (i32.add
     (get_local $$0)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:511
+  ;; hierarchy.cpp:516
   (call $__ZNK10emscripten3valixIA7_cEES0_RKT_
    (get_local $$agg$tmp)
    (get_local $$options)
@@ -51886,7 +51831,7 @@
        (set_global $__THREW__
         (i32.const 0)
        )
-       ;; hierarchy.cpp:511
+       ;; hierarchy.cpp:516
        (set_local $$call
         (call $invoke_iiii
          (i32.const 163)
@@ -51916,26 +51861,26 @@
          (set_local $$16
           (get_global $tempRet0)
          )
-         ;; hierarchy.cpp:515
+         ;; hierarchy.cpp:520
          (set_local $$exn$slot
           (get_local $$15)
          )
-         ;; hierarchy.cpp:515
+         ;; hierarchy.cpp:520
          (set_local $$ehselector$slot
           (get_local $$16)
          )
-         ;; hierarchy.cpp:511
+         ;; hierarchy.cpp:516
          (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
           (get_local $$ref$tmp)
          )
          (br $do-once)
         )
        )
-       ;; hierarchy.cpp:511
+       ;; hierarchy.cpp:516
        (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
         (get_local $$ref$tmp)
        )
-       ;; hierarchy.cpp:511
+       ;; hierarchy.cpp:516
        (call $__ZN10emscripten3valD2Ev
         (get_local $$agg$tmp)
        )
@@ -51944,56 +51889,56 @@
          (get_local $$call)
         )
         (block
-         ;; hierarchy.cpp:514
+         ;; hierarchy.cpp:519
          (set_local $$21
           (i32.load
            (get_local $$node$addr)
           )
          )
-         ;; hierarchy.cpp:514
+         ;; hierarchy.cpp:519
          (set_local $$value
           (i32.add
            (get_local $$21)
            (i32.const 24)
           )
          )
-         ;; hierarchy.cpp:514
+         ;; hierarchy.cpp:519
          (set_local $$22
           (f64.load
            (get_local $$value)
           )
          )
-         ;; hierarchy.cpp:514
+         ;; hierarchy.cpp:519
          (set_local $$call13
           (f64.sqrt
            (get_local $$22)
           )
          )
-         ;; hierarchy.cpp:514
+         ;; hierarchy.cpp:519
          (set_local $$retval
           (get_local $$call13)
          )
-         ;; hierarchy.cpp:515
+         ;; hierarchy.cpp:520
          (set_local $$23
           (get_local $$retval)
          )
          (set_global $STACKTOP
           (get_local $sp)
          )
-         ;; hierarchy.cpp:515
+         ;; hierarchy.cpp:520
          (return
           (get_local $$23)
          )
         )
        )
-       ;; hierarchy.cpp:512
+       ;; hierarchy.cpp:517
        (set_local $$options5
         (i32.add
          (get_local $$0)
          (i32.const 24)
         )
        )
-       ;; hierarchy.cpp:512
+       ;; hierarchy.cpp:517
        (call $__ZNK10emscripten3valixIA7_cEES0_RKT_
         (get_local $$temp$lvalue)
         (get_local $$options5)
@@ -52002,7 +51947,7 @@
        (set_global $__THREW__
         (i32.const 0)
        )
-       ;; hierarchy.cpp:512
+       ;; hierarchy.cpp:517
        (call $invoke_viii
         (i32.const 192)
         (get_local $$ref$tmp4)
@@ -52031,11 +51976,11 @@
           (set_local $$18
            (get_global $tempRet0)
           )
-          ;; hierarchy.cpp:515
+          ;; hierarchy.cpp:520
           (set_local $$exn$slot
            (get_local $$17)
           )
-          ;; hierarchy.cpp:515
+          ;; hierarchy.cpp:520
           (set_local $$ehselector$slot
            (get_local $$18)
           )
@@ -52044,7 +51989,7 @@
           (set_global $__THREW__
            (i32.const 0)
           )
-          ;; hierarchy.cpp:512
+          ;; hierarchy.cpp:517
           (set_local $$call10
            (call $invoke_di
             (i32.const 119)
@@ -52072,56 +52017,56 @@
             (set_local $$20
              (get_global $tempRet0)
             )
-            ;; hierarchy.cpp:515
+            ;; hierarchy.cpp:520
             (set_local $$exn$slot
              (get_local $$19)
             )
-            ;; hierarchy.cpp:515
+            ;; hierarchy.cpp:520
             (set_local $$ehselector$slot
              (get_local $$20)
             )
-            ;; hierarchy.cpp:512
+            ;; hierarchy.cpp:517
             (call $__ZN10emscripten3valD2Ev
              (get_local $$ref$tmp4)
             )
             (br $do-once0)
            )
           )
-          ;; hierarchy.cpp:512
+          ;; hierarchy.cpp:517
           (set_local $$retval
            (get_local $$call10)
           )
-          ;; hierarchy.cpp:512
+          ;; hierarchy.cpp:517
           (call $__ZN10emscripten3valD2Ev
            (get_local $$ref$tmp4)
           )
-          ;; hierarchy.cpp:512
+          ;; hierarchy.cpp:517
           (call $__ZN10emscripten3valD2Ev
            (get_local $$temp$lvalue)
           )
-          ;; hierarchy.cpp:515
+          ;; hierarchy.cpp:520
           (set_local $$23
            (get_local $$retval)
           )
           (set_global $STACKTOP
            (get_local $sp)
           )
-          ;; hierarchy.cpp:515
+          ;; hierarchy.cpp:520
           (return
            (get_local $$23)
           )
          )
         )
        )
-       ;; hierarchy.cpp:512
+       ;; hierarchy.cpp:517
        (call $__ZN10emscripten3valD2Ev
         (get_local $$temp$lvalue)
        )
-       ;; hierarchy.cpp:511
+       ;; hierarchy.cpp:516
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:511
+       ;; hierarchy.cpp:516
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -52145,25 +52090,25 @@
     (set_local $$14
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:515
+    ;; hierarchy.cpp:520
     (set_local $$exn$slot
      (get_local $$13)
     )
-    ;; hierarchy.cpp:515
+    ;; hierarchy.cpp:520
     (set_local $$ehselector$slot
      (get_local $$14)
     )
    )
   )
-  ;; hierarchy.cpp:511
+  ;; hierarchy.cpp:516
   (call $__ZN10emscripten3valD2Ev
    (get_local $$agg$tmp)
   )
-  ;; hierarchy.cpp:511
+  ;; hierarchy.cpp:516
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:511
+  ;; hierarchy.cpp:516
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -55759,14 +55704,14 @@
     (get_local $$this1)
    )
   )
-  ;; hierarchy.cpp:518
+  ;; hierarchy.cpp:523
   (set_local $$options
    (i32.add
     (get_local $$0)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:518
+  ;; hierarchy.cpp:523
   (call $__ZNK10emscripten3valixIA8_cEES0_RKT_
    (get_local $$agg$tmp)
    (get_local $$options)
@@ -55876,7 +55821,7 @@
        (set_global $__THREW__
         (i32.const 0)
        )
-       ;; hierarchy.cpp:518
+       ;; hierarchy.cpp:523
        (set_local $$call
         (call $invoke_iiii
          (i32.const 163)
@@ -55906,26 +55851,26 @@
          (set_local $$16
           (get_global $tempRet0)
          )
-         ;; hierarchy.cpp:524
+         ;; hierarchy.cpp:529
          (set_local $$exn$slot
           (get_local $$15)
          )
-         ;; hierarchy.cpp:524
+         ;; hierarchy.cpp:529
          (set_local $$ehselector$slot
           (get_local $$16)
          )
-         ;; hierarchy.cpp:518
+         ;; hierarchy.cpp:523
          (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
           (get_local $$ref$tmp)
          )
          (br $do-once)
         )
        )
-       ;; hierarchy.cpp:518
+       ;; hierarchy.cpp:523
        (call $__ZNSt3__212basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEED2Ev
         (get_local $$ref$tmp)
        )
-       ;; hierarchy.cpp:518
+       ;; hierarchy.cpp:523
        (call $__ZN10emscripten3valD2Ev
         (get_local $$agg$tmp)
        )
@@ -55934,44 +55879,44 @@
          (get_local $$call)
         )
         (block
-         ;; hierarchy.cpp:523
+         ;; hierarchy.cpp:528
          (set_local $$padding
           (i32.add
            (get_local $$0)
            (i32.const 16)
           )
          )
-         ;; hierarchy.cpp:523
+         ;; hierarchy.cpp:528
          (set_local $$21
           (f64.load
            (get_local $$padding)
           )
          )
-         ;; hierarchy.cpp:523
+         ;; hierarchy.cpp:528
          (set_local $$retval
           (get_local $$21)
          )
-         ;; hierarchy.cpp:524
+         ;; hierarchy.cpp:529
          (set_local $$22
           (get_local $$retval)
          )
          (set_global $STACKTOP
           (get_local $sp)
          )
-         ;; hierarchy.cpp:524
+         ;; hierarchy.cpp:529
          (return
           (get_local $$22)
          )
         )
        )
-       ;; hierarchy.cpp:520
+       ;; hierarchy.cpp:525
        (set_local $$options5
         (i32.add
          (get_local $$0)
          (i32.const 24)
         )
        )
-       ;; hierarchy.cpp:520
+       ;; hierarchy.cpp:525
        (call $__ZNK10emscripten3valixIA8_cEES0_RKT_
         (get_local $$temp$lvalue)
         (get_local $$options5)
@@ -55980,7 +55925,7 @@
        (set_global $__THREW__
         (i32.const 0)
        )
-       ;; hierarchy.cpp:520
+       ;; hierarchy.cpp:525
        (call $invoke_viii
         (i32.const 192)
         (get_local $$ref$tmp4)
@@ -56009,11 +55954,11 @@
           (set_local $$18
            (get_global $tempRet0)
           )
-          ;; hierarchy.cpp:524
+          ;; hierarchy.cpp:529
           (set_local $$exn$slot
            (get_local $$17)
           )
-          ;; hierarchy.cpp:524
+          ;; hierarchy.cpp:529
           (set_local $$ehselector$slot
            (get_local $$18)
           )
@@ -56022,7 +55967,7 @@
           (set_global $__THREW__
            (i32.const 0)
           )
-          ;; hierarchy.cpp:520
+          ;; hierarchy.cpp:525
           (set_local $$call10
            (call $invoke_di
             (i32.const 119)
@@ -56050,56 +55995,56 @@
             (set_local $$20
              (get_global $tempRet0)
             )
-            ;; hierarchy.cpp:524
+            ;; hierarchy.cpp:529
             (set_local $$exn$slot
              (get_local $$19)
             )
-            ;; hierarchy.cpp:524
+            ;; hierarchy.cpp:529
             (set_local $$ehselector$slot
              (get_local $$20)
             )
-            ;; hierarchy.cpp:520
+            ;; hierarchy.cpp:525
             (call $__ZN10emscripten3valD2Ev
              (get_local $$ref$tmp4)
             )
             (br $do-once0)
            )
           )
-          ;; hierarchy.cpp:520
+          ;; hierarchy.cpp:525
           (set_local $$retval
            (get_local $$call10)
           )
-          ;; hierarchy.cpp:520
+          ;; hierarchy.cpp:525
           (call $__ZN10emscripten3valD2Ev
            (get_local $$ref$tmp4)
           )
-          ;; hierarchy.cpp:520
+          ;; hierarchy.cpp:525
           (call $__ZN10emscripten3valD2Ev
            (get_local $$temp$lvalue)
           )
-          ;; hierarchy.cpp:524
+          ;; hierarchy.cpp:529
           (set_local $$22
            (get_local $$retval)
           )
           (set_global $STACKTOP
            (get_local $sp)
           )
-          ;; hierarchy.cpp:524
+          ;; hierarchy.cpp:529
           (return
            (get_local $$22)
           )
          )
         )
        )
-       ;; hierarchy.cpp:520
+       ;; hierarchy.cpp:525
        (call $__ZN10emscripten3valD2Ev
         (get_local $$temp$lvalue)
        )
-       ;; hierarchy.cpp:518
+       ;; hierarchy.cpp:523
        (set_local $$exn
         (get_local $$exn$slot)
        )
-       ;; hierarchy.cpp:518
+       ;; hierarchy.cpp:523
        (set_local $$sel
         (get_local $$ehselector$slot)
        )
@@ -56123,25 +56068,25 @@
     (set_local $$14
      (get_global $tempRet0)
     )
-    ;; hierarchy.cpp:524
+    ;; hierarchy.cpp:529
     (set_local $$exn$slot
      (get_local $$13)
     )
-    ;; hierarchy.cpp:524
+    ;; hierarchy.cpp:529
     (set_local $$ehselector$slot
      (get_local $$14)
     )
    )
   )
-  ;; hierarchy.cpp:518
+  ;; hierarchy.cpp:523
   (call $__ZN10emscripten3valD2Ev
    (get_local $$agg$tmp)
   )
-  ;; hierarchy.cpp:518
+  ;; hierarchy.cpp:523
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:518
+  ;; hierarchy.cpp:523
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -59069,7 +59014,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:526
+  ;; hierarchy.cpp:531
   (return
    (i32.const 0)
   )
@@ -100058,11 +100003,11 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (set_local $$1
    (get_local $$$addr)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (call $__ZNSt3__28functionIFdP5HNodeEEC2EOS4_
    (get_local $$this1)
    (get_local $$1)
@@ -100070,7 +100015,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (return)
  )
  (func $__ZNSt3__28functionIFdP5HNodeEEC2EOS4_ (param $$this i32) (param $$__f i32)
@@ -100517,11 +100462,11 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (set_local $$1
    (get_local $$$addr)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (call $__ZNSt3__28functionIFdP5HNodeEEC2ERKS4_
    (get_local $$this1)
    (get_local $$1)
@@ -100529,7 +100474,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:427
+  ;; hierarchy.cpp:432
   (return)
  )
  (func $__ZNSt3__228__invoke_void_return_wrapperIvE6__callIJRZ10radiusLeafNS_8functionIFdP5HNodeEEEE3__0S5_EEEvDpOT_ (param $$__args i32) (param $$__args1 i32)
@@ -100698,11 +100643,11 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:428
+  ;; hierarchy.cpp:433
   (set_local $$0
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:428
+  ;; hierarchy.cpp:433
   (set_local $$children
    (i32.add
     (get_local $$0)
@@ -100759,7 +100704,7 @@
     (i32.const -1)
    )
   )
-  ;; hierarchy.cpp:428
+  ;; hierarchy.cpp:433
   (set_local $$cmp
    (i32.le_u
     (get_local $$sub$ptr$div$i)
@@ -100774,15 +100719,15 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:432
+    ;; hierarchy.cpp:437
     (return)
    )
   )
-  ;; hierarchy.cpp:430
+  ;; hierarchy.cpp:435
   (set_local $$3
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:430
+  ;; hierarchy.cpp:435
   (set_local $$call2
    (call $__ZNKSt3__28functionIFdP5HNodeEEclES2_
     (get_local $$this1)
@@ -100816,18 +100761,18 @@
     (get_local $$5)
    )
   )
-  ;; hierarchy.cpp:430
+  ;; hierarchy.cpp:435
   (set_local $$6
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:430
+  ;; hierarchy.cpp:435
   (set_local $$r
    (i32.add
     (get_local $$6)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:430
+  ;; hierarchy.cpp:435
   (f64.store
    (get_local $$r)
    (get_local $$call$i)
@@ -100835,7 +100780,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:432
+  ;; hierarchy.cpp:437
   (return)
  )
  (func $__ZNKSt3__28functionIFdP5HNodeEEclES2_ (param $$this i32) (param $$__arg i32) (result f64)
@@ -104240,40 +104185,40 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$1
    (get_local $$$addr)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (call $__ZNSt3__28functionIFdP5HNodeEEC2EOS4_
    (get_local $$this1)
    (get_local $$1)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$2
    (i32.add
     (get_local $$this1)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$3
    (get_local $$$addr)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$4
    (i32.add
     (get_local $$3)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$5
    (f64.load
     (get_local $$4)
    )
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (f64.store
    (get_local $$2)
    (get_local $$5)
@@ -104281,7 +104226,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (return)
  )
  (func $__ZNSt3__217__compressed_pairIZ12packChildrenNS_8functionIFdP5HNodeEEEdE3__1NS_9allocatorIS6_EEED2Ev (param $$this i32)
@@ -104400,40 +104345,40 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$1
    (get_local $$$addr)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (call $__ZNSt3__28functionIFdP5HNodeEEC2ERKS4_
    (get_local $$this1)
    (get_local $$1)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$2
    (i32.add
     (get_local $$this1)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$3
    (get_local $$$addr)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$4
    (i32.add
     (get_local $$3)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (set_local $$5
    (f64.load
     (get_local $$4)
    )
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (f64.store
    (get_local $$2)
    (get_local $$5)
@@ -104441,7 +104386,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:438
+  ;; hierarchy.cpp:443
   (return)
  )
  (func $__ZNSt3__228__invoke_void_return_wrapperIvE6__callIJRZ12packChildrenNS_8functionIFdP5HNodeEEEdE3__1S5_EEEvDpOT_ (param $$__args i32) (param $$__args1 i32)
@@ -104694,11 +104639,11 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:439
+  ;; hierarchy.cpp:444
   (set_local $$0
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:439
+  ;; hierarchy.cpp:444
   (set_local $$children
    (i32.add
     (get_local $$0)
@@ -104743,27 +104688,27 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:460
+    ;; hierarchy.cpp:465
     (return)
    )
   )
-  ;; hierarchy.cpp:441
+  ;; hierarchy.cpp:446
   (set_local $$3
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:441
+  ;; hierarchy.cpp:446
   (set_local $$children3
    (i32.add
     (get_local $$3)
     (i32.const 32)
    )
   )
-  ;; hierarchy.cpp:441
+  ;; hierarchy.cpp:446
   (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEEC2ERKS5_
    (get_local $$children2)
    (get_local $$children3)
   )
-  ;; hierarchy.cpp:442
+  ;; hierarchy.cpp:447
   (set_local $$i
    (i32.const 0)
   )
@@ -104817,18 +104762,18 @@
     (i32.const -1)
    )
   )
-  ;; hierarchy.cpp:443
+  ;; hierarchy.cpp:448
   (set_local $$n
    (get_local $$sub$ptr$div$i)
   )
-  ;; hierarchy.cpp:444
+  ;; hierarchy.cpp:449
   (set_local $$6
    (get_local $$node$addr)
   )
   (set_global $__THREW__
    (i32.const 0)
   )
-  ;; hierarchy.cpp:444
+  ;; hierarchy.cpp:449
   (set_local $$call5
    (call $invoke_dii
     (i32.const 210)
@@ -104853,20 +104798,20 @@
     (get_local $$8)
    )
    (block
-    ;; hierarchy.cpp:444
+    ;; hierarchy.cpp:449
     (set_local $$9
      (i32.add
       (get_local $$this1)
       (i32.const 24)
      )
     )
-    ;; hierarchy.cpp:444
+    ;; hierarchy.cpp:449
     (set_local $$10
      (f64.load
       (get_local $$9)
      )
     )
-    ;; hierarchy.cpp:444
+    ;; hierarchy.cpp:449
     (set_local $$mul
      (f64.mul
       (get_local $$call5)
@@ -104900,15 +104845,15 @@
       (get_local $$conv$i)
      )
     )
-    ;; hierarchy.cpp:444
+    ;; hierarchy.cpp:449
     (set_local $$r
      (get_local $$call$i)
     )
-    ;; hierarchy.cpp:445
+    ;; hierarchy.cpp:450
     (set_local $$13
      (get_local $$r)
     )
-    ;; hierarchy.cpp:445
+    ;; hierarchy.cpp:450
     (set_local $$cmp
      (f64.gt
       (get_local $$13)
@@ -104919,21 +104864,21 @@
      (if
       (get_local $$cmp)
       (block
-       ;; hierarchy.cpp:447
+       ;; hierarchy.cpp:452
        (set_local $$i
         (i32.const 0)
        )
        (loop $while-in
         (block $while-out
-         ;; hierarchy.cpp:447
+         ;; hierarchy.cpp:452
          (set_local $$14
           (get_local $$i)
          )
-         ;; hierarchy.cpp:447
+         ;; hierarchy.cpp:452
          (set_local $$15
           (get_local $$n)
          )
-         ;; hierarchy.cpp:447
+         ;; hierarchy.cpp:452
          (set_local $$cmp8
           (i32.lt_s
            (get_local $$14)
@@ -104946,11 +104891,11 @@
           )
           (br $label$break$L6)
          )
-         ;; hierarchy.cpp:448
+         ;; hierarchy.cpp:453
          (set_local $$16
           (get_local $$r)
          )
-         ;; hierarchy.cpp:448
+         ;; hierarchy.cpp:453
          (set_local $$17
           (get_local $$i)
          )
@@ -104983,49 +104928,49 @@
            )
           )
          )
-         ;; hierarchy.cpp:448
+         ;; hierarchy.cpp:453
          (set_local $$20
           (i32.load
            (get_local $$arrayidx$i)
           )
          )
-         ;; hierarchy.cpp:448
+         ;; hierarchy.cpp:453
          (set_local $$r11
           (i32.add
            (get_local $$20)
            (i32.const 16)
           )
          )
-         ;; hierarchy.cpp:448
+         ;; hierarchy.cpp:453
          (set_local $$21
           (f64.load
            (get_local $$r11)
           )
          )
-         ;; hierarchy.cpp:448
+         ;; hierarchy.cpp:453
          (set_local $$add
           (f64.add
            (get_local $$21)
            (get_local $$16)
           )
          )
-         ;; hierarchy.cpp:448
+         ;; hierarchy.cpp:453
          (f64.store
           (get_local $$r11)
           (get_local $$add)
          )
-         ;; hierarchy.cpp:447
+         ;; hierarchy.cpp:452
          (set_local $$22
           (get_local $$i)
          )
-         ;; hierarchy.cpp:447
+         ;; hierarchy.cpp:452
          (set_local $$inc
           (i32.add
            (get_local $$22)
            (i32.const 1)
           )
          )
-         ;; hierarchy.cpp:447
+         ;; hierarchy.cpp:452
          (set_local $$i
           (get_local $$inc)
          )
@@ -105038,7 +104983,7 @@
     (set_global $__THREW__
      (i32.const 0)
     )
-    ;; hierarchy.cpp:451
+    ;; hierarchy.cpp:456
     (call $invoke_vii
      (i32.const 211)
      (get_local $$agg$tmp)
@@ -105064,7 +105009,7 @@
       (set_global $__THREW__
        (i32.const 0)
       )
-      ;; hierarchy.cpp:451
+      ;; hierarchy.cpp:456
       (set_local $$call15
        (call $invoke_di
         (i32.const 212)
@@ -105092,27 +105037,27 @@
         (set_local $$40
          (get_global $tempRet0)
         )
-        ;; hierarchy.cpp:460
+        ;; hierarchy.cpp:465
         (set_local $$exn$slot
          (get_local $$39)
         )
-        ;; hierarchy.cpp:460
+        ;; hierarchy.cpp:465
         (set_local $$ehselector$slot
          (get_local $$40)
         )
-        ;; hierarchy.cpp:451
+        ;; hierarchy.cpp:456
         (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
          (get_local $$agg$tmp)
         )
-        ;; hierarchy.cpp:459
+        ;; hierarchy.cpp:464
         (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
          (get_local $$children2)
         )
-        ;; hierarchy.cpp:459
+        ;; hierarchy.cpp:464
         (set_local $$exn
          (get_local $$exn$slot)
         )
-        ;; hierarchy.cpp:459
+        ;; hierarchy.cpp:464
         (set_local $$sel
          (get_local $$ehselector$slot)
         )
@@ -105121,19 +105066,19 @@
         )
        )
       )
-      ;; hierarchy.cpp:451
+      ;; hierarchy.cpp:456
       (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
        (get_local $$agg$tmp)
       )
-      ;; hierarchy.cpp:451
+      ;; hierarchy.cpp:456
       (set_local $$e
        (get_local $$call15)
       )
-      ;; hierarchy.cpp:452
+      ;; hierarchy.cpp:457
       (set_local $$29
        (get_local $$r)
       )
-      ;; hierarchy.cpp:452
+      ;; hierarchy.cpp:457
       (set_local $$cmp16
        (f64.gt
         (get_local $$29)
@@ -105144,21 +105089,21 @@
        (if
         (get_local $$cmp16)
         (block
-         ;; hierarchy.cpp:454
+         ;; hierarchy.cpp:459
          (set_local $$i
           (i32.const 0)
          )
          (loop $while-in2
           (block $while-out1
-           ;; hierarchy.cpp:454
+           ;; hierarchy.cpp:459
            (set_local $$30
             (get_local $$i)
            )
-           ;; hierarchy.cpp:454
+           ;; hierarchy.cpp:459
            (set_local $$31
             (get_local $$n)
            )
-           ;; hierarchy.cpp:454
+           ;; hierarchy.cpp:459
            (set_local $$cmp19
             (i32.lt_s
              (get_local $$30)
@@ -105171,11 +105116,11 @@
             )
             (br $label$break$L17)
            )
-           ;; hierarchy.cpp:455
+           ;; hierarchy.cpp:460
            (set_local $$32
             (get_local $$r)
            )
-           ;; hierarchy.cpp:455
+           ;; hierarchy.cpp:460
            (set_local $$33
             (get_local $$i)
            )
@@ -105208,49 +105153,49 @@
              )
             )
            )
-           ;; hierarchy.cpp:455
+           ;; hierarchy.cpp:460
            (set_local $$36
             (i32.load
              (get_local $$arrayidx$i43)
             )
            )
-           ;; hierarchy.cpp:455
+           ;; hierarchy.cpp:460
            (set_local $$r23
             (i32.add
              (get_local $$36)
              (i32.const 16)
             )
            )
-           ;; hierarchy.cpp:455
+           ;; hierarchy.cpp:460
            (set_local $$37
             (f64.load
              (get_local $$r23)
             )
            )
-           ;; hierarchy.cpp:455
+           ;; hierarchy.cpp:460
            (set_local $$sub
             (f64.sub
              (get_local $$37)
              (get_local $$32)
             )
            )
-           ;; hierarchy.cpp:455
+           ;; hierarchy.cpp:460
            (f64.store
             (get_local $$r23)
             (get_local $$sub)
            )
-           ;; hierarchy.cpp:454
+           ;; hierarchy.cpp:459
            (set_local $$38
             (get_local $$i)
            )
-           ;; hierarchy.cpp:454
+           ;; hierarchy.cpp:459
            (set_local $$inc25
             (i32.add
              (get_local $$38)
              (i32.const 1)
             )
            )
-           ;; hierarchy.cpp:454
+           ;; hierarchy.cpp:459
            (set_local $$i
             (get_local $$inc25)
            )
@@ -105260,45 +105205,45 @@
         )
        )
       )
-      ;; hierarchy.cpp:458
+      ;; hierarchy.cpp:463
       (set_local $$41
        (get_local $$e)
       )
-      ;; hierarchy.cpp:458
+      ;; hierarchy.cpp:463
       (set_local $$42
        (get_local $$r)
       )
-      ;; hierarchy.cpp:458
+      ;; hierarchy.cpp:463
       (set_local $$add28
        (f64.add
         (get_local $$41)
         (get_local $$42)
        )
       )
-      ;; hierarchy.cpp:458
+      ;; hierarchy.cpp:463
       (set_local $$43
        (get_local $$node$addr)
       )
-      ;; hierarchy.cpp:458
+      ;; hierarchy.cpp:463
       (set_local $$r29
        (i32.add
         (get_local $$43)
         (i32.const 16)
        )
       )
-      ;; hierarchy.cpp:458
+      ;; hierarchy.cpp:463
       (f64.store
        (get_local $$r29)
        (get_local $$add28)
       )
-      ;; hierarchy.cpp:459
+      ;; hierarchy.cpp:464
       (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
        (get_local $$children2)
       )
       (set_global $STACKTOP
        (get_local $sp)
       )
-      ;; hierarchy.cpp:460
+      ;; hierarchy.cpp:465
       (return)
      )
     )
@@ -105310,23 +105255,23 @@
   (set_local $$24
    (get_global $tempRet0)
   )
-  ;; hierarchy.cpp:460
+  ;; hierarchy.cpp:465
   (set_local $$exn$slot
    (get_local $$23)
   )
-  ;; hierarchy.cpp:460
+  ;; hierarchy.cpp:465
   (set_local $$ehselector$slot
    (get_local $$24)
   )
-  ;; hierarchy.cpp:459
+  ;; hierarchy.cpp:464
   (call $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEED2Ev
    (get_local $$children2)
   )
-  ;; hierarchy.cpp:459
+  ;; hierarchy.cpp:464
   (set_local $$exn
    (get_local $$exn$slot)
   )
-  ;; hierarchy.cpp:459
+  ;; hierarchy.cpp:464
   (set_local $$sel
    (get_local $$ehselector$slot)
   )
@@ -108297,67 +108242,67 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:465
+  ;; hierarchy.cpp:470
   (set_local $$0
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:465
+  ;; hierarchy.cpp:470
   (set_local $$parent2
    (i32.add
     (get_local $$0)
     (i32.const 44)
    )
   )
-  ;; hierarchy.cpp:465
+  ;; hierarchy.cpp:470
   (set_local $$1
    (i32.load
     (get_local $$parent2)
    )
   )
-  ;; hierarchy.cpp:465
+  ;; hierarchy.cpp:470
   (set_local $$parent
    (get_local $$1)
   )
-  ;; hierarchy.cpp:467
+  ;; hierarchy.cpp:472
   (set_local $$2
    (f64.load
     (get_local $$this1)
    )
   )
-  ;; hierarchy.cpp:467
+  ;; hierarchy.cpp:472
   (set_local $$3
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:467
+  ;; hierarchy.cpp:472
   (set_local $$r
    (i32.add
     (get_local $$3)
     (i32.const 16)
    )
   )
-  ;; hierarchy.cpp:467
+  ;; hierarchy.cpp:472
   (set_local $$4
    (f64.load
     (get_local $$r)
    )
   )
-  ;; hierarchy.cpp:467
+  ;; hierarchy.cpp:472
   (set_local $$mul
    (f64.mul
     (get_local $$4)
     (get_local $$2)
    )
   )
-  ;; hierarchy.cpp:467
+  ;; hierarchy.cpp:472
   (f64.store
    (get_local $$r)
    (get_local $$mul)
   )
-  ;; hierarchy.cpp:469
+  ;; hierarchy.cpp:474
   (set_local $$5
    (get_local $$parent)
   )
-  ;; hierarchy.cpp:469
+  ;; hierarchy.cpp:474
   (set_local $$cmp
    (i32.ne
     (get_local $$5)
@@ -108372,125 +108317,125 @@
     (set_global $STACKTOP
      (get_local $sp)
     )
-    ;; hierarchy.cpp:474
+    ;; hierarchy.cpp:479
     (return)
    )
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (set_local $$6
    (get_local $$parent)
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (set_local $$7
    (f64.load
     (get_local $$6)
    )
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (set_local $$8
    (f64.load
     (get_local $$this1)
    )
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (set_local $$9
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (set_local $$10
    (f64.load
     (get_local $$9)
    )
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (set_local $$mul4
    (f64.mul
     (get_local $$8)
     (get_local $$10)
    )
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (set_local $$add
    (f64.add
     (get_local $$7)
     (get_local $$mul4)
    )
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (set_local $$11
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:471
+  ;; hierarchy.cpp:476
   (f64.store
    (get_local $$11)
    (get_local $$add)
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$12
    (get_local $$parent)
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$y
    (i32.add
     (get_local $$12)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$13
    (f64.load
     (get_local $$y)
    )
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$14
    (f64.load
     (get_local $$this1)
    )
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$15
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$y6
    (i32.add
     (get_local $$15)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$16
    (f64.load
     (get_local $$y6)
    )
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$mul7
    (f64.mul
     (get_local $$14)
     (get_local $$16)
    )
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$add8
    (f64.add
     (get_local $$13)
     (get_local $$mul7)
    )
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$17
    (get_local $$node$addr)
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (set_local $$y9
    (i32.add
     (get_local $$17)
     (i32.const 8)
    )
   )
-  ;; hierarchy.cpp:472
+  ;; hierarchy.cpp:477
   (f64.store
    (get_local $$y9)
    (get_local $$add8)
@@ -108498,7 +108443,7 @@
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:474
+  ;; hierarchy.cpp:479
   (return)
  )
  (func $__ZNSt3__26vectorIP5HNodeNS_9allocatorIS2_EEE9push_backERKS2_ (param $$this i32) (param $$__x i32)
@@ -119639,21 +119584,21 @@
   (set_local $$this1
    (get_local $$this$addr)
   )
-  ;; hierarchy.cpp:477
+  ;; hierarchy.cpp:482
   (set_local $$options
    (i32.add
     (get_local $$this1)
     (i32.const 24)
    )
   )
-  ;; hierarchy.cpp:477
+  ;; hierarchy.cpp:482
   (call $__ZN10emscripten3valD2Ev
    (get_local $$options)
   )
   (set_global $STACKTOP
    (get_local $sp)
   )
-  ;; hierarchy.cpp:477
+  ;; hierarchy.cpp:482
   (return)
  )
  (func $__ZN10emscripten8internal11LightTypeIDI9HierarchyE3getEv (result i32)
@@ -162197,11 +162142,6 @@
   )
   (return
    (i32.const 0)
-  )
- )
- (func $__growWasmMemory (param $newSize i32) (result i32)
-  (grow_memory
-   (get_local $newSize)
   )
  )
 )
