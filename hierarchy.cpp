@@ -120,11 +120,61 @@ void place(HNode* a, HNode* b, HNode* c) {
 struct HLNode {
     HLNode(HNode* circle)
     : _(circle)
-    {}
+    {
+        std::cout << "Created node: " << this << std::endl;
+    }
 
+    HLNode(HNode* circle, int refs)
+    : _(circle)
+    , refs(refs)
+    {
+        std::cout << "Created node: " << this << std::endl;
+    }
+
+    void setNext(HLNode* nextNode) {
+        this->next->refs--;
+        nextNode->refs++;
+
+        std::cout << "setNext: " << nextNode << " to replace " << this->next << std::endl;
+
+        if(this->next->refs <= 0) {
+            std::cout << this << " is deleting abandoned node: " << this->next << " on setNext" << std::endl;
+            delete this->next;
+        }
+        this->next = nextNode;
+    }
+
+    void setPrevious(HLNode* prevNode) {
+        this->previous->refs--;
+        prevNode->refs++;
+
+        std::cout << "setPrevious: " << prevNode << " to replace " << this->previous << std::endl;
+
+        if(this->previous->refs <= 0) {
+            std::cout << this << " is deleting abandoned node: " << this->previous << " on setPrevious" << std::endl;
+            delete this->previous;
+        }
+        this->previous = prevNode;
+    }
+
+    HLNode* assign(HLNode* newNode) {
+        this->refs--;
+        newNode->refs++;
+
+        std::cout << "Assign: " << newNode << " to replace " << this << std::endl;
+
+        if(this->refs <= 0) {
+            std::cout << this << " is deleting abandoned node: " << this << " on assign" << std::endl;
+            delete this;
+        }
+
+        return newNode;
+    }
+
+    int refs = 0;
     HNode *_;
-    HLNode *next;
-    HLNode *previous;
+    HLNode *next = NULL;
+    HLNode *previous = NULL;
 };
 
 bool intersects(HNode* a, HNode* b) {
@@ -334,9 +384,9 @@ double packEnclose(std::vector<HNode *> circles)
     bool kill;
 
     //std::cout << "creating new hlnode (3)" << std::endl;
-    HLNode *a_ = new HLNode(a);
-    HLNode *b_ = new HLNode(b);
-    HLNode *c_ = new HLNode(c);
+    HLNode *a_ = new HLNode(a, 3);
+    HLNode *b_ = new HLNode(b, 3);
+    HLNode *c_ = new HLNode(c, 3);
 
     a_->next = c_->previous = b_;
     b_->next = a_->previous = c_;
@@ -344,11 +394,12 @@ double packEnclose(std::vector<HNode *> circles)
 
     for (i = 3; i < n; ++i) {
         place(a_->_, b_->_, c = circles[i]);
-        // std::cout << "creating new hlnode" << std::endl;
-        HLNode *c_ = new HLNode(c);
 
-        j = b_->next;
-        k = a_->previous;
+        std::cout << "Trying to place new circle" << std::endl;
+        c_ = c_->assign(new HLNode(c));
+
+        j = j->assign(b_->next);
+        k = k->assign(a_->previous);
         sj = b_->_->r;
         sk = a_->_->r;
         kill = false;
@@ -358,61 +409,70 @@ double packEnclose(std::vector<HNode *> circles)
             if (sj <= sk)
             {
                 if(intersects(j->_, c_->_)) {
-                    b_ = j;
-                    a_->next = b_;
-                    b_->previous = a_;
+                    std::cout << "j: " << j << " intersects c: " << c_ << std::endl;
+                    b_ = b_->assign(j);
+                    a_->setNext(b_);
+                    b_->setPrevious(a_);
                     --i;
                     kill = true;
                 } else {
+                    std::cout << "j to j->next" << std::endl;
                     sj += j->_->r;
-                    j = j->next;
+                    j = j->assign(j->next);
                 }
             } else {
                 if(intersects(k->_, c_->_)) {
-                    a_ = k;
-                    a_->next = b_;
-                    b_->previous = a_;
+                    std::cout << "k: " << k << " intersects c: " << c_ << std::endl;
+                    a_ = a_->assign(k);
+                    a_->setNext(b_);
+                    b_->setPrevious(a_);
                     --i;
                     kill = true;
                 } else {
+                    std::cout << "k to k->previous" << std::endl;
                     sk += k->_->r;
-                    k = k->previous;
+                    k = k->assign(k->previous);
                 }
             }
 
             if(kill) {
                 break;
             }
+            std::cout << "Checking if j: " << j << " equals k->next: " << k->next << std::endl;
         } while (j != k->next);
 
         if(kill) {
             continue;
         }
 
-        c_->previous = a_;
-        c_->next = b_;
-        b_ = c_;
-        b_->previous = b_;
-        a_->next = b_->previous;
+        std::cout << "Success! Inserting " << c_ << " between " << a_ << " and " << b_ << std::endl;
+        c_->setPrevious(a_);
+        c_->setNext(b_);
+        b_ = b_->assign(c_);
+        b_->setPrevious(c_);
+        a_->setNext(c_);
+        std::cout << "Inserted! a: " << a_ << " b: " << b_ << " c: " << c_ << std::endl;
 
         oa += ca = c_->_->r * c_->_->r;
         ox += ca * c_->_->x;
         oy += ca * c_->_->y;
 
+        std::cout << "Computing new closest circle" << std::endl;
         aa = distance2(a_, cx = ox / oa, cy = oy / oa);
-        while((c_ = c_->next) != b_) {
+        while((c_ = c_->assign(c_->next)) != b_) {
             if ((ca = distance2(c_, cx, cy)) < aa)
             {
-                a_ = c_, aa = ca;
+                a_ = a_->assign(c_), aa = ca;
             }
         }
-        b_ = a_->next;
+        b_ = b_->assign(a_->next);
+        std::cout << "Outer loop complete, new closest circle pair generated. a: " << a_ << " b: " << b_ << " c: " << c_ << std::endl;
     }
 
     std::vector<HBasis *> avec = std::vector<HBasis *>();
     avec.push_back(b_->_);
-    c_ = b_;
-    while((c_ = c_->next)!= b_) {
+    c_ = c_->assign(b_);
+    while((c_ = c_->assign(c_->next))!= b_) {
         avec.push_back(c_->_);
     }
 
