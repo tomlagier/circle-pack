@@ -27,16 +27,10 @@ class HNode: public HBasis {
 
             if(node["children"].typeof().as<std::string>() == "object") {
                 std::vector<emscripten::val> children_ = emscripten::vecFromJSArray<emscripten::val>(node["children"]);
-
                 for (int i = 0; i < children_.size(); i++)
                 {
-                    ////std::cout << "creating new hnode during hnode constructor" << std::endl;
                     children.push_back(new HNode(children_[i], this));
                 }
-            }
-
-            if(node["idx"].typeof().as<std::string>() == "number") {
-                idx = node["idx"].as<int>();
             }
         }
 
@@ -47,10 +41,9 @@ class HNode: public HBasis {
         }
 
         double value = 0;
-        int idx = 0;
 
         std::vector<HNode *> children;
-        HNode* parent;
+        HNode *parent = NULL;
 
         HNode eachBefore(
             std::function<void(HNode*)> callback
@@ -221,7 +214,6 @@ bool encloses(HBasis *a, HBasis* b) {
 }
 
 HBasis* encloseBasis1(HBasis* a) {
-    ////std::cout << "creating new basis(1)" << std::endl;
     return new HBasis(a->x, a->y, a->r);
 }
 
@@ -230,7 +222,6 @@ HBasis* encloseBasis2(HBasis* a, HBasis* b) {
     double x2 = b->x, y2 = b->y, r2 = b->r;
     double x21 = x2 - x1, y21 = y2 - y1, r21 = r2 - r1;
     double l = sqrt(x21 * x21 + y21 * y21);
-    ////std::cout << "creating new basis(1.2)" << std::endl;
     return new HBasis(
         (x1 + x2 + x21 / l * r21) / 2,
         (y1 + y2 + y21 / l * r21) / 2,
@@ -263,7 +254,6 @@ HBasis* encloseBasis3(HBasis* a, HBasis* b, HBasis* c) {
       x = x1 + xa - xb * r,
       y = y1 + ya - yb * r;
 
-  ////std::cout << "creating new basis(1.3)" << std::endl;
   return new HBasis(
     x, y,
     fmax(fmax(
@@ -354,10 +344,6 @@ HBasis* enclose(std::vector<HBasis*> circles) {
     return encloseBasis(findBasis(circles, circles.size(), std::vector<HBasis*>()));
 }
 
-void printNode(std::string label, HNode* node) {
-    ////std::cout << label << ": " << node->x << " " << node->y << " " << node->r << std::endl;
-}
-
 double packEnclose(std::vector<HNode *> circles)
 {
     int n = circles.size();
@@ -411,29 +397,9 @@ double packEnclose(std::vector<HNode *> circles)
     for (i = 3; i < n; ++i) {
         place(a_->_, b_->_, c = circles[i]);
 
-        //std::cout << "Trying to place new circle" << std::endl;
         c_ = c_->assign(new HLNode(c));
-
-        //std::cout << "Checking nodes validity" << std::endl;
-        if(a_->previous->next != a_) {
-            //std::cout << "Issue with a: " << a_ << " prev: " << a_->previous << " next: " << a_->next << std::endl;
-        }
-
-        if(b_->previous->next != b_) {
-            //std::cout << "Issue with b: " << b_ << " prev: " << b_->previous << " next: " << b_->next << std::endl;
-        }
-
         j = j->assign(b_->next);
         k = k->assign(a_->previous);
-
-        if(j->previous->next != j) {
-            //std::cout << "Issue with j: " << j << " prev: " << j->previous << " next: " << j->next << std::endl;
-        }
-
-        if(k->previous->next != k) {
-            //std::cout << "Issue with k: " << k << " prev: " << k->previous << " next: " << k->next << std::endl;
-        }
-
 
         sj = b_->_->r;
         sk = a_->_->r;
@@ -444,27 +410,23 @@ double packEnclose(std::vector<HNode *> circles)
             if (sj <= sk)
             {
                 if(intersects(j->_, c_->_)) {
-                    //std::cout << "j: " << j << " intersects c: " << c_ << std::endl;
                     b_ = b_->assign(j);
                     a_->setNext(b_);
                     b_->setPrevious(a_);
                     --i;
                     kill = true;
                 } else {
-                    //std::cout << "j to j->next" << std::endl;
                     sj += j->_->r;
                     j = j->assign(j->next);
                 }
             } else {
                 if(intersects(k->_, c_->_)) {
-                    //std::cout << "k: " << k << " intersects c: " << c_ << std::endl;
                     a_ = a_->assign(k);
                     a_->setNext(b_);
                     b_->setPrevious(a_);
                     --i;
                     kill = true;
                 } else {
-                    //std::cout << "k to k->previous" << std::endl;
                     sk += k->_->r;
                     k = k->assign(k->previous);
                 }
@@ -473,26 +435,22 @@ double packEnclose(std::vector<HNode *> circles)
             if(kill) {
                 break;
             }
-            //std::cout << "Checking if j: " << j << " equals k->next: " << k->next << std::endl;
         } while (j != k->next);
 
         if(kill) {
             continue;
         }
 
-        //std::cout << "Success! Inserting " << c_ << " between " << a_ << " and " << b_ << std::endl;
         c_->setPrevious(a_);
         c_->setNext(b_);
         b_->setPrevious(c_);
         b_ = b_->assign(c_);
         a_->setNext(c_);
-        //std::cout << "Inserted! a: " << a_ << " b: " << b_ << " c: " << c_ << std::endl;
 
         oa += ca = c_->_->r * c_->_->r;
         ox += ca * c_->_->x;
         oy += ca * c_->_->y;
 
-        //std::cout << "Computing new closest circle" << std::endl;
         aa = distance2(a_, cx = ox / oa, cy = oy / oa);
         while((c_ = c_->assign(c_->next)) != b_) {
             if ((ca = distance2(c_, cx, cy)) < aa)
@@ -501,7 +459,6 @@ double packEnclose(std::vector<HNode *> circles)
             }
         }
         b_ = b_->assign(a_->next);
-        //std::cout << "Outer loop complete, new closest circle pair generated. a: " << a_ << " b: " << b_ << " c: " << c_ << std::endl;
     }
 
     std::vector<HBasis *> avec = std::vector<HBasis *>();
@@ -644,9 +601,7 @@ class Hierarchy {
 };
 
 Hierarchy* createHierarchy(emscripten::val options, emscripten::val node) {
-    ////std::cout << "creating new hnode (1)" << std::endl;
     HNode *root = new HNode(node);
-    ////std::cout << "creating new hierarchy (1)" << std::endl;
     return new Hierarchy(options, root);
 }
 
@@ -662,7 +617,6 @@ EMSCRIPTEN_BINDINGS(hierarchy) {
         .constructor<emscripten::val>()
         .property("children", &HNode::children)
         .property("value", &HNode::value)
-        .property("idx", &HNode::idx)
         .function("leaves", &HNode::leaves);
 
     class_<Hierarchy>("Hierarchy")
