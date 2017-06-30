@@ -17,16 +17,18 @@ The exported Hierarchy class exposes an interface very similar to d3-hierarchy.
 
 ### `new Module.Hierarchy(options, hierarchy): Hierarchy`
 
-`options`: {
-    `size`: [float, float]. Bounding rectangle of circle
-    `padding`: (optional, default 0) float or function, the   distance between nodes
-    `radius`: (optional) function. Transform the radius of    each node
+```
+options: {
+    size: [float, float]. Bounding rectangle of circle
+    padding: (optional, default 0) float or function, the   distance between nodes
+    radius: (optional) function. Transform the radius of    each node
 }
 
-`hierarchy`: {
+hierarchy: {
     value: relative size of node
     children: [...nodes]
 }
+```
 
 ### `Hierarchy.pack(): HNode`
 Performs the circle packing layout on the hierarchy. Returns the root node of the hierarchy.
