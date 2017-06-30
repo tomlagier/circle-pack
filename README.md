@@ -1,4 +1,4 @@
-# Circle-pack
+# Circle Pack
 
 A C++ port of the [d3-heirarchy pack layout](https://github.com/d3/d3-hierarchy/tree/master/src/pack), intended for compilation into WebAssembly.
 
